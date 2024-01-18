@@ -10,6 +10,7 @@ import {
   selectCount,
 } from "./counterSlice"
 import styles from "./Counter.module.css"
+import { postApi } from "../../services/PostService"
 
 export function Counter() {
   const count = useAppSelector(selectCount)
@@ -18,8 +19,13 @@ export function Counter() {
 
   const incrementValue = Number(incrementAmount) || 0
 
+  const { data: posts, error, isLoading } = postApi.useFetchAllPostsQuery(10)
+
   return (
     <div>
+      {isLoading && <div>Идет загрузка...</div>}
+      {error && <div>Произошла ошибка</div>}
+      {posts && posts.map((item) => <div>{item.title}</div>)}
       <div className={styles.row}>
         <button
           className={styles.button}
