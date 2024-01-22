@@ -1,0 +1,19 @@
+.header {
+  /* TODO:: Исправить добавление стилей для хедера */
+  :global(.che--LayoutRow) {
+    border: none;
+    height: 80px;
+  }
+}
+
+.buttons {
+  /* TODO:: Исправить добавление стилей для кнопок */
+  /* TODO:: Добавить ховер */
+  :global(.Button) {
+    text-transform: uppercase;
+  }
+}
+
+.logo {
+  fill: var(--color-base-base);
+}

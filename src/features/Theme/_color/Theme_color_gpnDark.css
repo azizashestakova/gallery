@@ -1,0 +1,222 @@
+/* stylelint-disable */
+.Theme_color_gpnDark {
+  /* Базовые цвета, от которых выстраивается вся палитра */
+  --color-base-base: #dedede; /* + Базовый цвет содержимого, от которого выстраиваются цвета текста, иконок, ... */
+  --color-base-essential: #121212; /* + Базовый цвет поверхностей */
+  --color-base-project: #0071b2; /* Проектный цвет, от которого выстраивают акцентные состояния */
+  --color-base-phantom: #004269; /* Тонирующий цвет, от которого выстраиватся бордеры, оверлей под модальными окнами, ... */
+  --color-base-path: #0078d2; /* Цвет ссылок и контролов, от которого выстраиваются все их состояния */
+  --color-base-system: #ced8de; /* Цвет системнный */
+  --color-base-shadow: #002033; /* Цвет тени */
+
+  --color-base-success: #22c38e; /* Цвет успеха */
+  --color-base-alert: #eb5757; /* Цвет ошибки */
+  --color-base-warning: #f38b00; /* Цвет предупреждения */
+  --color-base-caution: #f2c94c; /* Цвет осторожности */
+  --color-base-normal: #56b9f2; /* Цвет нейтральный */
+  --color-base-critical: #33000f;
+
+  --color-base-transparent: transparent;
+
+  /* //////////////////////////////
+  // Цвета фонов /////////////// */
+  --color-bg-default: var(--color-base-essential); /* Цвет дефолта */
+  --color-bg-secondary: var(--color-base-project); /* Цвет дефолта */
+
+  --color-bg-brand: var(--color-base-project); /* Цвет фона брендированый */
+
+  --color-bg-link: var(--color-base-path); /* Цвет фона ссылки */
+  --color-bg-border: var(--color-base-phantom); /* Цвет границ */
+  --color-bg-stripe: var(
+    --color-base-phantom
+  ); /* Цвет зебры (например, при окрашивании фона строк таблицы через одну) */
+
+  --color-bg-ghost: var(--color-base-phantom); /* Цвет затенения */
+
+  --color-bg-tone: var(--color-base-phantom); /* Цвет паранджи */
+  --color-bg-soft: var(--color-base-essential); /* Цвет молока */
+  --color-bg-system: var(--color-base-system); /* Цвет фона системнный */
+
+  --color-bg-normal: var(--color-base-normal); /* Цвет фона нейтральный */
+
+  --color-bg-success: var(--color-base-success); /* Цвет фона успеха */
+  --color-bg-caution: var(--color-base-caution); /* Цвет фона осторожности */
+
+  --color-bg-warning: var(--color-base-warning); /* Цвет фона предупреждения */
+
+  --color-bg-alert: var(--color-base-alert); /* Цвет фона ошибки */
+  --color-bg-critical: var(--color-base-critical); /* Цвет фона системнный */
+
+  /* //////////////////////////////
+  // Цвета текста ////////////// */
+  --color-typo-primary: var(--color-base-base); /* Цвет основного текста */
+
+  --color-typo-secondary: var(
+    --color-base-base
+  ); /* Цвет второстепенного текста */
+
+  --color-typo-ghost: var(--color-base-base); /* Цвет дополнительного текста */
+
+  --color-typo-brand: var(--color-base-project); /* Цвет брендового текста */
+
+  --color-typo-system: var(--color-base-system); /* Цвет фона системнный */
+
+  --color-typo-normal: var(--color-base-normal); /* Цвет фона нейтральный */
+
+  --color-typo-success: var(--color-base-success); /* Цвет текста успеха */
+
+  --color-typo-caution: var(
+    --color-base-caution
+  ); /* Цвет текста осторожности */
+
+  --color-typo-warning: var(
+    --color-base-warning
+  ); /* Цвет текста предупреждения */
+
+  --color-typo-alert: var(--color-base-alert); /* Цвет текста ошибки */
+
+  --color-typo-critical: var(--color-base-critical); /* Цвет фона системнный */
+
+  --color-typo-link: var(--color-base-path); /* Цвет основной ссылки */
+  --color-typo-link-minor: var(
+    color-base-path
+  ); /* Цвет второстепенной ссылки */
+
+  --color-typo-link-hover: var(color-base-path); /* Цвет ховера ссылки */
+
+  /* //////////////////////////////
+  // Цвета скроллбара ////////////// */
+  --color-scroll-bg: var(--color-base-phantom);
+  --color-scroll-thumb: var(--color-base-phantom);
+  --color-scroll-thumb-hover: var(--color-base-phantom);
+
+  /* /////////////////////////////
+  // Цвета контролов /////////// */
+
+  /* Default */
+  --color-control-bg-default: var(
+    --color-base-essential
+  ); /* Цвет фона контрола */
+
+  --color-control-typo-default: var(
+    --color-base-base
+  ); /* Цвет основного текста контрола */
+
+  --color-control-typo-placeholder: var(
+    --color-base-base
+  ); /* Цвет плейсхолдера контрола */
+
+  --color-control-bg-border-default: var(
+    --color-base-phantom
+  ); /* Цвет фона бордеров котрола */
+
+  --color-control-bg-border-default-hover: var(
+    --color-base-phantom
+  ); /* Цвет фона бордеров контрола по ховеру */
+
+  --color-control-bg-border-focus: var(
+    --color-base-path
+  ); /* Цвет аутлайна контролов при фокусе */ /* TODO заменить на правило целиком */
+  --color-control-bg-focus: var(
+    --color-base-path
+  ); /* Цвет тени в состонии фокуса */
+
+  --color-control-bg-active: var(
+    --color-base-path
+  ); /* Цвет тени в состонии нажатия  */
+
+  /* Primary */
+  --color-control-bg-primary: var(
+    --color-base-path
+  ); /* Цвет фона активного контрола */
+
+  --color-control-bg-primary-hover: var(
+    --color-base-path
+  ); /* Цвет фона активного контрола по ховеру */
+
+  --color-control-typo-primary: var(
+    --color-base-base
+  ); /* Цвет акцентного текста */
+
+  --color-control-typo-primary-hover: var(
+    --color-base-base
+  ); /* Цвет акцентного текста */
+
+  /* Secondary */
+  --color-control-bg-secondary: var(
+    --color-base-essential
+  ); /* Цвет фона бордеров котрола */
+
+  --color-control-bg-border-secondary: var(
+    --color-base-path
+  ); /* Цвет фона бордеров котрола */
+
+  --color-control-bg-border-secondary-hover: var(
+    --color-base-path
+  ); /* Цвет фона бордеров контрола по ховеру */
+
+  --color-control-typo-secondary: var(
+    --color-base-path
+  ); /* Цвет второстепеного текста контрола */
+
+  --color-control-typo-secondary-hover: var(
+    --color-base-path
+  ); /* Цвет акцентного текста */
+
+  /* Ghost */
+  --color-control-bg-ghost: var(
+    --color-base-phantom
+  ); /* Цвет фона дополнительного контрола */
+
+  --color-control-bg-ghost-hover: var(
+    --color-base-phantom
+  ); /* Цвет фона дополнительного контрола по ховеру */
+
+  --color-control-typo-ghost: var(
+    --color-base-base
+  ); /* Цвет дополнительного текста контрола */
+
+  --color-control-typo-ghost-hover: var(
+    --color-base-base
+  ); /* Цвет акцентного текста */
+
+  /* Clear */
+  --color-control-bg-clear: var(
+    --color-base-transparent
+  ); /* + Цвет фона чистого контрола */
+
+  --color-control-bg-clear-hover: var(
+    --color-base-transparent
+  ); /* + Цвет фона чистого контрола по ховеру */
+
+  --color-control-typo-clear: var(
+    --color-base-base
+  ); /* Цвет акцентного текста */
+
+  --color-control-typo-clear-hover: var(
+    --color-base-base
+  ); /* Цвет акцентного текста */
+
+  /* Disable */
+  --color-control-bg-disable: var(
+    --color-base-phantom
+  ); /* Цвет фона неактивного контрола */
+
+  --color-control-bg-border-disable: var(
+    --color-base-phantom
+  ); /* Цвет фона бордеров неактивного контрола */
+
+  --color-control-typo-disable: var(
+    --color-base-base
+  ); /* Цвет основного текста неактивного контрола */
+
+  /* /////////////////////////////
+  // Цвета тени /////////// */
+  --color-shadow-group-1: var(--color-base-shadow);
+  --color-shadow-group-2: var(--color-base-shadow);
+  --color-shadow-layer-1: var(--color-base-shadow);
+  --color-shadow-layer-2: var(--color-base-shadow);
+  --color-shadow-modal-1: var(--color-base-shadow);
+  --color-shadow-modal-2: var(--color-base-shadow);
+}
+/* stylelint-enable */

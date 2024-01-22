@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+
+  font-family: "CormorantSC";
+  background: var(--color-bg-default);
 }
 
 .App-logo {

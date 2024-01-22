@@ -1,0 +1,38 @@
+/* Light 300 */
+
+@font-face {
+  font-family: "Inter";
+  src: url("./Inter-Light.woff2") format("woff2"),
+    url("./Inter-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Medium 500 */
+
+@font-face {
+  font-family: "Inter";
+  src: url("./Inter-Medium.woff2") format("woff2"),
+    url("./Inter-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Bold 700 */
+
+@font-face {
+  font-family: "Inter";
+  src: url("./Inter-Bold.woff2") format("woff2"),
+    url("./Inter-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+.Theme_font_gpnDefault {
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  --font-mono: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+  font-family: var(--font-primary);
+}

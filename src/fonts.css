@@ -1,0 +1,29 @@
+/* Medium 500 */
+
+@font-face {
+  font-family: "CormorantSC";
+  src: url("./fonts/CormorantSC-Medium.woff2") format("woff2"),
+    url("./fonts/CormorantSC-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* SemiBold 600 */
+
+@font-face {
+  font-family: "CormorantSC";
+  src: url("./fonts/CormorantSC-SemiBold.woff2") format("woff2"),
+    url("./fonts/CormorantSC-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Bold 700 */
+
+@font-face {
+  font-family: "CormorantSC";
+  src: url("./fonts/CormorantSC-Bold.woff2") format("woff2"),
+    url("./fonts/CormorantSC-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
