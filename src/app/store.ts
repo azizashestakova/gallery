@@ -4,8 +4,9 @@ import {
   Action,
   combineReducers,
 } from "@reduxjs/toolkit"
-import counterReducer from "../features/counter/counterSlice"
-import { postApi } from "../services/PostService"
+
+import counterReducer from "@/features/counter/counterSlice"
+import { postApi } from "@/services/PostService"
 
 const rootReducer = combineReducers({
   counter: counterReducer,

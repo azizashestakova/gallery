@@ -1,25 +1,30 @@
-import { useState } from "react"
 import { cn } from "@bem-react/classname"
 
 import { Theme } from "@consta/uikit/Theme"
+import { Layout } from "@consta/uikit/Layout"
+import { cnMixSpace } from "@consta/uikit/MixSpace"
 
-import { Header } from "./features/header/Header"
+import { Header } from "@/features/header/Header"
+import { Products } from "@/features/products/Products"
 
-import { getPreset } from "./utils/getPreset"
+import { getPreset } from "@/utils/getPreset"
 
-import type { ThemeName } from "./types/theme"
+import { useTheme } from "@/hooks/useTheme"
 
 import "./App.css"
 
 const cnRootTheme = cn("RootTheme")
 
 export const App = () => {
-  const [theme, setTheme] = useState<ThemeName>("gpnDefault")
+  const [theme, toggleTheme] = useTheme()
 
   return (
     <Theme preset={getPreset(theme)} className={cnRootTheme()}>
       <div className="App">
-        <Header theme={theme} setTheme={setTheme} />
+        <Header theme={theme} setTheme={toggleTheme} />
+        <Layout className="layout">
+          <Products />
+        </Layout>
       </div>
     </Theme>
   )

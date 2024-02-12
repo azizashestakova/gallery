@@ -19,13 +19,13 @@ export function Counter() {
 
   const incrementValue = Number(incrementAmount) || 0
 
-  const { data: posts, error, isLoading } = postApi.useFetchAllPostsQuery(10)
+  const { data: posts, error, isLoading } = postApi.useFetchAllPostsQuery()
 
   return (
     <div>
       {isLoading && <div>Идет загрузка...</div>}
       {error && <div>Произошла ошибка</div>}
-      {posts && posts.map((item) => <div>{item.title}</div>)}
+      {posts && posts.map((item) => <div key={item.id}>{item.title}</div>)}
       <div className={styles.row}>
         <button
           className={styles.button}

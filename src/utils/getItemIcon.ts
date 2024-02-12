@@ -1,9 +1,9 @@
-import { IconCustom } from "../features/icon/icon"
+import { IconCustom } from "@/features/icon/icon"
 
-import MoonIcon from "../assets/moon.svg"
-import SunIcon from "../assets/sun.svg"
+import MoonIcon from "@/assets/moon.svg"
+import SunIcon from "@/assets/sun.svg"
 
-import type { ThemeName } from "../types/theme"
+import type { ThemeName } from "@/types/theme"
 
 export const getItemIcon = (item: ThemeName) => {
   if (item === "gpnDefault") {

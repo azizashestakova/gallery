@@ -1,8 +1,23 @@
 .App {
   text-align: center;
-
   font-family: "CormorantSC";
   background: var(--color-bg-default);
+  min-height: 100dvh;
+}
+
+.layout {
+  padding-right: var(--space-l);
+  padding-left: var(--space-l);
+  margin-top: var(--space-5xl);
+
+  @media (min-width: 1024px) {
+    padding-right: var(--space-6xl);
+    padding-left: var(--space-6xl);
+  }
+
+  @media (min-width: 576px) {
+    margin-top: var(--space-6xl);
+  }
 }
 
 .App-logo {

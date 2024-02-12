@@ -1,7 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
+const API_BASE_URL = import.meta.env.VITE__API_BASE_URL
+
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://jsonplaceholder.typicode.com/",
+  baseUrl: API_BASE_URL,
 })
 
 export const api = createApi({

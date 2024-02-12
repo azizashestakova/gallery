@@ -1,18 +1,20 @@
 import { api } from "./api"
-import { IPost } from "../app/models/IPost"
+
+import { IProducts } from "@/app/models/IProducts"
 
 export const postApi = api.injectEndpoints({
   endpoints: (build) => ({
-    fetchAllPosts: build.query<IPost[], number>({
-      query: (limit: number = 5) => ({
-        url: "/posts",
+    fetchAllPosts: build.query<IProducts, any>({
+      query: ({ limit, skip }) => ({
+        url: "",
         params: {
-          _limit: limit,
+          limit: limit,
+          skip: skip,
         },
       }),
       providesTags: (result) => ["Post"],
     }),
-    createPost: build.mutation<IPost, IPost>({
+    createPost: build.mutation<any, any>({
       query: (post) => ({
         url: "/posts",
         method: "POST",
