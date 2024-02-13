@@ -1,0 +1,7 @@
+.buttons {
+  /* TODO:: Исправить добавление стилей для кнопок */
+  /* TODO:: Добавить ховер */
+  :global(.Button) {
+    text-transform: uppercase;
+  }
+}

@@ -1,0 +1,40 @@
+.brick {
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 8/5.30612;
+  border: var(--control-radius);
+}
+
+.wrapper {
+  width: 92.85%;
+  background-color: var(--color-base-essential);
+  height: 46px;
+  grid-template-rows: 15px 10px;
+  padding: var(--space-2xs) var(--space-l);
+  box-sizing: border-box;
+
+  @media (min-width: 576px) {
+    width: 92.04%;
+    grid-template-rows: 19px 15px;
+    height: 72.4px;
+    padding: var(--space-m) var(--space-l);
+  }
+
+  @media (min-width: 1024px) {
+    height: 88.4px;
+    padding: var(--space-xl) var(--space-l);
+    width: 76.53%;
+  }
+}
+
+.text {
+  background-color: var(--color-base-system);
+}
+
+.text-first {
+  width: 71%;
+}
+
+.text-second {
+  width: 23%;
+}

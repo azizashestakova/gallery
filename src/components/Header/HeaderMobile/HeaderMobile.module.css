@@ -1,0 +1,54 @@
+.burger span {
+  --icon-size: var(--graphics-size-m);
+}
+
+.sidebar {
+  width: 466px !important;
+  right: 0;
+  --sidebar-transform: translate3d(100%, 0, 0);
+  padding-top: 144px;
+  padding-left: 47px;
+  box-shadow: none;
+  box-sizing: border-box;
+
+  @media (min-width: 576px) {
+    padding-top: 200px;
+    padding-left: 94px;
+  }
+
+  :global(.che--VerticalMenuItem) {
+    font-family: "CormorantSC";
+    font-size: var(--size-text-3xl);
+    line-height: var(--line-height-text-2xs);
+    text-transform: uppercase;
+    padding: var(--space-0);
+
+    @media (min-width: 576px) {
+      font-size: var(--size-text-5xl);
+    }
+
+    &:not(:last-child) {
+      margin-bottom: var(--space-3xl);
+    }
+  }
+}
+
+.header-mobile {
+  margin: 2px;
+  margin-bottom: var(--space-3xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+
+  @media (min-width: 576px) {
+    margin-bottom: 60px;
+  }
+}
+
+.mode {
+  background-color: var(--color-base-transparent);
+  border: none;
+  border-bottom: 1px solid var(--color-base-base);
+  padding: var(--space-0);
+  cursor: pointer;
+}

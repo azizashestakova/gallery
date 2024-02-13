@@ -5,18 +5,18 @@ import {
   combineReducers,
 } from "@reduxjs/toolkit"
 
-import counterReducer from "@/features/counter/counterSlice"
-import { postApi } from "@/services/PostService"
+import counterReducer from "@/components/counter/counterSlice"
+import { artistsApi } from "@/services/ArtistsService"
 
 const rootReducer = combineReducers({
   counter: counterReducer,
-  [postApi.reducerPath]: postApi.reducer,
+  [artistsApi.reducerPath]: artistsApi.reducer,
 })
 
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(postApi.middleware),
+    getDefaultMiddleware().concat(artistsApi.middleware),
 })
 
 export type AppDispatch = typeof store.dispatch

@@ -1,0 +1,14 @@
+.header {
+  /* TODO:: Исправить добавление стилей для хедера */
+  :global(.che--LayoutRow) {
+    border: none;
+    height: 80px;
+    max-width: 1280px;
+    padding: var(--space-0) var(--space-l);
+    margin: var(--space-0) var(--space-auto);
+  }
+}
+
+.logo {
+  fill: var(--color-base-base);
+}

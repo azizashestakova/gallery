@@ -2,10 +2,9 @@ import { cn } from "@bem-react/classname"
 
 import { Theme } from "@consta/uikit/Theme"
 import { Layout } from "@consta/uikit/Layout"
-import { cnMixSpace } from "@consta/uikit/MixSpace"
 
-import { Header } from "@/features/header/Header"
-import { Products } from "@/features/products/Products"
+import { Header } from "@/components/Header"
+import { Artists } from "@/components/Artists/Artists"
 
 import { getPreset } from "@/utils/getPreset"
 
@@ -20,10 +19,10 @@ export const App = () => {
 
   return (
     <Theme preset={getPreset(theme)} className={cnRootTheme()}>
-      <div className="App">
+      <div className="app">
         <Header theme={theme} setTheme={toggleTheme} />
         <Layout className="layout">
-          <Products />
+          <Artists />
         </Layout>
       </div>
     </Theme>

@@ -1,1 +1,3 @@
-export type ThemeName = "gpnDefault" | "gpnDark"
+import { themeDefault, themeDark } from "@/constants"
+
+export type ThemeName = typeof themeDefault | typeof themeDark
