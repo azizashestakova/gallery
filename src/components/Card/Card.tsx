@@ -14,21 +14,25 @@ import StubIcon from "@/assets/stub.svg"
 
 import type { IMainPainting } from "@/app/models/IArtist"
 
+import { convertDateToYears } from "@/utils/convertDatesToYears"
+
 import styles from "./Card.module.css"
 
 const cx = cn.bind(styles)
 
 interface CardProps {
   mainPainting: IMainPainting
-  title: string
-  description: string
+  name: string
+  yearsOfLife: string
 }
 
-export const Card: FC<CardProps> = ({ mainPainting, title, description }) => {
+export const Card: FC<CardProps> = ({ mainPainting, name, yearsOfLife }) => {
   const breakpoints = useBreakpoints({
     map: { l: 576 },
     isActive: true,
   })
+
+  const date = convertDateToYears(yearsOfLife)
 
   return (
     <CardConsta className={cx("card")}>
@@ -54,7 +58,7 @@ export const Card: FC<CardProps> = ({ mainPainting, title, description }) => {
             truncate
             className={cx("text")}
           >
-            {title}
+            {name}
           </Text>
           <Text
             view="secondary"
@@ -65,7 +69,7 @@ export const Card: FC<CardProps> = ({ mainPainting, title, description }) => {
             truncate
             className={cx("text")}
           >
-            {description}
+            {date}
           </Text>
         </div>
         <div className={cx("icon-wrapper")}>

@@ -39,8 +39,8 @@ export const Cards: FC<CardsProps> = ({ artists, isLoading }) => (
           <GridItem className={cx("item")} key={_id}>
             <Card
               mainPainting={mainPainting}
-              title={name}
-              description={yearsOfLife}
+              name={name}
+              yearsOfLife={yearsOfLife}
             />
           </GridItem>
         ))
