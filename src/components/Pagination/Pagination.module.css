@@ -4,7 +4,6 @@
 
   /* TODO:: Исправить добавление стилей */
   :global(.PaginationItem) {
-    font-family: var(--font-primary);
     font-weight: 300;
     transition: font-weight 0.3s ease;
   }

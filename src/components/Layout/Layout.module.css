@@ -1,0 +1,18 @@
+.container {
+  background: var(--color-bg-default);
+  min-height: 100dvh;
+}
+
+.layout {
+  max-width: 1280px;
+  padding: var(--space-0) var(--space-l);
+  margin: var(--space-m) var(--space-auto) var(--space-0);
+
+  @media (min-width: 576px) {
+    margin-top: var(--space-2xl);
+  }
+
+  @media (min-width: 1024px) {
+    margin-top: var(--space-4xl);
+  }
+}

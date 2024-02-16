@@ -1,0 +1,9 @@
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: var(--font-mono);
+  margin: 0 0 60px;
+}

@@ -17,7 +17,7 @@
   }
 
   :global(.che--VerticalMenuItem) {
-    font-family: "CormorantSC";
+    font-family: var(--font-mono);
     font-size: var(--size-text-3xl);
     line-height: var(--line-height-text-2xs);
     text-transform: uppercase;

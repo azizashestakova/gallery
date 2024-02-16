@@ -15,10 +15,11 @@ interface ImageProps {
   webp?: string
   src2x?: string
   webp2x?: string
+  className?: string
 }
 
 export const Image: FC<ImageProps> = memo(
-  ({ webp, src, src2x, webp2x, alt, ...other }) => {
+  ({ webp, src, src2x, webp2x, alt, className }) => {
     const [isLoaded, setIsLoaded] = useState(false)
 
     const ref = useRef<HTMLDivElement | null>(null)
@@ -48,14 +49,17 @@ export const Image: FC<ImageProps> = memo(
             <source srcSet={`${API_BASE_URL}${webp}`} type="image/webp" />
           )}
           <img
-            className={cx("image", {
-              "image-loaded": isLoaded && isVisible,
-            })}
+            className={cx(
+              "image",
+              {
+                "image-loaded": isLoaded && isVisible,
+              },
+              className,
+            )}
             src={`${API_BASE_URL}${src}`}
             alt={alt}
             loading="lazy"
             onLoad={() => setIsLoaded(true)}
-            {...other}
           />
         </picture>
 

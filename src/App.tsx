@@ -1,30 +1,13 @@
-import { cn } from "@bem-react/classname"
+import { Route, Routes } from "react-router-dom"
+import { Layout } from "@/components/Layout"
+import { Artists } from "@/components/Artists"
+import { Artist } from "@/components/Artist"
 
-import { Theme } from "@consta/uikit/Theme"
-import { Layout } from "@consta/uikit/Layout"
-
-import { Header } from "@/components/Header"
-import { Artists } from "@/components/Artists/Artists"
-
-import { getPreset } from "@/utils/getPreset"
-
-import { useTheme } from "@/hooks/useTheme"
-
-import "./App.css"
-
-const cnRootTheme = cn("RootTheme")
-
-export const App = () => {
-  const [theme, toggleTheme] = useTheme()
-
-  return (
-    <Theme preset={getPreset(theme)} className={cnRootTheme()}>
-      <div className="app">
-        <Header theme={theme} setTheme={toggleTheme} />
-        <Layout className="layout">
-          <Artists />
-        </Layout>
-      </div>
-    </Theme>
-  )
-}
+export const App = () => (
+  <Routes>
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Artists />} />
+      <Route path="/artists/:id" element={<Artist />} />
+    </Route>
+  </Routes>
+)

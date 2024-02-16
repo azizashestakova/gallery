@@ -3,22 +3,22 @@ import cn from "classnames/bind"
 
 import { Grid, GridItem } from "@consta/uikit/Grid"
 
-import type { IArtist } from "@/app/models/IArtist"
+import type { IPaintings } from "@/app/models/IArtist"
 
 import { Card } from "@/components/Card"
 import { Skeleton } from "@/components/Skeleton"
 
 import { limit } from "@/constants"
 
-import styles from "./Cards.module.css"
+import styles from "./CardsArtWorks.module.css"
 
 const cx = cn.bind(styles)
 
-interface CardsProps {
-  artists: IArtist[]
+interface CardsArtWorksProps {
+  paintings: IPaintings[]
 }
 
-export const Cards: FC<CardsProps> = ({ artists }) => (
+export const CardsArtWorks: FC<CardsArtWorksProps> = ({ paintings }) => (
   <Grid
     cols={1}
     gap="l"
@@ -33,13 +33,13 @@ export const Cards: FC<CardsProps> = ({ artists }) => (
       },
     }}
   >
-    {artists.length
-      ? artists.map(({ _id, mainPainting, name, yearsOfLife }) => (
+    {paintings.length
+      ? paintings.map(({ _id, image, name, yearOfCreation }) => (
           <GridItem className={cx("item")} key={_id}>
             <Card
-              imageSet={mainPainting?.image}
+              imageSet={image}
               name={name}
-              yearsOfLife={yearsOfLife}
+              yearsOfLife={yearOfCreation}
               id={_id}
             />
           </GridItem>

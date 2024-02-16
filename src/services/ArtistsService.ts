@@ -1,8 +1,8 @@
-import { api } from "./api"
+import { apiService } from "./api"
 
 import { IArtist } from "@/app/models/IArtist"
 
-export const artistsApi = api.injectEndpoints({
+export const artistsApi = apiService.injectEndpoints({
   endpoints: (build) => ({
     fetchAllArtists: build.query<IArtist[], any>({
       query: () => ({

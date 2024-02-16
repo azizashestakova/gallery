@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { ReactSVG } from "react-svg"
 import cn from "classnames/bind"
+import { Link } from "react-router-dom"
 
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
@@ -12,37 +13,40 @@ import { Image } from "@/components/Card/Image"
 import ArrowIcon from "@/assets/arrow.svg"
 import StubIcon from "@/assets/stub.svg"
 
-import type { IMainPainting } from "@/app/models/IArtist"
+import type { ImageSet } from "@/app/models/IArtist"
 
-import { convertDateToYears } from "@/utils/convertDatesToYears"
+import { convertDateToYear } from "@/utils/convertDateToYear"
 
 import styles from "./Card.module.css"
 
 const cx = cn.bind(styles)
 
 interface CardProps {
-  mainPainting: IMainPainting
+  imageSet: ImageSet
   name: string
   yearsOfLife: string
+  id: string
 }
 
-export const Card: FC<CardProps> = ({ mainPainting, name, yearsOfLife }) => {
+export const Card: FC<CardProps> = ({ imageSet, name, yearsOfLife, id }) => {
   const breakpoints = useBreakpoints({
     map: { l: 576 },
     isActive: true,
   })
 
-  const date = convertDateToYears(yearsOfLife)
+  const date = convertDateToYear(yearsOfLife)
 
   return (
-    <CardConsta className={cx("card")}>
-      {mainPainting ? (
+    // TODO:: Исправить типизацию
+    <CardConsta className={cx("card")} as={Link} to={`/artists/${id}`}>
+      {imageSet ? (
         <Image
-          src={mainPainting.image.src}
-          src2x={mainPainting.image.src2x}
-          webp={mainPainting.image.webp}
-          webp2x={mainPainting.image.webp2x}
-          alt={mainPainting.name}
+          src={imageSet.src}
+          src2x={imageSet.src2x}
+          webp={imageSet.webp}
+          webp2x={imageSet.webp2x}
+          alt={name}
+          className={cx("image")}
         />
       ) : (
         <ReactSVG className={cx("stub")} src={StubIcon} />
@@ -56,7 +60,7 @@ export const Card: FC<CardProps> = ({ mainPainting, name, yearsOfLife }) => {
             transform="uppercase"
             as="h2"
             truncate
-            className={cx("text")}
+            className={cx("text", "text-name")}
           >
             {name}
           </Text>

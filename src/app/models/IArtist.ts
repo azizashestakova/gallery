@@ -1,4 +1,4 @@
-interface Image {
+export interface ImageSet {
   original: string
   src: string
   src2x: string
@@ -7,9 +7,9 @@ interface Image {
   _id: string
 }
 
-export interface IMainPainting {
+interface IMainPainting {
   artist: string
-  image: Image
+  image: ImageSet
   name: string
   yearOfCreation: string
   _id: string
@@ -20,4 +20,12 @@ export interface IArtist {
   mainPainting: IMainPainting
   name: string
   yearsOfLife: string
+}
+
+export interface IPaintings {
+  artist: string
+  image: ImageSet
+  name: string
+  yearOfCreation: string
+  _id: string
 }
