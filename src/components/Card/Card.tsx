@@ -1,7 +1,6 @@
 import { FC } from "react"
 import { ReactSVG } from "react-svg"
 import cn from "classnames/bind"
-import { Link } from "react-router-dom"
 
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
@@ -37,8 +36,7 @@ export const Card: FC<CardProps> = ({ imageSet, name, yearsOfLife, id }) => {
   const date = convertDateToYear(yearsOfLife)
 
   return (
-    // TODO:: Исправить типизацию
-    <CardConsta className={cx("card")} as={Link} to={`/artists/${id}`}>
+    <CardConsta className={cx("card")}>
       {imageSet ? (
         <Image
           src={imageSet.src}

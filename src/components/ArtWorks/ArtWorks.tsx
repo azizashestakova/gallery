@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import cn from "classnames/bind"
 
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
@@ -7,17 +7,21 @@ import { Grid } from "@consta/uikit/Grid"
 import { Text } from "@consta/uikit/Text"
 
 import { CardsArtWorks } from "@/components/CardsArtWorks"
+import { Modal } from "@/components/Modal"
+
+import type { IPaintings } from "@/app/models/IArtist"
 
 import styles from "./ArtWorks.module.css"
 
 const cx = cn.bind(styles)
 
 interface ArtWorksProps {
-  paintings: any
+  paintings: IPaintings[]
 }
 
 export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
-  console.log("paintings", paintings)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
 
   const breakpoints = useBreakpoints({
     map: { l: 576 },
@@ -35,9 +39,17 @@ export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
       >
         Artworks
       </Text>
-      <Grid className={cx("wrapper")}>
-        <CardsArtWorks paintings={paintings} />
-      </Grid>
+      <Modal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        paintings={paintings}
+        activeIndex={activeIndex}
+      />
+      <CardsArtWorks
+        paintings={paintings}
+        setIsModalOpen={setIsModalOpen}
+        setActiveIndex={setActiveIndex}
+      />
     </Grid>
   )
 }

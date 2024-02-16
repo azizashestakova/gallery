@@ -1,5 +1,6 @@
 import { FC } from "react"
 import cn from "classnames/bind"
+import { Link } from "react-router-dom"
 
 import { Grid, GridItem } from "@consta/uikit/Grid"
 
@@ -36,12 +37,14 @@ export const Cards: FC<CardsProps> = ({ artists }) => (
     {artists.length
       ? artists.map(({ _id, mainPainting, name, yearsOfLife }) => (
           <GridItem className={cx("item")} key={_id}>
-            <Card
-              imageSet={mainPainting?.image}
-              name={name}
-              yearsOfLife={yearsOfLife}
-              id={_id}
-            />
+            <Link to={`/artists/${_id}`}>
+              <Card
+                imageSet={mainPainting?.image}
+                name={name}
+                yearsOfLife={yearsOfLife}
+                id={_id}
+              />
+            </Link>
           </GridItem>
         ))
       : Array.from(Array(limit).keys()).map((item) => (
