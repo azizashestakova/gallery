@@ -7,7 +7,7 @@ import { Grid } from "@consta/uikit/Grid"
 import { Text } from "@consta/uikit/Text"
 
 import { CardsArtWorks } from "@/components/CardsArtWorks"
-import { Modal } from "@/components/Modal"
+import { ModalFull } from "@/components/Modal/ModalFull"
 
 import type { IPaintings } from "@/app/models/IArtist"
 
@@ -39,7 +39,7 @@ export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
       >
         Artworks
       </Text>
-      <Modal
+      <ModalFull
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         paintings={paintings}

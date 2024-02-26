@@ -33,7 +33,6 @@ export const Artist: FC = () => {
         }}
       >
         <ReactSVG className={cx("icon")} src={ArrowIcon} />
-        {/* Back */}
         <Text
           view="primary"
           size="xs"

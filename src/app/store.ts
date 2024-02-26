@@ -7,7 +7,10 @@ import {
 
 import { apiService } from "@/services/api"
 
+import authReducer from "@/features/auth/authSlice"
+
 const rootReducer = combineReducers({
+  auth: authReducer,
   [apiService.reducerPath]: apiService.reducer,
 })
 

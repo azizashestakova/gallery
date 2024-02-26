@@ -65,7 +65,7 @@
 
   --color-typo-ghost: var(--color-base-base); /* Цвет дополнительного текста */
 
-  --color-typo-brand: var(--color-base-project); /* Цвет брендового текста */
+  --color-typo-brand: #121212; /* + Цвет брендового текста */
 
   --color-typo-system: var(--color-base-system); /* Цвет фона системнный */
 
@@ -118,37 +118,32 @@
     --color-base-phantom
   ); /* Цвет фона бордеров котрола */
 
-  --color-control-bg-border-default-hover: var(
-    --color-base-phantom
-  ); /* Цвет фона бордеров контрола по ховеру */
+  --color-control-bg-border-default-hover: #9c9c9c; /* + Цвет фона бордеров контрола по ховеру */
 
-  --color-control-bg-border-focus: var(
-    --color-base-path
-  ); /* Цвет аутлайна контролов при фокусе */ /* TODO заменить на правило целиком */
-  --color-control-bg-focus: var(
-    --color-base-path
-  ); /* Цвет тени в состонии фокуса */
+  --color-control-bg-border-focus: #575757; /* + Цвет аутлайна контролов при фокусе */
 
-  --color-control-bg-active: var(
-    --color-base-path
-  ); /* Цвет тени в состонии нажатия  */
+  --color-control-bg-focus: rgba(
+    0,
+    0,
+    0,
+    0.25
+  ); /* + Цвет тени в состонии фокуса */
+
+  --color-control-bg-active: rgba(
+    0,
+    0,
+    0,
+    0.25
+  ); /* + Цвет тени в состонии нажатия  */
 
   /* Primary */
-  --color-control-bg-primary: var(
-    --color-base-path
-  ); /* Цвет фона активного контрола */
+  --color-control-bg-primary: #121212; /* + Цвет фона активного контрола */
 
-  --color-control-bg-primary-hover: var(
-    --color-base-path
-  ); /* Цвет фона активного контрола по ховеру */
+  --color-control-bg-primary-hover: #121212; /* + Цвет фона активного контрола по ховеру */
 
-  --color-control-typo-primary: var(
-    --color-base-base
-  ); /* Цвет акцентного текста */
+  --color-control-typo-primary: #ffffff; /* + Цвет акцентного текста */
 
-  --color-control-typo-primary-hover: var(
-    --color-base-base
-  ); /* Цвет акцентного текста */
+  --color-control-typo-primary-hover: #ffffff; /* + Цвет акцентного текста */
 
   /* Secondary */
   --color-control-bg-secondary: var(
@@ -206,17 +201,23 @@
   ); /* Цвет акцентного текста */
 
   /* Disable */
-  --color-control-bg-disable: var(
-    --color-base-phantom
-  ); /* Цвет фона неактивного контрола */
+  --color-control-bg-disable: rgba(
+    18,
+    18,
+    18,
+    0.5
+  ); /* + Цвет фона неактивного контрола */
 
   --color-control-bg-border-disable: var(
     --color-base-transparent
   ); /* + Цвет фона бордеров неактивного контрола */
 
-  --color-control-typo-disable: var(
-    --color-base-base
-  ); /* Цвет основного текста неактивного контрола */
+  --color-control-typo-disable: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* + Цвет основного текста неактивного контрола */
 
   /* /////////////////////////////
   // Цвета тени /////////// */

@@ -1,0 +1,17 @@
+.button {
+  height: 47px;
+  width: 200px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+:global(.MixFocus:not(.MixFocus_before):focus),
+:global(.MixFocus:not(.MixFocus_before):focus:hover),
+:global(.MixFocus:not(.MixFocus_before)[class*="_focus"]),
+:global(.MixFocus:not(.MixFocus_before)[class*="_focus"]:hover),
+:global(.MixFocus_before:focus:before),
+:global(.MixFocus_before:focus:hover:before),
+:global(.MixFocus_before[class*="_focus"]:before),
+:global(.MixFocus_before[class*="_focus"]:hover:before) {
+  box-shadow: 0 0 10px 4px var(--mix-focus-color-one);
+}
