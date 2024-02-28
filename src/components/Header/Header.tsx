@@ -16,7 +16,7 @@ import { useAppDispatch, useAppSelector } from "@/app/hooks"
 
 import { selectIsAuthenticated } from "@/features/auth/authSlice"
 
-import { removeAuth } from "@/features/auth/authSlice"
+import { loggedOut } from "@/features/auth/authSlice"
 
 import type { ThemeName } from "@/types/theme"
 
@@ -43,7 +43,7 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
   const dispatch = useAppDispatch()
 
   const logOut = () => {
-    dispatch(removeAuth())
+    dispatch(loggedOut())
   }
 
   const isAuthenticated = useAppSelector(selectIsAuthenticated)

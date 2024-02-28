@@ -23,7 +23,7 @@ const slice = createSlice({
       state.accessToken = accessToken
       state.isAuthenticated = true
     },
-    removeAuth: (state) => {
+    loggedOut: (state) => {
       localStorage.removeItem("jwt-access")
 
       state.accessToken = null
@@ -32,7 +32,7 @@ const slice = createSlice({
   },
 })
 
-export const { setAuth, removeAuth } = slice.actions
+export const { setAuth, loggedOut } = slice.actions
 
 export const selectIsAuthenticated = (state: RootState) =>
   state.auth.isAuthenticated
