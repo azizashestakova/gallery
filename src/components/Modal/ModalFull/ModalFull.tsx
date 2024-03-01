@@ -2,12 +2,10 @@ import { FC } from "react"
 import cn from "classnames/bind"
 import { ReactSVG } from "react-svg"
 
-// import { Modal as ModalConsta } from "@consta/uikit/Modal"
-
 import { Carousel } from "@/components/Carousel"
 import { Modal } from "@/components/Modal"
 
-import CloseIcon from "@/assets/close.svg"
+import ClearIcon from "@/assets/clear.svg"
 
 import type { IPaintings } from "@/app/models/IArtist"
 
@@ -39,7 +37,7 @@ export const ModalFull: FC<ModalFullProps> = ({
         type="button"
         onClick={() => setIsModalOpen(false)}
       >
-        <ReactSVG src={CloseIcon} />
+        <ReactSVG src={ClearIcon} />
       </button>
       <Carousel paintings={paintings} activeIndex={activeIndex} />
     </Modal>

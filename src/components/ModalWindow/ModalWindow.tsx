@@ -5,7 +5,7 @@ import { ReactSVG } from "react-svg"
 
 import { Modal } from "@consta/uikit/Modal"
 
-import CloseIcon from "@/assets/close.svg"
+import ClearIcon from "@/assets/clear.svg"
 
 import styles from "./ModalWindow.module.css"
 
@@ -36,7 +36,7 @@ export const ModalWindow: FC<ModalWindowProps> = ({ children }) => {
           navigate(-1)
         }}
       >
-        <ReactSVG src={CloseIcon} />
+        <ReactSVG src={ClearIcon} />
       </button>
       {children}
     </Modal>

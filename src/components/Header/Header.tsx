@@ -9,18 +9,23 @@ import { Layout } from "@consta/header/Layout"
 
 import { HeaderDesktop } from "@/components/Header/HeaderDesktop"
 import { HeaderMobile } from "@/components/Header/HeaderMobile"
+import { SearchField } from "@/components/SearchField"
+import { Button } from "@consta/uikit/Button"
+
+import { IconCustom } from "@/utils/icon"
 
 import LogoIcon from "@/assets/logo.svg"
+import SearchIcon from "@/assets/search.svg"
 
 import { useAppDispatch, useAppSelector } from "@/app/hooks"
 
-import { selectIsAuthenticated } from "@/features/auth/authSlice"
-
-import { loggedOut } from "@/features/auth/authSlice"
+import { selectIsAuthenticated, loggedOut } from "@/features/auth/authSlice"
 
 import type { ThemeName } from "@/types/theme"
 
 import { menu } from "./constants"
+
+import { useOutsideClick } from "@/hooks/useOutsideClick"
 
 import styles from "./Header.module.css"
 
@@ -32,12 +37,16 @@ interface HeaderProps {
 }
 
 export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
+  const { ref, isComponentVisible, setIsComponentVisible } =
+    useOutsideClick(false)
+
   const breakpoints = useBreakpoints({
-    map: { l: 768 },
+    map: { m: 768 },
     isActive: true,
   })
 
   const navigate = useNavigate()
+
   const location = useLocation()
 
   const dispatch = useAppDispatch()
@@ -50,26 +59,48 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
 
   return (
     <Layout
-      className={cx("header")}
+      className={cx("header", { "header-search": isComponentVisible })}
       rowCenter={{
         left: (
-          <Link to="/">
-            <ReactSVG src={LogoIcon} className={cx("logo")} />
-          </Link>
+          <>
+            {!isComponentVisible ? (
+              <Link to="/">
+                <ReactSVG src={LogoIcon} className={cx("logo")} />
+              </Link>
+            ) : null}
+          </>
         ),
         center: undefined,
-        right: breakpoints.l ? (
+        right: breakpoints.m ? (
           <HeaderDesktop
             theme={theme}
             setTheme={setTheme}
             items={menu(navigate, location, logOut, isAuthenticated)}
           />
         ) : (
-          <HeaderMobile
-            theme={theme}
-            setTheme={setTheme}
-            items={menu(navigate, location, logOut, isAuthenticated)}
-          />
+          <>
+            {!breakpoints.m ? (
+              <div ref={ref}>
+                {isComponentVisible ? (
+                  <SearchField />
+                ) : (
+                  <Button
+                    className={cx("button")}
+                    label="Search"
+                    view="clear"
+                    iconLeft={IconCustom(SearchIcon)}
+                    onlyIcon
+                    onClick={() => setIsComponentVisible(true)}
+                  />
+                )}
+              </div>
+            ) : null}
+            <HeaderMobile
+              theme={theme}
+              setTheme={setTheme}
+              items={menu(navigate, location, logOut, isAuthenticated)}
+            />
+          </>
         ),
       }}
       placeholder={undefined}

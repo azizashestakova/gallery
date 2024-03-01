@@ -20,6 +20,19 @@ export interface IArtist {
   mainPainting: IMainPainting
   name: string
   yearsOfLife: string
+  genres: string[]
+  description: string
+}
+
+export interface IArtistMetaResponse {
+  count: number
+  pageNumber: number
+  perPage: number
+}
+
+export interface IArtistResponse {
+  data: IArtist[]
+  meta: IArtistMetaResponse
 }
 
 export interface IPaintings {
@@ -28,4 +41,13 @@ export interface IPaintings {
   name: string
   yearOfCreation: string
   _id: string
+}
+
+export interface IArtistParams {
+  sortBy?: string
+  name?: string
+  orderBy?: "asc" | "desc"
+  perPage?: string
+  genres?: string[]
+  pageNumber?: string
 }

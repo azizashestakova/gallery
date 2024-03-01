@@ -9,6 +9,23 @@
   }
 }
 
+.header-search {
+  :global(.che--LayoutRow-Side_position_right) {
+    width: 100%;
+
+    & > div {
+      width: 100%;
+      margin-right: 5px;
+    }
+  }
+}
+
 .logo {
   fill: var(--color-base-base);
+}
+
+.button {
+  svg {
+    fill: var(--color-base-base);
+  }
 }

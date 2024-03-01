@@ -1,0 +1,68 @@
+.wrapper {
+  position: relative;
+}
+
+.search {
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 304px;
+  }
+
+  @media (min-width: 1440px) {
+    width: 344px;
+  }
+
+  :global(.TextField-InputContainer) {
+    min-height: 32px;
+  }
+
+  :global(.TextField-Body) {
+    height: 32px;
+  }
+
+  :global(.TextField-Side) {
+    height: 100%;
+  }
+
+  :global(.TextField-ClearButton) {
+    height: 100%;
+  }
+
+  :global(.TextField-Input) {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--color-base-base);
+    height: 100%;
+
+    &::placeholder {
+      color: var(--color-control-bg-border-default-hover);
+    }
+  }
+
+  :global(.TextField-Icon) {
+    svg {
+      fill: var(--color-base-base);
+    }
+  }
+}
+
+.clear {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+
+  svg {
+    display: block;
+    fill: var(--color-base-base);
+    width: 16px;
+    height: 16px;
+  }
+}

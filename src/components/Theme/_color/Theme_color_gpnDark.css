@@ -162,9 +162,7 @@
   ); /* Цвет акцентного текста */
 
   /* Ghost */
-  --color-control-bg-ghost: var(
-    --color-base-phantom
-  ); /* Цвет фона дополнительного контрола */
+  --color-control-bg-ghost: #1a1818; /* + Цвет фона дополнительного контрола */
 
   --color-control-bg-ghost-hover: var(
     --color-base-phantom

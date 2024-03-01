@@ -1,0 +1,17 @@
+.search {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.button {
+  height: 28px;
+  width: 28px;
+  border-radius: var(--control-radius);
+  background-color: var(--color-control-bg-ghost);
+
+  path {
+    fill: var(--color-base-base);
+  }
+}

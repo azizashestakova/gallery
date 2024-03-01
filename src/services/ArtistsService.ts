@@ -1,14 +1,28 @@
 import { apiService } from "./api"
 
-import { IArtist } from "@/app/models/IArtist"
+import type {
+  IArtistResponse,
+  IArtist,
+  IArtistParams,
+} from "@/app/models/IArtist"
 
 export const artistsApi = apiService.injectEndpoints({
   endpoints: (build) => ({
-    fetchAllArtists: build.query<IArtist[], any>({
-      query: () => ({
-        url: "/artists/static",
+    fetchAllArtists: build.query<
+      IArtistResponse,
+      { isAuthenticated: boolean; params: IArtistParams }
+    >({
+      query: ({ isAuthenticated, params }) => ({
+        url: isAuthenticated ? "/artists" : "/artists/static",
+        params,
       }),
-      providesTags: (result) => ["Artists"],
+      transformResponse: (
+        response: IArtist[] | IArtistResponse,
+        meta,
+        { isAuthenticated },
+      ): IArtistResponse =>
+        (isAuthenticated ? response : { data: response }) as IArtistResponse,
+      providesTags: ["Artists"],
     }),
 
     createPost: build.mutation<any, any>({
