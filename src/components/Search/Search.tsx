@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import cn from "classnames/bind"
 
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
@@ -7,6 +7,7 @@ import { Grid } from "@consta/uikit/Grid"
 import { Button } from "@consta/uikit/Button"
 
 import { SearchField } from "@/components/SearchField"
+import { ModalFilter } from "@/components/ModalFilter"
 
 import { IconCustom } from "@/utils/icon"
 
@@ -22,6 +23,8 @@ export const Search: FC = () => {
     isActive: true,
   })
 
+  const [isOpenModalFilter, setIsOpenModalFilter] = useState(false)
+
   return (
     <Grid className={cx("search")} as="search">
       {breakpoints.m ? <SearchField /> : null}
@@ -31,6 +34,11 @@ export const Search: FC = () => {
         view="clear"
         iconLeft={IconCustom(FilterIcon)}
         onlyIcon
+        onClick={() => setIsOpenModalFilter(true)}
+      />
+      <ModalFilter
+        isOpen={isOpenModalFilter}
+        setIsOpenModalFilter={setIsOpenModalFilter}
       />
     </Grid>
   )

@@ -56,6 +56,7 @@ export const HeaderMobile: FC<HeaderMobileProps> = ({
           >
             {mode[theme]}
           </Text>
+          {/* TODO:: Добавить крестик закрытия */}
         </div>
       }
     />

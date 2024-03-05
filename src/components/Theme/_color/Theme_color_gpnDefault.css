@@ -25,7 +25,7 @@
 
   /* //////////////////////////////
   // Цвета фонов /////////////// */
-  --color-bg-default: var(--color-base-essential); /* Цвет дефолта */
+  --color-bg-default: #fcfcfc; /* + Цвет дефолта */
   --color-bg-secondary: var(--color-base-project); /* Цвет дефолта */
 
   --color-bg-brand: var(--color-base-project); /* Цвет фона брендированый */

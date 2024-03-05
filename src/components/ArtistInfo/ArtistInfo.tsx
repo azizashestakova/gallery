@@ -21,7 +21,6 @@ import styles from "./ArtistInfo.module.css"
 const cx = cn.bind(styles)
 
 interface ArtistInfoProps {
-  id: string
   yearsOfLife: string
   name: string
   description: string
@@ -30,7 +29,6 @@ interface ArtistInfoProps {
 }
 
 export const ArtistInfo: FC<ArtistInfoProps> = ({
-  id,
   yearsOfLife,
   name,
   description,

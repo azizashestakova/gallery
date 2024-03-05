@@ -128,7 +128,7 @@
       background-image: linear-gradient(
         to bottom,
         var(--color-base-transparent) 0,
-        var(--color-bg-default) 100%
+        var(--color-base-essential) 100%
       );
       bottom: 0;
       content: "";

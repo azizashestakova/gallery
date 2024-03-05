@@ -47,7 +47,6 @@ export const Artist: FC = () => {
       </button>
       {artist && (
         <ArtistInfo
-          id={artist._id}
           yearsOfLife={artist.yearsOfLife}
           name={artist.name}
           description={artist.description}

@@ -1,5 +1,5 @@
 .container {
-  background: var(--color-bg-default);
+  background-color: var(--color-base-essential);
   min-height: 100dvh;
 }
 
