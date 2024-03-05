@@ -12,10 +12,13 @@ export const artistsApi = apiService.injectEndpoints({
       IArtistResponse,
       { isAuthenticated: boolean; params: IArtistParams }
     >({
-      query: ({ isAuthenticated, params }) => ({
-        url: isAuthenticated ? "/artists" : "/artists/static",
-        params,
-      }),
+      query: ({ isAuthenticated, params }) => {
+        console.log("params", params)
+        return {
+          url: isAuthenticated ? "/artists" : "/artists/static",
+          params,
+        }
+      },
       transformResponse: (
         response: IArtist[] | IArtistResponse,
         meta,
