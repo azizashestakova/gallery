@@ -5,6 +5,7 @@ import { Grid } from "@consta/uikit/Grid"
 
 import { Cards } from "@/components/Cards"
 import { ActionBar } from "@/components/ActionBar"
+import { NoMatchResult } from "@/components/NoMatchResult"
 
 import { artistsApi } from "@/services/ArtistsService"
 
@@ -31,10 +32,16 @@ export const Artists: FC = () => {
       params,
     })
 
+  const isArtistsNotFound = !artists?.length && filters.name
+
   return (
     <Grid as="article" className={cx("wrapper")}>
       {isAuthenticated ? <ActionBar /> : null}
-      <Cards artists={artists || []} />
+      {isArtistsNotFound ? (
+        <NoMatchResult text={filters.name} />
+      ) : (
+        <Cards artists={artists || []} />
+      )}
     </Grid>
   )
 }
