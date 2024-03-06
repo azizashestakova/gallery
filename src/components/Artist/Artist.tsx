@@ -21,7 +21,7 @@ export const Artist: FC = () => {
   const { id = "" } = useParams()
   const navigate = useNavigate()
 
-  const { data: artist } = artistApi.useFetchArtistQuery({ id })
+  const { data: artist, isSuccess } = artistApi.useFetchArtistQuery({ id })
 
   return (
     <Grid className={cx("wrapper")}>
@@ -54,7 +54,7 @@ export const Artist: FC = () => {
           imageSet={artist.avatar}
         />
       )}
-      <ArtWorks paintings={artist?.paintings || []} />
+      <ArtWorks paintings={artist?.paintings || []} isSuccess={isSuccess} />
     </Grid>
   )
 }

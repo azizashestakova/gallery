@@ -147,16 +147,16 @@
 
   /* Secondary */
   --color-control-bg-secondary: var(
-    --color-base-essential
-  ); /* Цвет фона бордеров котрола */
+    --color-base-project
+  ); /* + Цвет фона бордеров котрола */
 
   --color-control-bg-border-secondary: var(
-    --color-base-path
-  ); /* Цвет фона бордеров котрола */
+    --color-base-project
+  ); /* + Цвет фона бордеров котрола */
 
   --color-control-bg-border-secondary-hover: var(
-    --color-base-path
-  ); /* Цвет фона бордеров контрола по ховеру */
+    --color-base-project
+  ); /* + Цвет фона бордеров контрола по ховеру */
 
   --color-control-typo-secondary: var(
     --color-base-path

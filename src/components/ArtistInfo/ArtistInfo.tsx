@@ -9,6 +9,7 @@ import { Spoiler } from "@consta/uikit/Spoiler"
 import { Chips } from "@consta/uikit/Chips"
 
 import { Image } from "@/components/Card/Image"
+import { EmptyAvatar } from "@/components/EmptyAvatar"
 
 import type { ImageSet } from "@/app/models/IArtist"
 
@@ -45,7 +46,7 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({
   return (
     <Grid as="article" className={cx("wrapper")}>
       <div className={cx("wrapper-image")}>
-        {imageSet && (
+        {imageSet ? (
           <Image
             src={imageSet.src}
             src2x={imageSet.src2x}
@@ -54,6 +55,8 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({
             alt={name}
             className={cx("image")}
           />
+        ) : (
+          <EmptyAvatar />
         )}
       </div>
       <Grid as="section" className={cx("info")}>

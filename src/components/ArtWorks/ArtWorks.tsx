@@ -17,9 +17,10 @@ const cx = cn.bind(styles)
 
 interface ArtWorksProps {
   paintings: IPaintings[]
+  isSuccess: boolean
 }
 
-export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
+export const ArtWorks: FC<ArtWorksProps> = ({ paintings, isSuccess }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -29,7 +30,7 @@ export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
   })
 
   return (
-    <Grid as="article">
+    <Grid as="article" className={cx("wrapper")}>
       <Text
         view="secondary"
         size={breakpoints.l ? "5xl" : "3xl"}
@@ -49,6 +50,7 @@ export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
         paintings={paintings}
         setIsModalOpen={setIsModalOpen}
         setActiveIndex={setActiveIndex}
+        isSuccess={isSuccess}
       />
     </Grid>
   )
