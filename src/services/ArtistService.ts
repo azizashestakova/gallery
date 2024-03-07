@@ -8,5 +8,9 @@ export const artistApi = apiService.injectEndpoints({
       }),
       providesTags: (result) => ["Artist"],
     }),
+    deleteArtist: build.mutation<null, string>({
+      query: (artistId) => ({ method: "DELETE", url: `/artists/${artistId}` }),
+      invalidatesTags: ["Artists"],
+    }),
   }),
 })

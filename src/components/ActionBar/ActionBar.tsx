@@ -1,18 +1,16 @@
-import { FC } from "react"
+import { FC, ReactNode } from "react"
 import cn from "classnames/bind"
 
 import { Grid } from "@consta/uikit/Grid"
-
-import { Search } from "@/components/Search"
 
 import styles from "./ActionBar.module.css"
 
 const cx = cn.bind(styles)
 
-export const ActionBar: FC = () => {
-  return (
-    <Grid className={cx("wrapper")}>
-      <Search />
-    </Grid>
-  )
+interface ActionBarProps {
+  children: ReactNode
+}
+
+export const ActionBar: FC<ActionBarProps> = ({ children }) => {
+  return <Grid className={cx("wrapper")}>{children}</Grid>
 }

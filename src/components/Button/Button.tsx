@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from "react"
+import { FC } from "react"
 import cn from "classnames/bind"
 
 import { Button as ButtonConsta } from "@consta/uikit/Button"

@@ -15,3 +15,24 @@
 :global(.MixFocus_before[class*="_focus"]:hover:before) {
   box-shadow: 0 0 10px 4px var(--mix-focus-color-one);
 }
+
+.button {
+  &:global(.Button_view_ghost) {
+    background-color: transparent;
+    border-bottom: 1px solid var(--color-base-base);
+    height: auto;
+    width: auto;
+    padding: 0;
+    border-radius: 0;
+    line-height: 14px;
+
+    &:hover {
+      background-color: transparent !important;
+      color: var(--color-typo-brand) !important;
+    }
+
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+}
