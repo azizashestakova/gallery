@@ -50,7 +50,7 @@
   --color-bg-success: var(--color-base-success); /* Цвет фона успеха */
   --color-bg-caution: var(--color-base-caution); /* Цвет фона осторожности */
 
-  --color-bg-warning: var(--color-base-warning); /* Цвет фона предупреждения */
+  --color-bg-warning: #ae2917; /* + Цвет фона предупреждения */
 
   --color-bg-alert: var(--color-base-alert); /* Цвет фона ошибки */
   --color-bg-critical: var(--color-base-critical); /* Цвет фона системнный */
@@ -77,9 +77,7 @@
     --color-base-caution
   ); /* Цвет текста осторожности */
 
-  --color-typo-warning: var(
-    --color-base-warning
-  ); /* Цвет текста предупреждения */
+  --color-typo-warning: #ae2917; /* + Цвет текста предупреждения */
 
   --color-typo-alert: var(--color-base-alert); /* Цвет текста ошибки */
 
@@ -114,9 +112,7 @@
     --color-base-base
   ); /* Цвет плейсхолдера контрола */
 
-  --color-control-bg-border-default: var(
-    --color-base-phantom
-  ); /* Цвет фона бордеров котрола */
+  --color-control-bg-border-default: #dedede; /* + Цвет фона бордеров котрола */
 
   --color-control-bg-border-default-hover: #9c9c9c; /* + Цвет фона бордеров контрола по ховеру */
 

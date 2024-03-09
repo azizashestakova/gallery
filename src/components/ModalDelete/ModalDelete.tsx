@@ -19,13 +19,10 @@ const cx = cn.bind(styles)
 
 interface ModalDeleteProps {
   isOpen: boolean
-  setIsOpenModalFilter: (value: boolean) => void
+  setIsOpen: (value: boolean) => void
 }
 
-export const ModalDelete: FC<ModalDeleteProps> = ({
-  isOpen,
-  setIsOpenModalFilter,
-}) => {
+export const ModalDelete: FC<ModalDeleteProps> = ({ isOpen, setIsOpen }) => {
   const [deleteArtist, { isSuccess }] = artistApi.useDeleteArtistMutation()
 
   const navigate = useNavigate()
@@ -34,10 +31,10 @@ export const ModalDelete: FC<ModalDeleteProps> = ({
 
   useEffect(() => {
     if (isSuccess) {
-      setIsOpenModalFilter(false)
+      setIsOpen(false)
       navigate("/") // TODO:: Добавить параметры??
     }
-  }, [isSuccess, navigate, setIsOpenModalFilter])
+  }, [isSuccess, navigate, setIsOpen])
 
   const onClickDelete = () => {
     deleteArtist(id)
@@ -47,17 +44,17 @@ export const ModalDelete: FC<ModalDeleteProps> = ({
     <Modal
       isOpen={isOpen}
       onClickOutside={() => {
-        setIsOpenModalFilter(false)
+        setIsOpen(false)
       }}
       onEsc={() => {
-        setIsOpenModalFilter(false)
+        setIsOpen(false)
       }}
       className={cx("modal")}
     >
       <button
         className={cx("button-close")}
         type="button"
-        onClick={() => setIsOpenModalFilter(false)}
+        onClick={() => setIsOpen(false)}
       >
         <ReactSVG src={ClearIcon} />
       </button>
@@ -93,9 +90,8 @@ export const ModalDelete: FC<ModalDeleteProps> = ({
           label="Cancel"
           className={cx("button")}
           view="ghost"
-          form="round"
           onClick={() => {
-            setIsOpenModalFilter(false)
+            setIsOpen(false)
           }}
         />
       </div>

@@ -9,6 +9,7 @@ import { Text } from "@consta/uikit/Text"
 import { ArtistInfo } from "@/components/ArtistInfo"
 import { ArtWorks } from "@/components/ArtWorks"
 import { ActionBar } from "@/components/ActionBar"
+import { ModalDelete } from "@/components/ModalDelete"
 
 import { artistApi } from "@/services/ArtistService"
 
@@ -17,7 +18,6 @@ import DeleteIcon from "@/assets/delete.svg"
 import EditIcon from "@/assets/edit.svg"
 
 import styles from "./Artist.module.css"
-import { ModalDelete } from "../ModalDelete"
 
 const cx = cn.bind(styles)
 
@@ -73,7 +73,7 @@ export const Artist: FC = () => {
 
           <ModalDelete
             isOpen={isOpenModalDelete}
-            setIsOpenModalFilter={setIsOpenModalDelete}
+            setIsOpen={setIsOpenModalDelete}
           />
         </>
       </ActionBar>
