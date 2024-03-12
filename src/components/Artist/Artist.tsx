@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useState, useEffect } from "react"
 import cn from "classnames/bind"
 import { useNavigate, useParams } from "react-router-dom"
 import { ReactSVG } from "react-svg"
@@ -28,6 +28,20 @@ export const Artist: FC = () => {
   const { data: artist, isSuccess } = artistApi.useFetchArtistQuery({ id })
 
   const [isOpenModalDelete, setIsOpenModalDelete] = useState(false)
+
+  const [deleteArtist, { isSuccess: isSuccessDeleteArtist }] =
+    artistApi.useDeleteArtistMutation()
+
+  useEffect(() => {
+    if (isSuccessDeleteArtist) {
+      setIsOpenModalDelete(false)
+      navigate("/") // TODO:: Добавить параметры??
+    }
+  }, [isSuccessDeleteArtist, navigate, setIsOpenModalDelete])
+
+  const onClickDelete = () => {
+    deleteArtist(id)
+  }
 
   return (
     <Grid className={cx("wrapper")}>
@@ -74,6 +88,8 @@ export const Artist: FC = () => {
           <ModalDelete
             isOpen={isOpenModalDelete}
             setIsOpen={setIsOpenModalDelete}
+            variant="artist"
+            onClickDelete={onClickDelete}
           />
         </>
       </ActionBar>

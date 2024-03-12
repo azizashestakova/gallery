@@ -20,24 +20,25 @@ const cx = cn.bind(styles)
 interface ModalDeleteProps {
   isOpen: boolean
   setIsOpen: (value: boolean) => void
+  variant: "artist" | "painting"
+  onClickDelete: () => void
 }
 
-export const ModalDelete: FC<ModalDeleteProps> = ({ isOpen, setIsOpen }) => {
-  const [deleteArtist, { isSuccess }] = artistApi.useDeleteArtistMutation()
-
-  const navigate = useNavigate()
-
-  const { id = "" } = useParams()
-
-  useEffect(() => {
-    if (isSuccess) {
-      setIsOpen(false)
-      navigate("/") // TODO:: Добавить параметры??
-    }
-  }, [isSuccess, navigate, setIsOpen])
-
-  const onClickDelete = () => {
-    deleteArtist(id)
+export const ModalDelete: FC<ModalDeleteProps> = ({
+  isOpen,
+  setIsOpen,
+  variant,
+  onClickDelete,
+}) => {
+  const text = {
+    artist: {
+      title: "Do you want to delete this artist profile?",
+      description: "You will not be able to recover this profile afterwards.",
+    },
+    painting: {
+      title: "Do you want to delete this picture?",
+      description: "You will not be able to recover this picture afterwards.",
+    },
   }
 
   return (
@@ -68,7 +69,7 @@ export const ModalDelete: FC<ModalDeleteProps> = ({ isOpen, setIsOpen }) => {
           as="h2"
           className={cx("title")}
         >
-          Do you want to delete this artist profile?
+          {text[variant].title}
         </Text>
         <Text
           view="primary"
@@ -78,7 +79,7 @@ export const ModalDelete: FC<ModalDeleteProps> = ({ isOpen, setIsOpen }) => {
           as="p"
           className={cx("text")}
         >
-          You will not be able to recover this profile afterwards.
+          {text[variant].description}
         </Text>
         <Button
           label="Delete"

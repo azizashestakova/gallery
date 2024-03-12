@@ -39,7 +39,11 @@ export const ModalFull: FC<ModalFullProps> = ({
       >
         <ReactSVG src={ClearIcon} />
       </button>
-      <Carousel paintings={paintings} activeIndex={activeIndex} />
+      <Carousel
+        paintings={paintings}
+        activeIndex={activeIndex}
+        setIsModalOpen={setIsModalOpen}
+      />
     </Modal>
   )
 }

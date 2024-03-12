@@ -12,5 +12,15 @@ export const artistApi = apiService.injectEndpoints({
       query: (artistId) => ({ method: "DELETE", url: `/artists/${artistId}` }),
       invalidatesTags: ["Artists"],
     }),
+    deletePainting: build.mutation<
+      null,
+      { artistId: string; paintingId: string }
+    >({
+      query: ({ artistId, paintingId }) => ({
+        method: "DELETE",
+        url: `/artists/${artistId}/paintings/${paintingId}`,
+      }),
+      invalidatesTags: ["Artist"],
+    }),
   }),
 })

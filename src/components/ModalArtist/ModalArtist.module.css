@@ -89,14 +89,14 @@
   position: absolute;
   width: 28px !important;
   height: 28px !important;
-  background-color: white !important;
+  background-color: var(--color-base-essential) !important;
   border-radius: 2px !important;
   right: 10px;
   bottom: 10px;
 
-  &:global(.Button_view_ghost) {
+  &:global(.Button_onlyIcon) {
     &:hover {
-      background-color: white !important;
+      background-color: var(--color-base-essential) !important;
     }
   }
 

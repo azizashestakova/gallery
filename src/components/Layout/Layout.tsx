@@ -6,6 +6,7 @@ import { Theme } from "@consta/uikit/Theme"
 import { Layout as LayoutConsta } from "@consta/uikit/Layout"
 
 import { Header } from "@/components/Header"
+import { ScrrollToTop } from "@/components/ScrrollToTop"
 
 import { getPreset } from "@/utils/getPreset"
 
@@ -23,6 +24,7 @@ export const Layout: FC = () => {
       <Header theme={theme} setTheme={toggleTheme} />
       <LayoutConsta className={cx("layout")} as="main">
         <Outlet />
+        <ScrrollToTop />
       </LayoutConsta>
     </Theme>
   )

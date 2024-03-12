@@ -1,0 +1,18 @@
+.button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid var(--color-control-bg-border-default);
+  background-color: var(--color-control-bg-ghost);
+
+  &:hover {
+    background-color: var(--color-control-bg-ghost) !important;
+  }
+
+  svg {
+    fill: var(--color-base-base);
+  }
+}

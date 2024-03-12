@@ -32,6 +32,44 @@
   }
 }
 
+.buttons {
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  left: 20px;
+  bottom: -32px;
+  transform: translateY(100%);
+
+  @media (min-width: 768px) {
+    left: auto;
+    bottom: auto;
+    transform: none;
+    top: 20px;
+    right: 20px;
+  }
+}
+
+.button {
+  width: 28px !important;
+  height: 28px !important;
+  background-color: var(--color-control-bg-ghost) !important;
+  border-radius: 4px !important;
+  border-bottom: none !important;
+
+  &:hover {
+    background-color: var(--color-control-bg-ghost) !important;
+  }
+
+  span {
+    width: 24px;
+    height: 24px;
+  }
+
+  svg {
+    display: block;
+  }
+}
+
 .wrapper-text {
   border-left: 2px solid var(--color-typo-secondary);
 }

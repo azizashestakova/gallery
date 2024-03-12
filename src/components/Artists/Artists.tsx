@@ -65,7 +65,7 @@ export const Artists: FC = () => {
       {isArtistsNotFound ? (
         <NoMatchResult text={filters.name} />
       ) : (
-        <Cards artists={artists || []} />
+        <Cards artists={artists} />
       )}
     </Grid>
   )

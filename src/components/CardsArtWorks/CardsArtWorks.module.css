@@ -3,11 +3,6 @@
   margin: 0 auto;
 }
 
-.button {
-  padding: 0;
-  border: 0;
-  background-color: transparent;
-  cursor: pointer;
-  display: block;
-  aspect-ratio: 8/5.30612;
+.item {
+  position: relative;
 }
