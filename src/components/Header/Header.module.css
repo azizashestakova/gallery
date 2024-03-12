@@ -1,4 +1,6 @@
 .header {
+  background-color: var(--color-bg-default);
+
   /* TODO:: Исправить добавление стилей для хедера */
   :global(.che--LayoutRow) {
     border: none;

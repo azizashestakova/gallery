@@ -42,6 +42,7 @@ export const FilterProvider: FC<IFilterProvider> = ({ children }) => {
   const filters = useMemo(() => Object.fromEntries(params), [params])
 
   useEffect(() => {
+    // TODO:: проверить при логине
     if (
       isAuthenticated &&
       !params.toString() &&

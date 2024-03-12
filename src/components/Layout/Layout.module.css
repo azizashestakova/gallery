@@ -6,13 +6,15 @@
 .layout {
   max-width: 1280px;
   padding: var(--space-0) var(--space-l);
-  margin: var(--space-m) var(--space-auto) var(--space-0);
+  margin: var(--space-m) var(--space-auto);
 
   @media (min-width: 576px) {
     margin-top: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
   }
 
   @media (min-width: 1024px) {
     margin-top: var(--space-4xl);
+    margin-bottom: var(--space-4xl);
   }
 }

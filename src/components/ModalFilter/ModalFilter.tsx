@@ -34,21 +34,21 @@ export const ModalFilter: FC<ModalFilterProps> = ({
   setIsOpenModalFilter,
 }) => {
   const { data: genresData = [] } = genresApi.useFetchGenresQuery(null)
-  const { data: { data: artistsData = [] } = {} } =
-    artistsApi.useFetchAllArtistsQuery({
-      isAuthenticated: false,
-      params: {},
-    })
+  // const { data: { data: artistsData = [] } = {} } =
+  //   artistsApi.useFetchAllArtistsQuery({
+  //     isAuthenticated: false,
+  //     params: {},
+  //   })
 
   const { filters, changeFilters, clearFilters } = useContext(FilterContext)
 
   const [selectedGenre, setSelectedGenre] = useState(filters.genres || "")
   const [selectedSort, setSelectedSort] = useState(filters.orderBy || "")
 
-  const genres = useMemo(() => {
-    const genres = artistsData?.map((artist) => artist.genres).flat()
-    return genresData.filter((genre) => genres?.includes(genre._id))
-  }, [genresData, artistsData])
+  // const genres = useMemo(() => {
+  //   const genres = artistsData?.map((artist) => artist.genres).flat()
+  //   return genresData.filter((genre) => genres?.includes(genre._id))
+  // }, [genresData, artistsData])
 
   const handleToggleSelected = (id: string) => {
     if (id === "asc" || id === "desc") {
@@ -87,7 +87,7 @@ export const ModalFilter: FC<ModalFilterProps> = ({
     setSelectedSort("")
   }, [clearFilters])
 
-  const items = geItems(genres)
+  const items = geItems(genresData)
 
   return (
     <Modal

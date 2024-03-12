@@ -64,7 +64,7 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
         left: (
           <>
             {!isComponentVisible ? (
-              <Link to="/">
+              <Link to="/?perPage=9&pageNumber=1">
                 <ReactSVG src={LogoIcon} className={cx("logo")} />
               </Link>
             ) : null}

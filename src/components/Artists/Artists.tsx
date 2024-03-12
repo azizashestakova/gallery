@@ -9,6 +9,7 @@ import { NoMatchResult } from "@/components/NoMatchResult"
 import { Search } from "@/components/Search"
 import { Button } from "@/components/Button"
 import { ModalArtist } from "@/components/ModalArtist"
+import { Pagination } from "@/components/Pagination"
 
 import { artistsApi } from "@/services/ArtistsService"
 
@@ -30,17 +31,24 @@ export const Artists: FC = () => {
   const [isOpenModalArtist, setIsOpenModalArtist] = useState(false)
   const isAuthenticated = useAppSelector(selectIsAuthenticated)
 
-  const { filters } = useContext(FilterContext)
+  const { filters, changeFilters } = useContext(FilterContext)
 
   const params = { ...filters, genres: filters.genres?.split(",") }
 
-  const { data: { data: artists = [] } = {} } =
+  const { data: { data: artists = [], meta } = {} } =
     artistsApi.useFetchAllArtistsQuery({
       isAuthenticated,
       params,
     })
 
-  const isArtistsNotFound = !artists?.length && filters.name
+  const isArtistsNotFound = !artists?.length && (filters.name || filters.genres)
+
+  const paginationChange = (number: number) => {
+    changeFilters({
+      ...filters,
+      pageNumber: `${number}`,
+    })
+  }
 
   return (
     <Grid as="article" className={cx("wrapper")}>
@@ -63,9 +71,22 @@ export const Artists: FC = () => {
         </ActionBar>
       ) : null}
       {isArtistsNotFound ? (
-        <NoMatchResult text={filters.name} />
+        <NoMatchResult
+          text={
+            filters.name && filters.genres
+              ? `${filters.name} and genres`
+              : filters.name || "genres"
+          }
+        />
       ) : (
         <Cards artists={artists} />
+      )}
+      {isAuthenticated && meta && (
+        <Pagination
+          totalPosts={meta.count}
+          paginationChange={paginationChange}
+          page={Number(filters.pageNumber)}
+        />
       )}
     </Grid>
   )

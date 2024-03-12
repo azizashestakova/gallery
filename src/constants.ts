@@ -4,6 +4,6 @@ export const themeDefault = "gpnDefault"
 export const themeDark = "gpnDark"
 
 export const defaultFilters = {
-  perPage: "6",
+  perPage: `${limit}`,
   pageNumber: "1",
 }
