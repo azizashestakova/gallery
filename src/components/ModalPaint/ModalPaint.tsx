@@ -118,8 +118,10 @@ export const ModalPaint: FC<ModalPaintProps> = ({ isOpen, setIsOpen }) => {
   return (
     <Modal
       isOpen={isOpen}
-      onClickOutside={() => {
-        setIsOpen(false)
+      onClickOutside={(e) => {
+        if ((e.target as HTMLElement).classList.contains("Modal-Overlay")) {
+          setIsOpen(false)
+        }
       }}
       onEsc={() => {
         setIsOpen(false)

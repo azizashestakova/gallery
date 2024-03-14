@@ -67,6 +67,7 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
   return (
     <>
       <div
+        className={cx("wrapper")}
         onMouseLeave={() => {
           setIsShowGear(false)
           setIsOpen(false)

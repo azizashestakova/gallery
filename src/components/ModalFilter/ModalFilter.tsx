@@ -14,7 +14,7 @@ import PlusIcon from "@/assets/plus.svg"
 import { FilterContext, Filters } from "@/context/FilterProvider"
 
 import { genresApi } from "@/services/GenresServices"
-import { artistsApi } from "@/services/ArtistsService"
+import { artistApi } from "@/services/ArtistService"
 
 import { ContentItem, geItems } from "./constants"
 
@@ -92,8 +92,10 @@ export const ModalFilter: FC<ModalFilterProps> = ({
   return (
     <Modal
       isOpen={isOpen}
-      onClickOutside={() => {
-        setIsOpenModalFilter(false)
+      onClickOutside={(e) => {
+        if ((e.target as HTMLElement).classList.contains("Modal-Overlay")) {
+          setIsOpenModalFilter(false)
+        }
       }}
       onEsc={() => {
         setIsOpenModalFilter(false)

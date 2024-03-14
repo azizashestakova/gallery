@@ -52,7 +52,7 @@
 
   --color-bg-warning: #ae2917; /* + Цвет фона предупреждения */
 
-  --color-bg-alert: var(--color-base-alert); /* Цвет фона ошибки */
+  --color-bg-alert: #fcfcfc; /* + Цвет фона ошибки */
   --color-bg-critical: var(--color-base-critical); /* Цвет фона системнный */
 
   /* //////////////////////////////

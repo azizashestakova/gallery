@@ -11,7 +11,7 @@ import { Button } from "@/components/Button"
 import { ModalArtist } from "@/components/ModalArtist"
 import { Pagination } from "@/components/Pagination"
 
-import { artistsApi } from "@/services/ArtistsService"
+import { artistApi } from "@/services/ArtistService"
 
 import { useAppSelector } from "@/app/hooks"
 
@@ -36,7 +36,7 @@ export const Artists: FC = () => {
   const params = { ...filters, genres: filters.genres?.split(",") }
 
   const { data: { data: artists = [], meta } = {} } =
-    artistsApi.useFetchAllArtistsQuery({
+    artistApi.useFetchAllArtistsQuery({
       isAuthenticated,
       params,
     })

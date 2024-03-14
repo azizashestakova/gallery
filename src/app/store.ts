@@ -8,9 +8,11 @@ import {
 import { apiService } from "@/services/api"
 
 import authReducer from "@/features/auth/authSlice"
+import notificationReducer from "@/features/notification/notificationSlice"
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  notification: notificationReducer,
   [apiService.reducerPath]: apiService.reducer,
 })
 

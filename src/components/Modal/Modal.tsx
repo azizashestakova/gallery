@@ -26,7 +26,11 @@ export const Modal: FC<ModalConstaProps> = ({
     <ModalConsta
       isOpen={isModalOpen}
       hasOverlay={hasOverlay}
-      onClickOutside={() => setIsModalOpen(false)}
+      onClickOutside={(e) => {
+        if ((e.target as HTMLElement).classList.contains("Modal-Overlay")) {
+          setIsModalOpen(false)
+        }
+      }}
       onEsc={() => setIsModalOpen(false)}
       className={cx("modal", className)}
     >

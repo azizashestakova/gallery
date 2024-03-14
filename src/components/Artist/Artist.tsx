@@ -17,11 +17,17 @@ import ArrowIcon from "@/assets/arrow.svg"
 import DeleteIcon from "@/assets/delete.svg"
 import EditIcon from "@/assets/edit.svg"
 
+import { useAppSelector } from "@/app/hooks"
+
+import { selectIsAuthenticated } from "@/features/auth/authSlice"
+
 import styles from "./Artist.module.css"
 
 const cx = cn.bind(styles)
 
 export const Artist: FC = () => {
+  const isAuthenticated = useAppSelector(selectIsAuthenticated)
+
   const { id = "" } = useParams()
   const navigate = useNavigate()
 
@@ -68,22 +74,24 @@ export const Artist: FC = () => {
               Back
             </Text>
           </button>
-          <div className={cx("buttons")}>
-            <button
-              className={cx("button")}
-              type="button"
-              // onClick={handleClearValue}
-            >
-              <ReactSVG src={EditIcon} />
-            </button>
-            <button
-              className={cx("button")}
-              type="button"
-              onClick={() => setIsOpenModalDelete(true)}
-            >
-              <ReactSVG src={DeleteIcon} />
-            </button>
-          </div>
+          {isAuthenticated && (
+            <div className={cx("buttons")}>
+              <button
+                className={cx("button")}
+                type="button"
+                // onClick={handleClearValue}
+              >
+                <ReactSVG src={EditIcon} />
+              </button>
+              <button
+                className={cx("button")}
+                type="button"
+                onClick={() => setIsOpenModalDelete(true)}
+              >
+                <ReactSVG src={DeleteIcon} />
+              </button>
+            </div>
+          )}
 
           <ModalDelete
             isOpen={isOpenModalDelete}

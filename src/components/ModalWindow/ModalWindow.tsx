@@ -21,8 +21,10 @@ export const ModalWindow: FC<ModalWindowProps> = ({ children }) => {
   return (
     <Modal
       isOpen={true}
-      onClickOutside={() => {
-        navigate(-1)
+      onClickOutside={(e) => {
+        if ((e.target as HTMLElement).classList.contains("Modal-Overlay")) {
+          navigate(-1)
+        }
       }}
       onEsc={() => {
         navigate(-1)

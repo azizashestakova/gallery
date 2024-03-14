@@ -127,8 +127,11 @@ export const ModalArtist: FC<ModalArtistProps> = ({ isOpen, setIsOpen }) => {
   return (
     <Modal
       isOpen={isOpen}
-      onClickOutside={() => {
-        setIsOpen(false)
+      // TODO:: при закрытии Snackbar закрывается модалка
+      onClickOutside={(e) => {
+        if ((e.target as HTMLElement).classList.contains("Modal-Overlay")) {
+          setIsOpen(false)
+        }
       }}
       onEsc={() => {
         setIsOpen(false)

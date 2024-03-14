@@ -44,8 +44,10 @@ export const ModalDelete: FC<ModalDeleteProps> = ({
   return (
     <Modal
       isOpen={isOpen}
-      onClickOutside={() => {
-        setIsOpen(false)
+      onClickOutside={(e) => {
+        if ((e.target as HTMLElement).classList.contains("Modal-Overlay")) {
+          setIsOpen(false)
+        }
       }}
       onEsc={() => {
         setIsOpen(false)
