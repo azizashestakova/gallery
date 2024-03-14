@@ -20,6 +20,7 @@ interface CardsArtWorksProps {
   setIsModalOpen: (value: boolean) => void
   setActiveIndex: (value: number) => void
   isSuccess: boolean
+  setPaintingId: (value: string) => void
 }
 
 export const CardsArtWorks: FC<CardsArtWorksProps> = ({
@@ -27,6 +28,7 @@ export const CardsArtWorks: FC<CardsArtWorksProps> = ({
   setIsModalOpen,
   setActiveIndex,
   isSuccess,
+  setPaintingId,
 }) =>
   isSuccess && !paintings.length ? (
     <UploadPaintings />
@@ -54,6 +56,7 @@ export const CardsArtWorks: FC<CardsArtWorksProps> = ({
                 index={index}
                 setIsModalOpen={setIsModalOpen}
                 setActiveIndex={setActiveIndex}
+                setPaintingId={setPaintingId}
               />
             </GridItem>
           ))

@@ -84,7 +84,11 @@ export const ModalArtist: FC<ModalArtistProps> = ({ isOpen, setIsOpen }) => {
   }
 
   const uploadImage = async (file: File | undefined) => {
-    if (file) {
+    if (
+      file &&
+      file.size <= 3e6 &&
+      (file.type === "image/jpeg" || file.type === "image/png")
+    ) {
       const base64 = await getBase64(file)
       setImage(base64)
       // field.onChange(file);
@@ -203,6 +207,7 @@ export const ModalArtist: FC<ModalArtistProps> = ({ isOpen, setIsOpen }) => {
               <input
                 className={cx("input")}
                 type="file"
+                accept="image/jpeg,image/png"
                 ref={inputRef}
                 onChange={handleChangeImage}
               />

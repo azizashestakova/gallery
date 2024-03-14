@@ -7,6 +7,7 @@ import type { IPaintings } from "@/app/models/IArtist"
 import { Card } from "@/components/Card"
 import { ArtworkMenu } from "@/components/ArtworkMenu"
 import { ModalDelete } from "@/components/ModalDelete"
+import { ModalPaint } from "@/components/ModalPaint"
 
 import { artistApi } from "@/services/ArtistService"
 
@@ -23,6 +24,7 @@ interface CardArtWorksProps {
   index: number
   setIsModalOpen: (value: boolean) => void
   setActiveIndex: (value: number) => void
+  setPaintingId: (value: string) => void
 }
 
 export const CardArtWorks: FC<CardArtWorksProps> = ({
@@ -30,6 +32,7 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
   index,
   setIsModalOpen,
   setActiveIndex,
+  setPaintingId,
 }) => {
   const isAuthenticated = useAppSelector(selectIsAuthenticated)
 
@@ -38,10 +41,12 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
   const { id: artistId = "" } = useParams()
 
   const [isOpenModalDelete, setIsOpenModalDelete] = useState(false)
+  const [isOpenModalPaint, setIsOpenModalPaint] = useState(false)
 
   const onClickButton = (index: number) => {
     setIsModalOpen(true)
     setActiveIndex(index)
+    setPaintingId(_id)
   }
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -78,6 +83,7 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
           isShowGear={isShowGear}
           setIsShowGear={setIsShowGear}
           setIsOpenModalDelete={setIsOpenModalDelete}
+          setIsOpenModalPaint={setIsOpenModalPaint}
         />
         <button
           className={cx("button")}
@@ -98,6 +104,7 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
         variant="painting"
         onClickDelete={() => onClickDelete(artistId, _id)}
       />
+      <ModalPaint isOpen={isOpenModalPaint} setIsOpen={setIsOpenModalPaint} />
     </>
   )
 }

@@ -1,9 +1,11 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import cn from "classnames/bind"
 import { ReactSVG } from "react-svg"
 
 import { Text } from "@consta/uikit/Text"
 import { Button } from "@consta/uikit/Button"
+
+import { ModalPaint } from "@/components/ModalPaint"
 
 import { IconCustom } from "@/utils/icon"
 
@@ -16,6 +18,8 @@ import styles from "./UploadPaintings.module.css"
 const cx = cn.bind(styles)
 
 export const UploadPaintings: FC = () => {
+  const [isOpenModalPaint, setIsOpenModalPaint] = useState(false)
+
   return (
     <>
       <div className={cx(styles.wrapper)}>
@@ -29,7 +33,11 @@ export const UploadPaintings: FC = () => {
           onlyIcon
           className={cx("button")}
           form="round"
+          onClick={() => {
+            setIsOpenModalPaint(true)
+          }}
         />
+        <ModalPaint isOpen={isOpenModalPaint} setIsOpen={setIsOpenModalPaint} />
       </div>
       <Text
         view="primary"

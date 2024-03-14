@@ -1,7 +1,6 @@
-import { FC, useEffect, useState } from "react"
+import { FC } from "react"
 import cn from "classnames/bind"
 import Slider from "react-slick"
-import { useParams } from "react-router-dom"
 
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
@@ -11,10 +10,7 @@ import { Grid } from "@consta/uikit/Grid"
 import { Text } from "@consta/uikit/Text"
 
 import { Image } from "@/components/Card/Image"
-import { ModalDelete } from "@/components/ModalDelete"
 import { Button } from "@/components/Button"
-
-import { artistApi } from "@/services/ArtistService"
 
 import { IconCustom } from "@/utils/icon"
 
@@ -34,33 +30,22 @@ const cx = cn.bind(styles)
 interface CarouselProps {
   paintings: IPaintings[]
   activeIndex: number
-  setIsModalOpen: (value: boolean) => void
+  setIsOpenModalDelete: (value: boolean) => void
+  setIsOpenModalPaint: (value: boolean) => void
 }
 
 export const Carousel: FC<CarouselProps> = ({
   paintings,
   activeIndex,
-  setIsModalOpen,
+  setIsOpenModalDelete,
+  setIsOpenModalPaint,
 }) => {
-  const [isOpenModalDelete, setIsOpenModalDelete] = useState(false)
-
-  const { id: artistId = "" } = useParams()
-
-  const [deletePainting, { isSuccess }] = artistApi.useDeletePaintingMutation()
-
-  useEffect(() => {
-    if (isSuccess) {
-      setIsOpenModalDelete(false)
-      setIsModalOpen(false)
-    }
-  }, [isSuccess, setIsModalOpen])
-
-  const onClickDelete = (artistId: string, paintingId: string) => {
-    deletePainting({ artistId, paintingId })
+  const openModalDelete = () => {
+    setIsOpenModalDelete(true)
   }
 
-  const handleToggleMenu = () => {
-    setIsOpenModalDelete(!isOpenModalDelete)
+  const openModalEdit = () => {
+    setIsOpenModalPaint(true)
   }
 
   const settings = reactSlickAdapter({
@@ -87,26 +72,20 @@ export const Carousel: FC<CarouselProps> = ({
                   view="clear"
                   onlyIcon
                   iconLeft={IconCustom(EditIcon)}
-                  label="Delete"
-                  onClick={handleToggleMenu}
+                  label="Edit"
+                  onClick={openModalEdit}
                   className={cx("button")}
                 />
                 <Button
                   view="clear"
                   onlyIcon
                   iconLeft={IconCustom(DeleteIcon)}
-                  label="Edit"
-                  onClick={handleToggleMenu}
+                  label="Delete"
+                  onClick={openModalDelete}
                   className={cx("button")}
                 />
               </div>
             )}
-            <ModalDelete
-              isOpen={isOpenModalDelete}
-              setIsOpen={setIsOpenModalDelete}
-              variant="painting"
-              onClickDelete={() => onClickDelete(artistId, _id)}
-            />
             <Grid className={cx("wrapper-text")}>
               <Text
                 view="secondary"

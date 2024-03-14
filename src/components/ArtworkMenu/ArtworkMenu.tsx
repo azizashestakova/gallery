@@ -18,6 +18,7 @@ interface ActionBarProps {
   isShowGear: boolean
   setIsShowGear: (value: boolean) => void
   setIsOpenModalDelete: (value: boolean) => void
+  setIsOpenModalPaint: (value: boolean) => void
 }
 
 export const ArtworkMenu: FC<ActionBarProps> = ({
@@ -26,6 +27,7 @@ export const ArtworkMenu: FC<ActionBarProps> = ({
   isShowGear,
   setIsShowGear,
   setIsOpenModalDelete,
+  setIsOpenModalPaint,
 }) => {
   const ref = useRef(null)
 
@@ -51,7 +53,11 @@ export const ArtworkMenu: FC<ActionBarProps> = ({
     },
     {
       text: "Edit",
-      onClick: () => {},
+      onClick: () => {
+        setIsOpenModalPaint(true)
+        setIsOpen(false)
+        setIsShowGear(false)
+      },
     },
   ]
 

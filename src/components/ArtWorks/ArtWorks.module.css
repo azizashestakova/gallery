@@ -10,3 +10,12 @@
   font-family: var(--font-mono);
   margin: 0 0 60px;
 }
+
+.button {
+  margin-left: auto;
+
+  :global(.Button-Icon) {
+    width: 24px;
+    height: 24px;
+  }
+}
