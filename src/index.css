@@ -4,3 +4,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
 }
+
+.Modal {
+  z-index: 1;
+}

@@ -16,8 +16,9 @@ interface ButtonProps {
   disabled?: boolean
   form?: "default" | "brick" | "round"
   iconLeft?: IconComponent
-  onClick: () => void
+  onClick?: () => void
   onlyIcon?: boolean
+  type?: "button" | "reset" | "submit"
 }
 
 export const Button: FC<ButtonProps> = ({
@@ -29,6 +30,7 @@ export const Button: FC<ButtonProps> = ({
   iconLeft,
   onClick,
   onlyIcon = false,
+  type = "button",
 }) => {
   return (
     <ButtonConsta
@@ -41,6 +43,7 @@ export const Button: FC<ButtonProps> = ({
       onClick={onClick}
       size="xs"
       onlyIcon={onlyIcon}
+      type={type}
     />
   )
 }

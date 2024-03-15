@@ -2,14 +2,17 @@ import {
   ChangeEvent,
   DragEvent,
   FC,
-  SetStateAction,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from "react"
 import cn from "classnames/bind"
 import { ReactSVG } from "react-svg"
-import { useNavigate, useParams } from "react-router-dom"
+import { useForm, Controller, useController } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
+import { useParams } from "react-router-dom"
 
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
@@ -27,56 +30,97 @@ import ClearIcon from "@/assets/clear.svg"
 import MountainsIcon from "@/assets/mountains.svg"
 import DeleteIcon from "@/assets/delete.svg"
 
-import type { IGenre } from "@/app/models/IGenres"
+import { artistApi } from "@/services/ArtistService"
 
 import styles from "./ModalPaint.module.css"
 
-const initialState = {
-  name: "",
-  yearOfCreation: "",
-}
+const schema = yup
+  .object({
+    name: yup.string().trim().required("This field is required."),
+    yearOfCreation: yup.string().required("This field is required.").length(4),
+    image: yup.mixed(),
+  })
+  .required()
 
 const cx = cn.bind(styles)
+
+export type TDefaultValues = {
+  id: string
+  name: string
+  yearOfCreation: string
+  image: string
+}
 
 interface ModalPaintProps {
   isOpen: boolean
   setIsOpen: (value: boolean) => void
+  defaultValues?: TDefaultValues
 }
 
-export const ModalPaint: FC<ModalPaintProps> = ({ isOpen, setIsOpen }) => {
+export const ModalPaint: FC<ModalPaintProps> = ({
+  isOpen,
+  setIsOpen,
+  defaultValues,
+}) => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    defaultValues,
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  })
+
+  const name = "image"
+  const { field } = useController({ name, control })
+
+  const [editPainting, { isSuccess: isEditSuccess }] =
+    artistApi.useEditPaintingMutation()
+  const [createPainting, { isSuccess: isCreateSuccess }] =
+    artistApi.useCreatePaintingMutation()
+
+  const isSuccess = isEditSuccess || isCreateSuccess
+
+  const currentImage = defaultValues?.image as string
+  const paintingId = defaultValues?.id as string
+
+  const { id: artistId = "" } = useParams()
+
+  const onSubmit = handleSubmit(async ({ name, yearOfCreation, image }) => {
+    const currentImg = image as File
+
+    const data = new FormData()
+    data.append("name", name)
+    data.append("yearOfCreation", yearOfCreation)
+
+    if (currentImg?.name) {
+      data.append("image", currentImg)
+    }
+
+    if (paintingId) {
+      await editPainting({ artistId, paintingId, data })
+    } else {
+      await createPainting({ artistId, data })
+    }
+  })
+
+  useEffect(() => {
+    if (isSuccess) {
+      setIsOpen(false)
+    }
+  }, [isSuccess, setIsOpen])
+
   const breakpoints = useBreakpoints({
     map: { m: 768 },
     isActive: true,
   })
 
-  const [image, setImage] = useState("")
+  const API_BASE_URL = import.meta.env.VITE__API_BASE_URL
 
-  const [formValue, setFormValue] = useState(initialState)
-
-  const { name, yearOfCreation } = formValue
-
-  const handleChange = (
-    value: SetStateAction<string | null> | IGenre[],
-    field: "name" | "yearOfCreation",
-  ) => {
-    setFormValue({ ...formValue, [field]: value })
-  }
-  // const [deleteArtist, { isSuccess }] = artistApi.useDeleteArtistMutation()
-
-  // const navigate = useNavigate()
-
-  // const { id = "" } = useParams()
-
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     setIsOpen(false)
-  //     navigate("/") // TODO:: Добавить параметры??
-  //   }
-  // }, [isSuccess, navigate, setIsOpen])
-
-  const onClickSave = () => {
-    // deleteArtist(id)
-  }
+  const [image, setImage] = useState(
+    currentImage ? `${API_BASE_URL}${currentImage}` : "",
+  )
 
   const uploadImage = async (file: File | undefined) => {
     if (
@@ -86,7 +130,7 @@ export const ModalPaint: FC<ModalPaintProps> = ({ isOpen, setIsOpen }) => {
     ) {
       const base64 = await getBase64(file)
       setImage(base64)
-      // field.onChange(file);
+      field.onChange(file)
     }
   }
 
@@ -113,7 +157,11 @@ export const ModalPaint: FC<ModalPaintProps> = ({ isOpen, setIsOpen }) => {
 
   const handleLoadImage = () => inputRef.current?.click()
 
-  const handleDeleteImage = () => setImage("")
+  const handleDeleteImage = useCallback(() => {
+    setImage("")
+
+    field.onChange("") // TODO:: оставить или убрать?
+  }, [])
 
   return (
     <Modal
@@ -135,29 +183,50 @@ export const ModalPaint: FC<ModalPaintProps> = ({ isOpen, setIsOpen }) => {
       >
         <ReactSVG src={ClearIcon} />
       </button>
-      <div className={cx("form")}>
+      <form className={cx("form")} onSubmit={onSubmit}>
         <div className={cx("fields")}>
-          <TextField
-            className={cx("field")}
-            onChange={(value) => handleChange(value, "name")}
-            value={name}
-            type="text"
-            label="The name of the picture"
-            labelPosition="top"
-            required
-            status="warning"
-            caption="Это подпись"
+          <Controller
+            name="name"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                className={cx("field")}
+                type="text"
+                label="The name of the picture"
+                labelPosition="top"
+                required
+                status={
+                  errors.name?.message?.toString() ? "warning" : undefined
+                }
+                caption={errors.name?.message?.toString()}
+              />
+            )}
           />
-          <TextField
-            className={cx("field", "field-year")}
-            onChange={(value) => handleChange(value, "yearOfCreation")}
-            value={yearOfCreation}
-            type="number"
-            label="Year of creation"
-            labelPosition="top"
-            required
+          <Controller
+            name="yearOfCreation"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                className={cx("field", "field-year")}
+                type="number"
+                label="Year of creation"
+                labelPosition="top"
+                min={4}
+                required
+                status={
+                  errors.yearOfCreation?.message?.toString()
+                    ? "warning"
+                    : undefined
+                }
+                caption={errors.yearOfCreation?.message?.toString()}
+              />
+            )}
           />
-        </div>{" "}
+        </div>
         <div
           onDrop={(event) => drop(event)}
           onDragOver={(event) => allowDrop(event)}
@@ -224,10 +293,10 @@ export const ModalPaint: FC<ModalPaintProps> = ({ isOpen, setIsOpen }) => {
           label="Save"
           className={cx("button")}
           form="round"
-          onClick={onClickSave}
-          disabled={name && yearOfCreation ? false : true}
+          type="submit"
+          disabled={!isValid}
         />
-      </div>
+      </form>
     </Modal>
   )
 }

@@ -18,14 +18,17 @@
     "@consta/react-slick-adapter": "^1.0.0",
     "@consta/uikit": "^5.0.3",
     "@fingerprintjs/fingerprintjs": "^4.2.2",
+    "@hookform/resolvers": "^3.3.4",
     "@reduxjs/toolkit": "^1.8.1",
     "classnames": "^2.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.0",
     "react-redux": "^8.0.1",
     "react-router-dom": "^6.21.3",
     "react-slick": "^0.29.0",
-    "react-svg": "^16.1.32"
+    "react-svg": "^16.1.32",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^9.2.0",

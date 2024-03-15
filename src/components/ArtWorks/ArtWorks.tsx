@@ -52,7 +52,7 @@ export const ArtWorks: FC<ArtWorksProps> = ({ paintings, isSuccess }) => {
       >
         Artworks
       </Text>
-      {isAuthenticated ? (
+      {isAuthenticated && paintings.length ? (
         <ActionBar>
           <Button
             label="Add picture"

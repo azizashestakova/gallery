@@ -88,6 +88,7 @@
   :global(.TextField-Input) {
     height: calc(46px - var(--control-border-width) * 2);
     font-weight: 300;
+    min-width: 56px;
   }
 
   :global(.TextField-ClearButton) {

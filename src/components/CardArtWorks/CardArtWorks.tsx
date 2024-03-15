@@ -105,7 +105,16 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
         variant="painting"
         onClickDelete={() => onClickDelete(artistId, _id)}
       />
-      <ModalPaint isOpen={isOpenModalPaint} setIsOpen={setIsOpenModalPaint} />
+      <ModalPaint
+        isOpen={isOpenModalPaint}
+        setIsOpen={setIsOpenModalPaint}
+        defaultValues={{
+          id: _id,
+          name,
+          yearOfCreation,
+          image: image.webp,
+        }}
+      />
     </>
   )
 }

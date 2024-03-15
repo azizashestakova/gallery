@@ -51,6 +51,8 @@ export const ModalFull: FC<ModalFullProps> = ({
     }
   }, [isSuccess, setIsModalOpen])
 
+  const painting = paintings.find(({ _id }) => paintingId === _id)
+
   return (
     <Modal
       isModalOpen={isModalOpen}
@@ -76,7 +78,18 @@ export const ModalFull: FC<ModalFullProps> = ({
         variant="painting"
         onClickDelete={() => onClickDelete(artistId, paintingId)}
       />
-      <ModalPaint isOpen={isOpenModalPaint} setIsOpen={setIsOpenModalPaint} />
+      {painting && (
+        <ModalPaint
+          isOpen={isOpenModalPaint}
+          setIsOpen={setIsOpenModalPaint}
+          defaultValues={{
+            id: paintingId,
+            name: painting.name,
+            yearOfCreation: painting.yearOfCreation,
+            image: painting.image.webp,
+          }}
+        />
+      )}
     </Modal>
   )
 }

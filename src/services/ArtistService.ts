@@ -47,5 +47,25 @@ export const artistApi = apiService.injectEndpoints({
       }),
       invalidatesTags: ["Artist"],
     }),
+
+    createPainting: build.mutation<null, { artistId: string; data: FormData }>({
+      query: ({ artistId, data }) => ({
+        method: "POST",
+        url: `/artists/${artistId}/paintings`,
+        body: data,
+      }),
+      invalidatesTags: ["Artist", "Artists"],
+    }),
+    editPainting: build.mutation<
+      null,
+      { artistId: string; paintingId: string; data: FormData }
+    >({
+      query: ({ artistId, paintingId, data }) => ({
+        method: "PUT",
+        url: `/artists/${artistId}/paintings/${paintingId}`,
+        body: data,
+      }),
+      invalidatesTags: ["Artist"],
+    }),
   }),
 })
