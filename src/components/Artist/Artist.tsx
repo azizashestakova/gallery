@@ -10,6 +10,7 @@ import { ArtistInfo } from "@/components/ArtistInfo"
 import { ArtWorks } from "@/components/ArtWorks"
 import { ActionBar } from "@/components/ActionBar"
 import { ModalDelete } from "@/components/ModalDelete"
+import { ModalArtist } from "@/components/ModalArtist"
 
 import { artistApi } from "@/services/ArtistService"
 
@@ -34,6 +35,7 @@ export const Artist: FC = () => {
   const { data: artist, isSuccess } = artistApi.useFetchArtistQuery({ id })
 
   const [isOpenModalDelete, setIsOpenModalDelete] = useState(false)
+  const [isOpenModalArtist, setIsOpenModalArtist] = useState(false)
 
   const [deleteArtist, { isSuccess: isSuccessDeleteArtist }] =
     artistApi.useDeleteArtistMutation()
@@ -79,7 +81,7 @@ export const Artist: FC = () => {
               <button
                 className={cx("button")}
                 type="button"
-                // onClick={handleClearValue}
+                onClick={() => setIsOpenModalArtist(true)}
               >
                 <ReactSVG src={EditIcon} />
               </button>
@@ -92,13 +94,25 @@ export const Artist: FC = () => {
               </button>
             </div>
           )}
-
           <ModalDelete
             isOpen={isOpenModalDelete}
             setIsOpen={setIsOpenModalDelete}
             variant="artist"
             onClickDelete={onClickDelete}
           />
+          {artist && (
+            <ModalArtist
+              isOpen={isOpenModalArtist}
+              setIsOpen={setIsOpenModalArtist}
+              defaultValues={{
+                name: artist.name,
+                yearsOfLife: artist.yearsOfLife,
+                description: artist.description,
+                genres: artist.genres,
+                avatar: artist.avatar.webp,
+              }}
+            />
+          )}
         </>
       </ActionBar>
       {artist && (

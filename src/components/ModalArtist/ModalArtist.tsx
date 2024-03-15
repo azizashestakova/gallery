@@ -2,14 +2,16 @@ import {
   ChangeEvent,
   DragEvent,
   FC,
-  SetStateAction,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from "react"
 import cn from "classnames/bind"
 import { ReactSVG } from "react-svg"
-import { useNavigate, useParams } from "react-router-dom"
+import { useForm, Controller, useController } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 
 import { Modal } from "@consta/uikit/Modal"
 import { Text } from "@consta/uikit/Text"
@@ -32,56 +34,96 @@ import DeleteIcon from "@/assets/delete.svg"
 import type { IGenre } from "@/app/models/IGenres"
 
 import styles from "./ModalArtist.module.css"
+import { useParams } from "react-router-dom"
+
+const schema = yup.object({
+  name: yup.string().trim().required("This field is required."),
+  yearsOfLife: yup.string().trim().required("This field is required."),
+  description: yup.string().trim().required("This field is required."),
+  genres: yup
+    .array()
+    .min(1)
+    .of(
+      yup.object().shape({
+        _id: yup.string().required(),
+        name: yup.string().required(),
+      }),
+    )
+    .required("This field is required."),
+  avatar: yup.mixed(),
+})
+
+const cx = cn.bind(styles)
+
+export type TDefaultValues = {
+  name: string
+  yearsOfLife: string
+  description: string
+  genres: IGenre[]
+  avatar: string
+}
+
+interface ModalArtistProps {
+  isOpen: boolean
+  setIsOpen: (value: boolean) => void
+  defaultValues?: TDefaultValues
+}
 
 const initialState = {
   name: "",
   yearsOfLife: "",
   description: "",
-  genres: null,
+  genres: [],
+  avatar: "",
 }
 
-const cx = cn.bind(styles)
+export const ModalArtist: FC<ModalArtistProps> = ({
+  isOpen,
+  setIsOpen,
+  defaultValues = initialState,
+}) => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    defaultValues,
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  })
 
-interface ModalArtistProps {
-  isOpen: boolean
-  setIsOpen: (value: boolean) => void
-}
+  const { id: artistId = "" } = useParams()
 
-export const ModalArtist: FC<ModalArtistProps> = ({ isOpen, setIsOpen }) => {
+  const name = "avatar"
+  const { field } = useController({ name, control })
+
+  const [editArtist, { isSuccess: isEditSuccess }] =
+    artistApi.useEditArtistMutation()
+  const [createArtist, { isSuccess: isCreateSuccess }] =
+    artistApi.useCreateArtistMutation()
+
+  const isSuccess = isEditSuccess || isCreateSuccess
+
+  useEffect(() => {
+    if (isSuccess) {
+      setIsOpen(false)
+    }
+  }, [isSuccess, setIsOpen])
+
   const { data: genresData = [] } = genresApi.useFetchGenresQuery(null)
 
   const [isDraggable, setIsDraggable] = useState(false)
-  const [image, setImage] = useState("")
 
-  const [formValue, setFormValue] = useState(initialState)
+  const API_BASE_URL = import.meta.env.VITE__API_BASE_URL
 
-  const { name, yearsOfLife, description, genres } = formValue
+  const currentImage = defaultValues.avatar as string
+
+  const [image, setImage] = useState(
+    currentImage ? `${API_BASE_URL}${currentImage}` : "",
+  )
 
   const getItemLabel = (item: any) => item.name
   const getItemKey = (item: any) => item._id
-
-  const handleChange = (
-    value: SetStateAction<string | null> | IGenre[],
-    field: "name" | "yearsOfLife" | "description" | "genres",
-  ) => {
-    setFormValue({ ...formValue, [field]: value })
-  }
-  // const [deleteArtist, { isSuccess }] = artistApi.useDeleteArtistMutation()
-
-  // const navigate = useNavigate()
-
-  // const { id = "" } = useParams()
-
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     setIsOpen(false)
-  //     navigate("/") // TODO:: Добавить параметры??
-  //   }
-  // }, [isSuccess, navigate, setIsOpen])
-
-  const onClickSave = () => {
-    // deleteArtist(id)
-  }
 
   const uploadImage = async (file: File | undefined) => {
     if (
@@ -91,7 +133,7 @@ export const ModalArtist: FC<ModalArtistProps> = ({ isOpen, setIsOpen }) => {
     ) {
       const base64 = await getBase64(file)
       setImage(base64)
-      // field.onChange(file);
+      field.onChange(file)
     }
   }
 
@@ -122,7 +164,35 @@ export const ModalArtist: FC<ModalArtistProps> = ({ isOpen, setIsOpen }) => {
 
   const handleLoadImage = () => inputRef.current?.click()
 
-  const handleDeleteImage = () => setImage("")
+  const handleDeleteImage = () => {
+    setImage("")
+
+    field.onChange("") // TODO:: оставить или убрать?
+  }
+
+  const onSubmit = handleSubmit(
+    async ({ name, yearsOfLife, description, genres, avatar }) => {
+      const currentImg = avatar as File
+
+      const data = new FormData()
+      data.append("name", name)
+      data.append("yearsOfLife", yearsOfLife)
+      data.append("description", description)
+
+      // TODO:: можно отправить только один жанр
+      data.append("genres", genres.map((genre) => genre._id).join(", "))
+
+      if (currentImg?.name) {
+        data.append("avatar", currentImg)
+      }
+
+      if (artistId) {
+        await editArtist({ artistId, data })
+      } else {
+        await createArtist(data)
+      }
+    },
+  )
 
   return (
     <Modal
@@ -148,137 +218,182 @@ export const ModalArtist: FC<ModalArtistProps> = ({ isOpen, setIsOpen }) => {
         <ReactSVG src={ClearIcon} />
       </button>
 
-      {isDraggable && (
-        <div
-          className={cx("dnd-fields-hover")}
-          onDragLeave={() => setIsDraggable(false)}
-        >
-          <ReactSVG src={PersonIcon} className={cx("person")} />
-          <Text
-            view="primary"
-            size="m"
-            lineHeight="2xs"
-            weight="light"
-            as="span"
-            className={cx("title")}
+      <form className={cx("form")} onSubmit={onSubmit}>
+        {isDraggable && (
+          <div
+            className={cx("dnd-fields-hover")}
+            onDragLeave={() => setIsDraggable(false)}
           >
-            Drop your image here
-          </Text>
-          <Text
-            view="primary"
-            size="xs"
-            lineHeight="2xs"
-            weight="light"
-            as="span"
-            className={cx("text")}
+            <ReactSVG src={PersonIcon} className={cx("person")} />
+            <Text
+              view="primary"
+              size="m"
+              lineHeight="2xs"
+              weight="light"
+              as="span"
+              className={cx("title")}
+            >
+              Drop your image here
+            </Text>
+            <Text
+              view="primary"
+              size="xs"
+              lineHeight="2xs"
+              weight="light"
+              as="span"
+              className={cx("text")}
+            >
+              Upload only .jpg or .png format less than 3 MB
+            </Text>
+          </div>
+        )}
+        <div className={cx("loading")}>
+          <div
+            className={cx("loading-field", { "loading-field-active": image })}
+            onClick={handleLoadImage}
           >
-            Upload only .jpg or .png format less than 3 MB
-          </Text>
-        </div>
-      )}
-      <div className={cx("loading")}>
-        <div
-          className={cx("loading-field", { "loading-field-active": image })}
-          onClick={handleLoadImage}
-        >
-          {image ? (
-            <>
-              <img className={cx("image")} src={image} alt="avatar" />
+            {image ? (
+              <>
+                <img className={cx("image")} src={image} alt="avatar" />
 
-              <Button
-                label="Delete image"
-                view="ghost"
-                onlyIcon
-                iconLeft={IconCustom(DeleteIcon)}
-                className={cx("button-delete")}
-                onClick={handleDeleteImage}
-              />
-            </>
-          ) : (
-            <>
-              <ReactSVG src={PersonIcon} className={cx("person")} />
-              <Text
-                view="primary"
-                size="m"
-                lineHeight="2xs"
-                weight="light"
-                as="span"
-                className={cx("loading-field-text")}
-              >
-                You can drop your image here
-              </Text>
-              <input
-                className={cx("input")}
-                type="file"
-                accept="image/jpeg,image/png"
-                ref={inputRef}
-                onChange={handleChangeImage}
-              />
-            </>
-          )}
+                <Button
+                  label="Delete image"
+                  view="ghost"
+                  onlyIcon
+                  iconLeft={IconCustom(DeleteIcon)}
+                  className={cx("button-delete")}
+                  onClick={handleDeleteImage}
+                />
+              </>
+            ) : (
+              <>
+                <ReactSVG src={PersonIcon} className={cx("person")} />
+                <Text
+                  view="primary"
+                  size="m"
+                  lineHeight="2xs"
+                  weight="light"
+                  as="span"
+                  className={cx("loading-field-text")}
+                >
+                  You can drop your image here
+                </Text>
+                <input
+                  className={cx("input")}
+                  type="file"
+                  accept="image/jpeg,image/png"
+                  ref={inputRef}
+                  onChange={handleChangeImage}
+                />
+              </>
+            )}
+          </div>
+          <Button
+            label="Browse Profile Photo"
+            view="ghost"
+            className={cx("button-loading")}
+            onClick={handleLoadImage}
+          />
         </div>
-        <Button
-          label="Browse Profile Photo"
-          view="ghost"
-          className={cx("button-loading")}
-          onClick={handleLoadImage}
-        />
-      </div>
-      <div className={cx("form")}>
-        <TextField
-          className={cx("field")}
-          onChange={(value) => handleChange(value, "name")}
-          value={name}
-          type="text"
-          label="Name"
-          labelPosition="top"
-          required
-          status="warning"
-          caption="Это подпись"
-        />
-        <TextField
-          className={cx("field")}
-          onChange={(value) => handleChange(value, "yearsOfLife")}
-          value={yearsOfLife}
-          type="text"
-          label="Years of life"
-          labelPosition="top"
-          required
-        />
-        <TextField
-          className={cx("field")}
-          onChange={(value) => handleChange(value, "description")}
-          value={description}
-          type="textarea"
-          label="Description"
-          labelPosition="top"
-          required
-          minRows={6}
-        />
-        <Combobox
-          className={cx("combobox")}
-          dropdownClassName={cx("combobox-dropdown")}
-          size="m"
-          label="Genres"
-          items={genresData}
-          getItemLabel={getItemLabel}
-          getItemKey={getItemKey}
-          value={genres}
-          onChange={(value) => handleChange(value, "genres")}
-          multiple
-          status="warning"
-          caption="Это подпись"
-        />
-        <Button
-          label="Save"
-          className={cx("button")}
-          form="round"
-          onClick={onClickSave}
-          disabled={
-            name && yearsOfLife && description && genres?.length ? false : true
-          }
-        />
-      </div>
+        {/* TODO:: поменять название класса */}
+        <div className={cx("fields")}>
+          <Controller
+            name="name"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                className={cx("field")}
+                type="text"
+                label="Name"
+                labelPosition="top"
+                required
+                status={
+                  errors.name?.message?.toString() ? "warning" : undefined
+                }
+                caption={errors.name?.message?.toString()}
+              />
+            )}
+          />
+          <Controller
+            name="yearsOfLife"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                className={cx("field")}
+                type="text"
+                label="Years of life"
+                labelPosition="top"
+                required
+                status={
+                  errors.yearsOfLife?.message?.toString()
+                    ? "warning"
+                    : undefined
+                }
+                caption={errors.yearsOfLife?.message?.toString()}
+              />
+            )}
+          />
+          <Controller
+            name="description"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                className={cx("field")}
+                type="textarea"
+                label="Description"
+                labelPosition="top"
+                minRows={6}
+                required
+                status={
+                  errors.description?.message?.toString()
+                    ? "warning"
+                    : undefined
+                }
+                caption={errors.description?.message?.toString()}
+              />
+            )}
+          />
+          <Controller
+            name="genres"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => {
+              console.log("field", field)
+
+              return (
+                <Combobox
+                  {...field}
+                  className={cx("combobox")}
+                  dropdownClassName={cx("combobox-dropdown")}
+                  size="m"
+                  label="Genres"
+                  items={genresData}
+                  getItemLabel={getItemLabel}
+                  getItemKey={getItemKey}
+                  multiple
+                  status={
+                    errors.genres?.message?.toString() ? "warning" : undefined
+                  }
+                  caption={errors.genres?.message?.toString()}
+                />
+              )
+            }}
+          />
+          <Button
+            label="Save"
+            className={cx("button")}
+            form="round"
+            type="submit"
+            disabled={!isValid}
+          />
+        </div>
+      </form>
     </Modal>
   )
 }

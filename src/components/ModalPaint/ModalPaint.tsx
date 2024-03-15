@@ -34,13 +34,11 @@ import { artistApi } from "@/services/ArtistService"
 
 import styles from "./ModalPaint.module.css"
 
-const schema = yup
-  .object({
-    name: yup.string().trim().required("This field is required."),
-    yearOfCreation: yup.string().required("This field is required.").length(4),
-    image: yup.mixed(),
-  })
-  .required()
+const schema = yup.object({
+  name: yup.string().trim().required("This field is required."),
+  yearOfCreation: yup.string().required("This field is required.").length(4),
+  image: yup.mixed(),
+})
 
 const cx = cn.bind(styles)
 
@@ -57,10 +55,17 @@ interface ModalPaintProps {
   defaultValues?: TDefaultValues
 }
 
+const initialState = {
+  id: "",
+  name: "",
+  yearOfCreation: "",
+  image: "",
+}
+
 export const ModalPaint: FC<ModalPaintProps> = ({
   isOpen,
   setIsOpen,
-  defaultValues,
+  defaultValues = initialState,
 }) => {
   const {
     control,
@@ -82,8 +87,8 @@ export const ModalPaint: FC<ModalPaintProps> = ({
 
   const isSuccess = isEditSuccess || isCreateSuccess
 
-  const currentImage = defaultValues?.image as string
-  const paintingId = defaultValues?.id as string
+  const currentImage = defaultValues.image as string
+  const paintingId = defaultValues.id as string
 
   const { id: artistId = "" } = useParams()
 
