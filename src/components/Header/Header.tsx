@@ -58,52 +58,54 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
   const isAuthenticated = useAppSelector(selectIsAuthenticated)
 
   return (
-    <Layout
-      className={cx("header", { "header-search": isComponentVisible })}
-      rowCenter={{
-        left: (
-          <>
-            {!isComponentVisible ? (
-              <Link to="/?perPage=9&pageNumber=1">
-                <ReactSVG src={LogoIcon} className={cx("logo")} />
-              </Link>
-            ) : null}
-          </>
-        ),
-        center: undefined,
-        right: breakpoints.m ? (
-          <HeaderDesktop
-            theme={theme}
-            setTheme={setTheme}
-            items={menu(navigate, location, logOut, isAuthenticated)}
-          />
-        ) : (
-          <>
-            {!breakpoints.m ? (
-              <div ref={ref}>
-                {isComponentVisible ? (
-                  <SearchField />
-                ) : (
-                  <Button
-                    className={cx("button")}
-                    label="Search"
-                    view="clear"
-                    iconLeft={IconCustom(SearchIcon)}
-                    onlyIcon
-                    onClick={() => setIsComponentVisible(true)}
-                  />
-                )}
-              </div>
-            ) : null}
-            <HeaderMobile
+    <header className={cx("header")}>
+      <Layout
+        className={cx("wrapper", { "wrapper-search": isComponentVisible })}
+        rowCenter={{
+          left: (
+            <>
+              {!isComponentVisible ? (
+                <Link to="/?perPage=9&pageNumber=1">
+                  <ReactSVG src={LogoIcon} className={cx("logo")} />
+                </Link>
+              ) : null}
+            </>
+          ),
+          center: undefined,
+          right: breakpoints.m ? (
+            <HeaderDesktop
               theme={theme}
               setTheme={setTheme}
               items={menu(navigate, location, logOut, isAuthenticated)}
             />
-          </>
-        ),
-      }}
-      placeholder={undefined}
-    />
+          ) : (
+            <>
+              {!breakpoints.m ? (
+                <div ref={ref}>
+                  {isComponentVisible ? (
+                    <SearchField />
+                  ) : (
+                    <Button
+                      className={cx("button")}
+                      label="Search"
+                      view="clear"
+                      iconLeft={IconCustom(SearchIcon)}
+                      onlyIcon
+                      onClick={() => setIsComponentVisible(true)}
+                    />
+                  )}
+                </div>
+              ) : null}
+              <HeaderMobile
+                theme={theme}
+                setTheme={setTheme}
+                items={menu(navigate, location, logOut, isAuthenticated)}
+              />
+            </>
+          ),
+        }}
+        placeholder={undefined}
+      />
+    </header>
   )
 }

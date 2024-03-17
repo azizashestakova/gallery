@@ -11,6 +11,7 @@ import { ArtWorks } from "@/components/ArtWorks"
 import { ActionBar } from "@/components/ActionBar"
 import { ModalDelete } from "@/components/ModalDelete"
 import { ModalArtist } from "@/components/ModalArtist"
+import { Preloader } from "@/components/Preloader"
 
 import { artistApi } from "@/services/ArtistService"
 
@@ -51,7 +52,11 @@ export const Artist: FC = () => {
     deleteArtist(id)
   }
 
-  return (
+  return !isSuccess ? (
+    <div className={cx("preloader")}>
+      <Preloader />
+    </div>
+  ) : (
     <Grid className={cx("wrapper")}>
       {/* TODO:: ? заменить тег */}
       <ActionBar>
@@ -109,7 +114,7 @@ export const Artist: FC = () => {
                 yearsOfLife: artist.yearsOfLife,
                 description: artist.description,
                 genres: artist.genres,
-                avatar: artist.avatar.webp,
+                avatar: artist.avatar?.webp,
               }}
             />
           )}
@@ -124,7 +129,7 @@ export const Artist: FC = () => {
           imageSet={artist.avatar}
         />
       )}
-      <ArtWorks paintings={artist?.paintings || []} isSuccess={isSuccess} />
+      <ArtWorks paintings={artist?.paintings || []} />
     </Grid>
   )
 }

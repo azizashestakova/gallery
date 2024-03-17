@@ -5,11 +5,8 @@ import { Grid, GridItem } from "@consta/uikit/Grid"
 
 import type { IPaintings } from "@/app/models/IArtist"
 
-import { Skeleton } from "@/components/Skeleton"
 import { UploadPaintings } from "@/components/UploadPaintings"
 import { CardArtWorks } from "@/components/CardArtWorks"
-
-import { limit } from "@/constants"
 
 import styles from "./CardsArtWorks.module.css"
 
@@ -19,7 +16,6 @@ interface CardsArtWorksProps {
   paintings: IPaintings[]
   setIsModalOpen: (value: boolean) => void
   setActiveIndex: (value: number) => void
-  isSuccess: boolean
   setPaintingId: (value: string) => void
 }
 
@@ -27,13 +23,13 @@ export const CardsArtWorks: FC<CardsArtWorksProps> = ({
   paintings,
   setIsModalOpen,
   setActiveIndex,
-  isSuccess,
   setPaintingId,
 }) =>
-  isSuccess && !paintings.length ? (
+  !paintings.length ? (
     <UploadPaintings />
   ) : (
     <Grid
+      as="ul"
       className={cx("wrapper")}
       cols={1}
       gap="l"
@@ -48,22 +44,16 @@ export const CardsArtWorks: FC<CardsArtWorksProps> = ({
         },
       }}
     >
-      {paintings.length
-        ? paintings.map((painting, index) => (
-            <GridItem className={cx("item")} key={painting._id}>
-              <CardArtWorks
-                painting={painting}
-                index={index}
-                setIsModalOpen={setIsModalOpen}
-                setActiveIndex={setActiveIndex}
-                setPaintingId={setPaintingId}
-              />
-            </GridItem>
-          ))
-        : Array.from(Array(limit).keys()).map((item) => (
-            <GridItem className={cx("item")} key={item}>
-              <Skeleton />
-            </GridItem>
-          ))}
+      {paintings.map((painting, index) => (
+        <GridItem className={cx("item")} key={painting._id} as="li">
+          <CardArtWorks
+            painting={painting}
+            index={index}
+            setIsModalOpen={setIsModalOpen}
+            setActiveIndex={setActiveIndex}
+            setPaintingId={setPaintingId}
+          />
+        </GridItem>
+      ))}
     </Grid>
   )

@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react"
+import { FC, ReactNode, useEffect } from "react"
 import cn from "classnames/bind"
 
 import { Modal as ModalConsta } from "@consta/uikit/Modal"
@@ -22,6 +22,10 @@ export const Modal: FC<ModalConstaProps> = ({
   className,
   hasOverlay = false,
 }) => {
+  useEffect(() => {
+    document.body.style.overflow = isModalOpen ? "hidden" : "unset"
+  }, [isModalOpen])
+
   return (
     <ModalConsta
       isOpen={isModalOpen}

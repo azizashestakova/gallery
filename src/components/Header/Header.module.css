@@ -1,17 +1,21 @@
 .header {
-  background-color: var(--color-bg-default);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
 
-  /* TODO:: Исправить добавление стилей для хедера */
+.wrapper {
   :global(.che--LayoutRow) {
     border: none;
     height: 80px;
     max-width: 1280px;
     padding: var(--space-0) var(--space-l);
     margin: var(--space-0) var(--space-auto);
+    background-color: var(--color-base-essential);
   }
 }
 
-.header-search {
+.wrapper-search {
   :global(.che--LayoutRow-Side_position_right) {
     width: 100%;
 

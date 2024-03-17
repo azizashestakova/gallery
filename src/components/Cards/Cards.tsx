@@ -21,6 +21,7 @@ interface CardsProps {
 
 export const Cards: FC<CardsProps> = ({ artists }) => (
   <Grid
+    as="ul"
     cols={1}
     gap="l"
     breakpoints={{
@@ -36,7 +37,7 @@ export const Cards: FC<CardsProps> = ({ artists }) => (
   >
     {artists.length
       ? artists.map(({ _id, mainPainting, name, yearsOfLife }) => (
-          <GridItem className={cx("item")} key={_id}>
+          <GridItem className={cx("item")} key={_id} as="li">
             <Link to={`/artists/${_id}`}>
               <Card
                 imageSet={mainPainting?.image}
@@ -48,7 +49,7 @@ export const Cards: FC<CardsProps> = ({ artists }) => (
           </GridItem>
         ))
       : Array.from(Array(limit).keys()).map((item) => (
-          <GridItem className={cx("item")} key={item}>
+          <GridItem className={cx("item")} key={item} as="li">
             <Skeleton />
           </GridItem>
         ))}

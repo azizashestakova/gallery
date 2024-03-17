@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext, useMemo, useState } from "react"
+import { FC, useCallback, useContext, useEffect, useState } from "react"
 import cn from "classnames/bind"
 import { ReactSVG } from "react-svg"
 
@@ -14,7 +14,6 @@ import PlusIcon from "@/assets/plus.svg"
 import { FilterContext, Filters } from "@/context/FilterProvider"
 
 import { genresApi } from "@/services/GenresServices"
-import { artistApi } from "@/services/ArtistService"
 
 import { ContentItem, geItems } from "./constants"
 
@@ -34,21 +33,11 @@ export const ModalFilter: FC<ModalFilterProps> = ({
   setIsOpenModalFilter,
 }) => {
   const { data: genresData = [] } = genresApi.useFetchGenresQuery(null)
-  // const { data: { data: artistsData = [] } = {} } =
-  //   artistsApi.useFetchAllArtistsQuery({
-  //     isAuthenticated: false,
-  //     params: {},
-  //   })
 
   const { filters, changeFilters, clearFilters } = useContext(FilterContext)
 
   const [selectedGenre, setSelectedGenre] = useState(filters.genres || "")
   const [selectedSort, setSelectedSort] = useState(filters.orderBy || "")
-
-  // const genres = useMemo(() => {
-  //   const genres = artistsData?.map((artist) => artist.genres).flat()
-  //   return genresData.filter((genre) => genres?.includes(genre._id))
-  // }, [genresData, artistsData])
 
   const handleToggleSelected = (id: string) => {
     if (id === "asc" || id === "desc") {
@@ -88,6 +77,10 @@ export const ModalFilter: FC<ModalFilterProps> = ({
   }, [clearFilters])
 
   const items = geItems(genresData)
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "unset"
+  }, [isOpen])
 
   return (
     <Modal

@@ -194,6 +194,10 @@ export const ModalArtist: FC<ModalArtistProps> = ({
     },
   )
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "unset"
+  }, [isOpen])
+
   return (
     <Modal
       isOpen={isOpen}

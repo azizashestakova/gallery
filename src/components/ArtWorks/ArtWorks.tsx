@@ -25,10 +25,9 @@ const cx = cn.bind(styles)
 
 interface ArtWorksProps {
   paintings: IPaintings[]
-  isSuccess: boolean
 }
 
-export const ArtWorks: FC<ArtWorksProps> = ({ paintings, isSuccess }) => {
+export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const [paintingId, setPaintingId] = useState("")
@@ -80,7 +79,6 @@ export const ArtWorks: FC<ArtWorksProps> = ({ paintings, isSuccess }) => {
         paintings={paintings}
         setIsModalOpen={setIsModalOpen}
         setActiveIndex={setActiveIndex}
-        isSuccess={isSuccess}
         setPaintingId={setPaintingId}
       />
     </Grid>

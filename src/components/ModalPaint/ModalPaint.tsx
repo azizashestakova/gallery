@@ -168,6 +168,10 @@ export const ModalPaint: FC<ModalPaintProps> = ({
     field.onChange("") // TODO:: оставить или убрать?
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "unset"
+  }, [isOpen])
+
   return (
     <Modal
       isOpen={isOpen}

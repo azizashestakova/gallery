@@ -101,6 +101,12 @@
   :global(.TextField-ClearButton) {
     height: calc(46px - var(--control-border-width) * 2);
   }
+
+  :global(.TextField-Body .TextField-Caption) {
+    position: absolute;
+    bottom: -8px;
+    transform: translateY(100%);
+  }
 }
 
 .field-last {

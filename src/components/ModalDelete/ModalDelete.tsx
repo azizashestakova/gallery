@@ -1,14 +1,11 @@
 import { FC, useEffect } from "react"
 import cn from "classnames/bind"
 import { ReactSVG } from "react-svg"
-import { useNavigate, useParams } from "react-router-dom"
 
 import { Modal } from "@consta/uikit/Modal"
 import { Text } from "@consta/uikit/Text"
 
 import { Button } from "@/components/Button"
-
-import { artistApi } from "@/services/ArtistService"
 
 import ClearIcon from "@/assets/clear.svg"
 import DeleteIcon from "@/assets/delete.svg"
@@ -40,6 +37,10 @@ export const ModalDelete: FC<ModalDeleteProps> = ({
       description: "You will not be able to recover this picture afterwards.",
     },
   }
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "unset"
+  }, [isOpen])
 
   return (
     <Modal
