@@ -1,6 +1,7 @@
 import { FC } from "react"
 import cn from "classnames/bind"
 import Slider from "react-slick"
+import { useParams } from "react-router-dom"
 
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
@@ -16,12 +17,15 @@ import { IconCustom } from "@/utils/icon"
 
 import DeleteIcon from "@/assets/delete.svg"
 import EditIcon from "@/assets/edit.svg"
+import CoverIcon from "@/assets/cover.svg"
 
 import type { IPaintings } from "@/app/models/IArtist"
 
 import { useAppSelector } from "@/app/hooks"
 
 import { selectIsAuthenticated } from "@/features/auth/authSlice"
+
+import { artistApi } from "@/services/ArtistService"
 
 import styles from "./Carousel.module.css"
 
@@ -40,6 +44,12 @@ export const Carousel: FC<CarouselProps> = ({
   setIsOpenModalDelete,
   setIsOpenModalPaint,
 }) => {
+  const [editMainPainting] = artistApi.useEditArtistMainPaintingMutation()
+
+  const { id: artistId = "" } = useParams()
+
+  const { data: artist } = artistApi.useFetchArtistQuery({ id: artistId })
+
   const openModalDelete = () => {
     setIsOpenModalDelete(true)
   }
@@ -65,6 +75,19 @@ export const Carousel: FC<CarouselProps> = ({
     <Slider {...settings}>
       {paintings.map(({ yearOfCreation, name, image, _id }, index) => (
         <div className={cx("wrapper")} key={_id}>
+          <Button
+            label={
+              artist.mainPainting?._id === _id
+                ? "Remove the cover"
+                : "Make the cover"
+            }
+            className={cx("cover")}
+            view="ghost"
+            iconLeft={IconCustom(CoverIcon)}
+            onClick={() => {
+              editMainPainting({ artistId, paintingId: _id })
+            }}
+          />
           <div className={cx("content")}>
             {isAuthenticated && (
               <div className={cx("buttons")}>

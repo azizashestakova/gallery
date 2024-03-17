@@ -1,8 +1,11 @@
 import { FC, MouseEventHandler, useRef } from "react"
 import cn from "classnames/bind"
+import { useParams } from "react-router-dom"
 
 import { ContextMenu } from "@consta/uikit/ContextMenu"
 import { Button } from "@consta/uikit/Button"
+
+import { artistApi } from "@/services/ArtistService"
 
 import { IconCustom } from "@/utils/icon"
 
@@ -19,6 +22,7 @@ interface ActionBarProps {
   setIsShowGear: (value: boolean) => void
   setIsOpenModalDelete: (value: boolean) => void
   setIsOpenModalPaint: (value: boolean) => void
+  paintingId: string
 }
 
 export const ArtworkMenu: FC<ActionBarProps> = ({
@@ -28,6 +32,7 @@ export const ArtworkMenu: FC<ActionBarProps> = ({
   setIsShowGear,
   setIsOpenModalDelete,
   setIsOpenModalPaint,
+  paintingId,
 }) => {
   const ref = useRef(null)
 
@@ -41,6 +46,12 @@ export const ArtworkMenu: FC<ActionBarProps> = ({
   }
 
   const getItemLabel = (item: IItem) => item.text
+
+  const [editMainPainting] = artistApi.useEditArtistMainPaintingMutation()
+
+  const { id: artistId = "" } = useParams()
+
+  const { data: artist } = artistApi.useFetchArtistQuery({ id: artistId })
 
   const items = [
     {
@@ -57,6 +68,16 @@ export const ArtworkMenu: FC<ActionBarProps> = ({
         setIsOpenModalPaint(true)
         setIsOpen(false)
         setIsShowGear(false)
+      },
+    },
+    {
+      text:
+        artist.mainPainting?._id === paintingId
+          ? "Remove the cover"
+          : "Make the cover",
+      onClick: () => {
+        editMainPainting({ artistId, paintingId })
+        setIsOpen(false)
       },
     },
   ]

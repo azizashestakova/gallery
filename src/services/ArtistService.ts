@@ -82,5 +82,16 @@ export const artistApi = apiService.injectEndpoints({
       }),
       invalidatesTags: ["Artist", "Artists"],
     }),
+    editArtistMainPainting: build.mutation<
+      null,
+      { artistId: string; paintingId: string }
+    >({
+      query: ({ artistId, paintingId }) => ({
+        method: "PATCH",
+        url: `/artists/${artistId}/main-painting`,
+        body: { mainPainting: paintingId },
+      }),
+      invalidatesTags: ["Artist", "Artists"],
+    }),
   }),
 })

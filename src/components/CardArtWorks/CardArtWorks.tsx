@@ -85,6 +85,7 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
           setIsShowGear={setIsShowGear}
           setIsOpenModalDelete={setIsOpenModalDelete}
           setIsOpenModalPaint={setIsOpenModalPaint}
+          paintingId={painting._id}
         />
         <button
           className={cx("button")}

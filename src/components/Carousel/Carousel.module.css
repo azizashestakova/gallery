@@ -9,6 +9,35 @@
   height: 100%;
 }
 
+.cover {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  left: 20px;
+
+  @media (min-width: 768px) {
+    top: 40px;
+    left: 40px;
+  }
+
+  @media (min-width: 1280px) {
+    top: 60px;
+    left: 120px;
+  }
+
+  :global(.Button-Icon) {
+    width: 28px;
+    height: 28px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+
+  :global(.Button-Label) {
+    color: var(--color-base-normal);
+    border-color: var(--color-base-normal) !important;
+  }
+}
+
 .content {
   background-color: var(--color-base-essential);
   padding: 16px 44px 23px 0;
