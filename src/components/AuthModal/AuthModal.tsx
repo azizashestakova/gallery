@@ -1,6 +1,9 @@
-import { FC, SetStateAction, useEffect, useState } from "react"
+import { FC, useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import cn from "classnames/bind"
+import { useForm, Controller } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
@@ -19,7 +22,21 @@ import { useFingerprint } from "@/hooks/useFingerprint"
 
 import styles from "./AuthModal.module.css"
 
-const initialState = {
+const schema = yup.object({
+  email: yup
+    .string()
+    .trim()
+    .email("Invalid email address")
+    .required("This field is required.")
+    .min(4, "Email length must be at least 4 characters."),
+  password: yup
+    .string()
+    .trim()
+    .required("This field is required.")
+    .min(8, "Password length must be at least 8 characters."),
+})
+
+const defaultValues = {
   email: "",
   password: "",
 }
@@ -49,22 +66,21 @@ export const AuthModal: FC<AuthModalProps> = ({
   linkRoute,
   buttonText,
 }) => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    defaultValues,
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  })
+
   const navigate = useNavigate()
   const location = useLocation()
   const dispatch = useAppDispatch()
 
-  const [formValue, setFormValue] = useState(initialState)
-
-  const { email, password } = formValue
-
   const fingerprint = useFingerprint()
-
-  const handleChange = (
-    value: SetStateAction<string | null>,
-    field: "email" | "password",
-  ) => {
-    setFormValue({ ...formValue, [field]: value })
-  }
 
   const breakpoints = useBreakpoints({
     map: { l: 1028, m: 768 },
@@ -77,7 +93,7 @@ export const AuthModal: FC<AuthModalProps> = ({
     }
   }, [isSuccess, navigate])
 
-  const onClick = async () => {
+  const onSubmit = handleSubmit(async ({ email, password }) => {
     const tokens = await auth({
       username: email,
       password,
@@ -85,7 +101,7 @@ export const AuthModal: FC<AuthModalProps> = ({
     }).unwrap() // TODO:: unwrap?
 
     dispatch(setAuth(tokens))
-  }
+  })
 
   return (
     <ModalWindow>
@@ -140,33 +156,54 @@ export const AuthModal: FC<AuthModalProps> = ({
               {linkText}
             </Text>
           </Text>
-          <TextField
-            className={cx("field")}
-            onChange={(value) => handleChange(value, "email")}
-            value={email}
-            type="email"
-            label="Email"
-            labelPosition="top"
-            required
-            autoFocus
-          />
-          <TextField
-            className={cx("field", "field-last")}
-            onChange={(value) => handleChange(value, "password")}
-            value={password}
-            type="password"
-            label="Password"
-            labelPosition="top"
-            required
-          />
-          <Button
-            label={buttonText}
-            className={cx("button")}
-            view="primary"
-            form="round"
-            onClick={onClick}
-            disabled={email && password ? false : true}
-          />
+          <form className={cx("form")} onSubmit={onSubmit}>
+            <Controller
+              name="email"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  className={cx("field")}
+                  type="email"
+                  label="Email"
+                  labelPosition="top"
+                  required
+                  status={
+                    errors.email?.message?.toString() ? "warning" : undefined
+                  }
+                  caption={errors.email?.message?.toString()}
+                />
+              )}
+            />
+            <Controller
+              name="password"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  className={cx("field", "field-last")}
+                  type="password"
+                  label="Password"
+                  labelPosition="top"
+                  required
+                  status={
+                    errors.password?.message?.toString() ? "warning" : undefined
+                  }
+                  caption={errors.password?.message?.toString()}
+                />
+              )}
+            />
+            <Button
+              label={buttonText}
+              className={cx("button")}
+              view="primary"
+              form="round"
+              type="submit"
+              disabled={!isValid}
+            />
+          </form>
         </Grid>
       </Grid>
     </ModalWindow>
