@@ -2,16 +2,14 @@ import { Dispatch, FC, SetStateAction } from "react"
 import cn from "classnames/bind"
 
 import { MobileMenu } from "@consta/header/MobileMenu"
-
 import { Text } from "@consta/uikit/Text"
 import { ThemeToggler } from "@consta/uikit/ThemeToggler"
 
+import { MenuItem } from "../types"
 import { items as itemsTheme, mode } from "@/components/Header/constants"
-
 import { getItemIcon } from "@/utils/getItemIcon"
 
 import type { ThemeName } from "@/types/theme"
-import { MenuItem } from "../types"
 
 import styles from "./HeaderMobile.module.css"
 

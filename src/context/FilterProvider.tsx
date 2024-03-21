@@ -9,14 +9,11 @@ import {
 import { useSearchParams } from "react-router-dom"
 
 import { useAppSelector } from "@/app/hooks"
-
+import { defaultFilters } from "@/constants"
 import { selectIsAuthenticated } from "@/features/auth/authSlice"
-
 import { removeEmpty } from "@/utils/removeEmpty"
 
 import type { IArtistParams } from "@/app/models/IArtist"
-
-import { defaultFilters } from "@/constants"
 
 export type Filters = { genres?: string } & Omit<IArtistParams, "genres"> &
   Record<string, string | string[]> // TODO:: проверить

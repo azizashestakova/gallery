@@ -1,9 +1,9 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit"
 
-import { artistApi } from "@/services/ArtistService"
-import { genresApi } from "@/services/GenresServices"
-import { authApi } from "@/services/AuthService"
 import { apiService } from "@/services/api"
+import { artistApi } from "@/services/ArtistService"
+import { authApi } from "@/services/AuthService"
+import { genresApi } from "@/services/GenresServices"
 
 import type { IErrorResponse } from "@/app/models/IError"
 

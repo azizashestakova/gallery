@@ -1,32 +1,25 @@
 import { Dispatch, FC, SetStateAction } from "react"
+import cn from "classnames/bind"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { ReactSVG } from "react-svg"
-import cn from "classnames/bind"
-
-import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
 import { Layout } from "@consta/header/Layout"
+import { Button } from "@consta/uikit/Button"
+import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
+import { useAppDispatch, useAppSelector } from "@/app/hooks"
+import LogoIcon from "@/assets/logo.svg"
+import SearchIcon from "@/assets/search.svg"
 import { HeaderDesktop } from "@/components/Header/HeaderDesktop"
 import { HeaderMobile } from "@/components/Header/HeaderMobile"
 import { SearchField } from "@/components/SearchField"
-import { Button } from "@consta/uikit/Button"
-
-import { IconCustom } from "@/utils/icon"
-
-import LogoIcon from "@/assets/logo.svg"
-import SearchIcon from "@/assets/search.svg"
-
-import { useAppDispatch, useAppSelector } from "@/app/hooks"
-
 import { selectIsAuthenticated, loggedOut } from "@/features/auth/authSlice"
+import { useOutsideClick } from "@/hooks/useOutsideClick"
+import { IconCustom } from "@/utils/icon"
 
 import type { ThemeName } from "@/types/theme"
 
 import { menu } from "./constants"
-
-import { useOutsideClick } from "@/hooks/useOutsideClick"
-
 import styles from "./Header.module.css"
 
 const cx = cn.bind(styles)

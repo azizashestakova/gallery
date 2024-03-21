@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+
 import { getFingerprint } from "@/utils/getFingerprint"
 
 export const useFingerprint = () => {

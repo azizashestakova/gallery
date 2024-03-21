@@ -1,18 +1,16 @@
 import { FC, useState, useEffect } from "react"
 import cn from "classnames/bind"
-import { ReactSVG } from "react-svg"
 import { useParams } from "react-router-dom"
+import { ReactSVG } from "react-svg"
 
+import ClearIcon from "@/assets/clear.svg"
 import { Carousel } from "@/components/Carousel"
 import { Modal } from "@/components/Modal"
 import { ModalDelete } from "@/components/ModalDelete"
 import { ModalPaint } from "@/components/ModalPaint"
-
-import ClearIcon from "@/assets/clear.svg"
+import { artistApi } from "@/services/ArtistService"
 
 import type { IPaintings } from "@/app/models/IArtist"
-
-import { artistApi } from "@/services/ArtistService"
 
 import styles from "./ModalFull.module.css"
 

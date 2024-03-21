@@ -1,10 +1,10 @@
 import { Route, Routes, useLocation } from "react-router-dom"
 
+import { Artist } from "@/components/Artist"
+import { Artists } from "@/components/Artists"
 import { Layout } from "@/components/Layout"
 import { Login } from "@/components/Login"
 import { Register } from "@/components/Register"
-import { Artists } from "@/components/Artists"
-import { Artist } from "@/components/Artist"
 import { Responses } from "@/components/Responses"
 
 export const App = () => {

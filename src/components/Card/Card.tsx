@@ -1,20 +1,17 @@
 import { FC } from "react"
-import { ReactSVG } from "react-svg"
 import cn from "classnames/bind"
-
-import { useBreakpoints } from "@consta/uikit/useBreakpoints"
+import { ReactSVG } from "react-svg"
 
 import { Card as CardConsta } from "@consta/uikit/Card"
 import { Text } from "@consta/uikit/Text"
-
-import { Image } from "@/components/Card/Image"
+import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
 import ArrowIcon from "@/assets/arrow.svg"
 import StubIcon from "@/assets/stub.svg"
+import { Image } from "@/components/Card/Image"
+import { convertDateToYear } from "@/utils/convertDateToYear"
 
 import type { ImageSet } from "@/app/models/IArtist"
-
-import { convertDateToYear } from "@/utils/convertDateToYear"
 
 import styles from "./Card.module.css"
 

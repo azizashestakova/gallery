@@ -4,12 +4,11 @@ import { Link } from "react-router-dom"
 
 import { Grid, GridItem } from "@consta/uikit/Grid"
 
-import type { IArtist } from "@/app/models/IArtist"
-
 import { Card } from "@/components/Card"
 import { Skeleton } from "@/components/Skeleton"
-
 import { limit } from "@/constants"
+
+import type { IArtist } from "@/app/models/IArtist"
 
 import styles from "./Cards.module.css"
 

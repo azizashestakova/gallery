@@ -5,10 +5,9 @@ import { ReactSVG } from "react-svg"
 import { Modal } from "@consta/uikit/Modal"
 import { Text } from "@consta/uikit/Text"
 
-import { Button } from "@/components/Button"
-
 import ClearIcon from "@/assets/clear.svg"
 import DeleteIcon from "@/assets/delete.svg"
+import { Button } from "@/components/Button"
 
 import styles from "./ModalDelete.module.css"
 

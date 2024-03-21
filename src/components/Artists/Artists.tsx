@@ -3,25 +3,19 @@ import cn from "classnames/bind"
 
 import { Grid } from "@consta/uikit/Grid"
 
-import { Cards } from "@/components/Cards"
-import { ActionBar } from "@/components/ActionBar"
-import { NoMatchResult } from "@/components/NoMatchResult"
-import { Search } from "@/components/Search"
-import { Button } from "@/components/Button"
-import { ModalArtist } from "@/components/ModalArtist"
-import { Pagination } from "@/components/Pagination"
-
-import { artistApi } from "@/services/ArtistService"
-
 import { useAppSelector } from "@/app/hooks"
-
-import { selectIsAuthenticated } from "@/features/auth/authSlice"
-
-import { FilterContext } from "@/context/FilterProvider"
-
-import { IconCustom } from "@/utils/icon"
-
 import PlusIcon from "@/assets/plus.svg"
+import { ActionBar } from "@/components/ActionBar"
+import { Button } from "@/components/Button"
+import { Cards } from "@/components/Cards"
+import { ModalArtist } from "@/components/ModalArtist"
+import { NoMatchResult } from "@/components/NoMatchResult"
+import { Pagination } from "@/components/Pagination"
+import { Search } from "@/components/Search"
+import { FilterContext } from "@/context/FilterProvider"
+import { selectIsAuthenticated } from "@/features/auth/authSlice"
+import { artistApi } from "@/services/ArtistService"
+import { IconCustom } from "@/utils/icon"
 
 import styles from "./Artists.module.css"
 

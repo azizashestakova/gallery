@@ -1,5 +1,5 @@
+import { ComponentProps } from "react"
 import { render, screen } from "@testing-library/react"
-import React from "react"
 
 import {
   cnTheme,
@@ -10,7 +10,7 @@ import {
   useTheme,
 } from "../Theme"
 
-type ThemeProps = React.ComponentProps<typeof Theme>
+type ThemeProps = ComponentProps<typeof Theme>
 
 const testId = cnTheme()
 

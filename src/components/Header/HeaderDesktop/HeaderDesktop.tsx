@@ -1,16 +1,14 @@
 import { Dispatch, FC, SetStateAction } from "react"
 import cn from "classnames/bind"
 
-import { ThemeToggler } from "@consta/uikit/ThemeToggler"
 import { ButtonMenu } from "@consta/header/ButtonMenu"
+import { ThemeToggler } from "@consta/uikit/ThemeToggler"
 
 import { items as itemsTheme } from "@/components/Header/constants"
-
 import { getItemIcon } from "@/utils/getItemIcon"
 
-import type { ThemeName } from "@/types/theme"
-
 import type { MenuItem } from "../types"
+import type { ThemeName } from "@/types/theme"
 
 import styles from "./HeaderDesktop.module.css"
 

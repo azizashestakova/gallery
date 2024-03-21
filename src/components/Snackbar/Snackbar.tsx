@@ -4,13 +4,10 @@ import cn from "classnames/bind"
 import { SnackBar as SnackBarConsta } from "@consta/uikit/SnackBar"
 import { Text } from "@consta/uikit/Text"
 
-import { IconCustom } from "@/utils/icon"
-
-import ErrorIcon from "@/assets/error.svg"
-
 import { useAppDispatch, useAppSelector } from "@/app/hooks"
-
+import ErrorIcon from "@/assets/error.svg"
 import { deleteNotification } from "@/features/notification/notificationSlice"
+import { IconCustom } from "@/utils/icon"
 
 import styles from "./Snackbar.module.css"
 

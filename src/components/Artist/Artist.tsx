@@ -6,22 +6,18 @@ import { ReactSVG } from "react-svg"
 import { Grid } from "@consta/uikit/Grid"
 import { Text } from "@consta/uikit/Text"
 
-import { ArtistInfo } from "@/components/ArtistInfo"
-import { ArtWorks } from "@/components/ArtWorks"
-import { ActionBar } from "@/components/ActionBar"
-import { ModalDelete } from "@/components/ModalDelete"
-import { ModalArtist } from "@/components/ModalArtist"
-import { Preloader } from "@/components/Preloader"
-
-import { artistApi } from "@/services/ArtistService"
-
+import { useAppSelector } from "@/app/hooks"
 import ArrowIcon from "@/assets/arrow.svg"
 import DeleteIcon from "@/assets/delete.svg"
 import EditIcon from "@/assets/edit.svg"
-
-import { useAppSelector } from "@/app/hooks"
-
+import { ActionBar } from "@/components/ActionBar"
+import { ArtistInfo } from "@/components/ArtistInfo"
+import { ArtWorks } from "@/components/ArtWorks"
+import { ModalArtist } from "@/components/ModalArtist"
+import { ModalDelete } from "@/components/ModalDelete"
+import { Preloader } from "@/components/Preloader"
 import { selectIsAuthenticated } from "@/features/auth/authSlice"
+import { artistApi } from "@/services/ArtistService"
 
 import styles from "./Artist.module.css"
 

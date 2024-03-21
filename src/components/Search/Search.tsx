@@ -1,17 +1,14 @@
 import { FC, useState } from "react"
 import cn from "classnames/bind"
 
+import { Button } from "@consta/uikit/Button"
+import { Grid } from "@consta/uikit/Grid"
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
-import { Grid } from "@consta/uikit/Grid"
-import { Button } from "@consta/uikit/Button"
-
-import { SearchField } from "@/components/SearchField"
-import { ModalFilter } from "@/components/ModalFilter"
-
-import { IconCustom } from "@/utils/icon"
-
 import FilterIcon from "@/assets/filter.svg"
+import { ModalFilter } from "@/components/ModalFilter"
+import { SearchField } from "@/components/SearchField"
+import { IconCustom } from "@/utils/icon"
 
 import styles from "./Search.module.css"
 

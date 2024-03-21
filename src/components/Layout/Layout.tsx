@@ -1,17 +1,15 @@
 import { FC } from "react"
-import { Outlet } from "react-router-dom"
 import cn from "classnames/bind"
+import { Outlet } from "react-router-dom"
 
-import { Theme } from "@consta/uikit/Theme"
 import { Layout as LayoutConsta } from "@consta/uikit/Layout"
+import { Theme } from "@consta/uikit/Theme"
 
 import { Header } from "@/components/Header"
 import { ScrrollToTop } from "@/components/ScrrollToTop"
 import { SnackBar } from "@/components/Snackbar"
-
-import { getPreset } from "@/utils/getPreset"
-
 import { useTheme } from "@/hooks/useTheme"
+import { getPreset } from "@/utils/getPreset"
 
 import styles from "./Layout.module.css"
 

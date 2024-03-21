@@ -2,7 +2,6 @@ import { FC, memo, useRef, useState } from "react"
 import cn from "classnames/bind"
 
 import { Preloader } from "@/components/Preloader"
-
 import { useOnScreen } from "@/hooks/useOnScreen"
 
 import styles from "./Image.module.css"

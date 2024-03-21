@@ -7,30 +7,25 @@ import {
   useRef,
   useState,
 } from "react"
-import cn from "classnames/bind"
-import { ReactSVG } from "react-svg"
-import { useForm, Controller, useController } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import * as yup from "yup"
+import cn from "classnames/bind"
+import { useForm, Controller, useController } from "react-hook-form"
 import { useParams } from "react-router-dom"
-
-import { useBreakpoints } from "@consta/uikit/useBreakpoints"
+import { ReactSVG } from "react-svg"
+import * as yup from "yup"
 
 import { Modal } from "@consta/uikit/Modal"
 import { Text } from "@consta/uikit/Text"
 import { TextField } from "@consta/uikit/TextField"
-
-import { Button } from "@/components/Button"
-
-import { getBase64 } from "@/utils/getBase64"
-
-import { IconCustom } from "@/utils/icon"
+import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
 import ClearIcon from "@/assets/clear.svg"
-import MountainsIcon from "@/assets/mountains.svg"
 import DeleteIcon from "@/assets/delete.svg"
-
+import MountainsIcon from "@/assets/mountains.svg"
+import { Button } from "@/components/Button"
 import { artistApi } from "@/services/ArtistService"
+import { getBase64 } from "@/utils/getBase64"
+import { IconCustom } from "@/utils/icon"
 
 import styles from "./ModalPaint.module.css"
 

@@ -1,12 +1,9 @@
 import { FC } from "react"
 import cn from "classnames/bind"
 
-import { Button } from "@/components/Button"
-
-import { IconCustom } from "@/utils/icon"
-
 import ArrowTopIcon from "@/assets/arrow-top.svg"
-
+import { Button } from "@/components/Button"
+import { IconCustom } from "@/utils/icon"
 import { useWindowPosition } from "@/utils/useWindowPosition"
 
 import styles from "./ScrrollToTop.module.css"

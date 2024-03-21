@@ -2,18 +2,15 @@ import { FC, useEffect, useState } from "react"
 import cn from "classnames/bind"
 import { useParams } from "react-router-dom"
 
-import type { IPaintings } from "@/app/models/IArtist"
-
-import { Card } from "@/components/Card"
+import { useAppSelector } from "@/app/hooks"
 import { ArtworkMenu } from "@/components/ArtworkMenu"
+import { Card } from "@/components/Card"
 import { ModalDelete } from "@/components/ModalDelete"
 import { ModalPaint } from "@/components/ModalPaint"
-
+import { selectIsAuthenticated } from "@/features/auth/authSlice"
 import { artistApi } from "@/services/ArtistService"
 
-import { useAppSelector } from "@/app/hooks"
-
-import { selectIsAuthenticated } from "@/features/auth/authSlice"
+import type { IPaintings } from "@/app/models/IArtist"
 
 import styles from "./CardArtWorks.module.css"
 

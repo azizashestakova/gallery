@@ -1,6 +1,6 @@
-import { apiService } from "./api"
-
 import type { IGenre } from "@/app/models/IGenres"
+
+import { apiService } from "./api"
 
 export const genresApi = apiService.injectEndpoints({
   endpoints: (build) => ({

@@ -3,10 +3,10 @@ import cn from "classnames/bind"
 
 import { Grid, GridItem } from "@consta/uikit/Grid"
 
-import type { IPaintings } from "@/app/models/IArtist"
-
-import { UploadPaintings } from "@/components/UploadPaintings"
 import { CardArtWorks } from "@/components/CardArtWorks"
+import { UploadPaintings } from "@/components/UploadPaintings"
+
+import type { IPaintings } from "@/app/models/IArtist"
 
 import styles from "./CardsArtWorks.module.css"
 

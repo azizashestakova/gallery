@@ -1,21 +1,18 @@
 import { FC } from "react"
 import cn from "classnames/bind"
 
+import { Chips } from "@consta/uikit/Chips"
+import { Grid } from "@consta/uikit/Grid"
+import { Spoiler } from "@consta/uikit/Spoiler"
+import { Text } from "@consta/uikit/Text"
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
-import { Grid } from "@consta/uikit/Grid"
-import { Text } from "@consta/uikit/Text"
-import { Spoiler } from "@consta/uikit/Spoiler"
-import { Chips } from "@consta/uikit/Chips"
-
+import ArrowDownIcon from "@/assets/arrow-down.svg"
 import { Image } from "@/components/Card/Image"
 import { EmptyAvatar } from "@/components/EmptyAvatar"
-
-import type { ImageSet } from "@/app/models/IArtist"
-
 import { IconCustom } from "@/utils/icon"
 
-import ArrowDownIcon from "@/assets/arrow-down.svg"
+import type { ImageSet } from "@/app/models/IArtist"
 
 import styles from "./ArtistInfo.module.css"
 

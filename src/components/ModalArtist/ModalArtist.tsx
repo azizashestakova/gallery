@@ -7,34 +7,30 @@ import {
   useRef,
   useState,
 } from "react"
-import cn from "classnames/bind"
-import { ReactSVG } from "react-svg"
-import { useForm, Controller, useController } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
+import cn from "classnames/bind"
+import { useForm, Controller, useController } from "react-hook-form"
+import { useParams } from "react-router-dom"
+import { ReactSVG } from "react-svg"
 import * as yup from "yup"
 
+import { Combobox } from "@consta/uikit/Combobox"
 import { Modal } from "@consta/uikit/Modal"
 import { Text } from "@consta/uikit/Text"
 import { TextField } from "@consta/uikit/TextField"
-import { Combobox } from "@consta/uikit/Combobox"
-
-import { Button } from "@/components/Button"
-
-import { artistApi } from "@/services/ArtistService"
-import { genresApi } from "@/services/GenresServices"
-
-import { getBase64 } from "@/utils/getBase64"
-
-import { IconCustom } from "@/utils/icon"
 
 import ClearIcon from "@/assets/clear.svg"
-import PersonIcon from "@/assets/person.svg"
 import DeleteIcon from "@/assets/delete.svg"
+import PersonIcon from "@/assets/person.svg"
+import { Button } from "@/components/Button"
+import { artistApi } from "@/services/ArtistService"
+import { genresApi } from "@/services/GenresServices"
+import { getBase64 } from "@/utils/getBase64"
+import { IconCustom } from "@/utils/icon"
 
 import type { IGenre } from "@/app/models/IGenres"
 
 import styles from "./ModalArtist.module.css"
-import { useParams } from "react-router-dom"
 
 const schema = yup.object({
   name: yup.string().trim().required("This field is required."),

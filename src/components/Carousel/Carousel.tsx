@@ -1,31 +1,24 @@
 import { FC } from "react"
 import cn from "classnames/bind"
-import Slider from "react-slick"
 import { useParams } from "react-router-dom"
-
-import { useBreakpoints } from "@consta/uikit/useBreakpoints"
+import Slider from "react-slick"
 
 import { reactSlickAdapter } from "@consta/react-slick-adapter/reactSlickAdapter"
-
 import { Grid } from "@consta/uikit/Grid"
 import { Text } from "@consta/uikit/Text"
-
-import { Image } from "@/components/Card/Image"
-import { Button } from "@/components/Button"
-
-import { IconCustom } from "@/utils/icon"
-
-import DeleteIcon from "@/assets/delete.svg"
-import EditIcon from "@/assets/edit.svg"
-import CoverIcon from "@/assets/cover.svg"
-
-import type { IPaintings } from "@/app/models/IArtist"
+import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
 import { useAppSelector } from "@/app/hooks"
-
+import CoverIcon from "@/assets/cover.svg"
+import DeleteIcon from "@/assets/delete.svg"
+import EditIcon from "@/assets/edit.svg"
+import { Button } from "@/components/Button"
+import { Image } from "@/components/Card/Image"
 import { selectIsAuthenticated } from "@/features/auth/authSlice"
-
 import { artistApi } from "@/services/ArtistService"
+import { IconCustom } from "@/utils/icon"
+
+import type { IPaintings } from "@/app/models/IArtist"
 
 import styles from "./Carousel.module.css"
 

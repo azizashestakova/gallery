@@ -1,8 +1,8 @@
 import { FC } from "react"
 import cn from "classnames/bind"
 
-import { SkeletonBrick } from "@consta/uikit/Skeleton"
 import { Grid, GridItem } from "@consta/uikit/Grid"
+import { SkeletonBrick } from "@consta/uikit/Skeleton"
 
 import styles from "./Skeleton.module.css"
 

@@ -1,8 +1,9 @@
-import { themeDefault, themeDark } from "@/constants"
 import { Location, NavigateFunction } from "react-router-dom"
 
-import type { ThemeName } from "@/types/theme"
+import { themeDefault, themeDark } from "@/constants"
+
 import type { MenuItem } from "@/components/Header/types"
+import type { ThemeName } from "@/types/theme"
 
 export const items: ThemeName[] = [themeDefault, themeDark]
 

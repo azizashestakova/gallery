@@ -1,8 +1,8 @@
 import { ThemePreset } from "@consta/uikit/Theme"
 
-import type { ThemeName } from "@/types/theme"
-
 import { presetGpnDark, presetGpnDefault } from "@/components/Theme"
+
+import type { ThemeName } from "@/types/theme"
 
 export const getPreset = (themeName: ThemeName): ThemePreset => {
   const obj = {

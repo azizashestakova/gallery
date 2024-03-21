@@ -7,7 +7,6 @@ import {
 } from "@reduxjs/toolkit/query/react"
 
 import { RootState } from "@/app/store"
-
 import { loggedOut, setAuth } from "@/features/auth/authSlice"
 
 const API_BASE_URL = import.meta.env.VITE__API_BASE_URL

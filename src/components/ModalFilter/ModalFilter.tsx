@@ -2,21 +2,17 @@ import { FC, useCallback, useContext, useEffect, useState } from "react"
 import cn from "classnames/bind"
 import { ReactSVG } from "react-svg"
 
-import { Modal } from "@consta/uikit/Modal"
 import { CollapseGroup } from "@consta/uikit/CollapseGroup"
-
-import { IconCustom } from "@/utils/icon"
+import { Modal } from "@consta/uikit/Modal"
 
 import ClearIcon from "@/assets/clear.svg"
 import MinusIcon from "@/assets/minus.svg"
 import PlusIcon from "@/assets/plus.svg"
-
 import { FilterContext, Filters } from "@/context/FilterProvider"
-
 import { genresApi } from "@/services/GenresServices"
+import { IconCustom } from "@/utils/icon"
 
 import { ContentItem, geItems } from "./constants"
-
 import styles from "./ModalFilter.module.css"
 
 const cx = cn.bind(styles)

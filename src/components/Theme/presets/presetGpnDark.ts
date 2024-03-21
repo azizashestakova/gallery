@@ -8,7 +8,6 @@ import "../_space/Theme_space_gpnDefault.css"
 import "../_shadow/Theme_shadow_gpnDefault.css"
 
 import { ThemePreset } from "../Theme"
-
 import { themeDefault, themeDark } from "@/constants"
 
 export const presetGpnDark: ThemePreset = {

@@ -1,10 +1,8 @@
 import { FC } from "react"
 
-import { AuthModal } from "@/components/AuthModal"
-
-import { authApi } from "@/services/AuthService"
-
 import LoginImage from "@/assets/login.jpg"
+import { AuthModal } from "@/components/AuthModal"
+import { authApi } from "@/services/AuthService"
 
 export const Login: FC = () => {
   const [login, { isSuccess }] = authApi.useLoginMutation()

@@ -2,14 +2,12 @@ import { FC, MouseEventHandler, useRef } from "react"
 import cn from "classnames/bind"
 import { useParams } from "react-router-dom"
 
-import { ContextMenu } from "@consta/uikit/ContextMenu"
 import { Button } from "@consta/uikit/Button"
-
-import { artistApi } from "@/services/ArtistService"
-
-import { IconCustom } from "@/utils/icon"
+import { ContextMenu } from "@consta/uikit/ContextMenu"
 
 import GearIcon from "@/assets/gear.svg"
+import { artistApi } from "@/services/ArtistService"
+import { IconCustom } from "@/utils/icon"
 
 import styles from "./ArtworkMenu.module.css"
 

@@ -1,9 +1,7 @@
-import { IconCustom } from "@/utils/icon"
-
 import MoonIcon from "@/assets/moon.svg"
 import SunIcon from "@/assets/sun.svg"
-
 import { themeDefault } from "@/constants"
+import { IconCustom } from "@/utils/icon"
 
 import type { ThemeName } from "@/types/theme"
 

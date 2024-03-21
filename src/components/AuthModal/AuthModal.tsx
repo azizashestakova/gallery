@@ -1,23 +1,20 @@
 import { FC, useEffect } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
+import { yupResolver } from "@hookform/resolvers/yup"
 import cn from "classnames/bind"
 import { useForm, Controller } from "react-hook-form"
-import { yupResolver } from "@hookform/resolvers/yup"
+import { useLocation, useNavigate } from "react-router-dom"
 import * as yup from "yup"
 
+import { Grid } from "@consta/uikit/Grid"
+import { Picture } from "@consta/uikit/Picture"
+import { Text } from "@consta/uikit/Text"
+import { TextField } from "@consta/uikit/TextField"
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
-import { Grid } from "@consta/uikit/Grid"
-import { Text } from "@consta/uikit/Text"
-import { Picture } from "@consta/uikit/Picture"
-import { TextField } from "@consta/uikit/TextField"
-
+import { useAppDispatch } from "@/app/hooks"
 import { Button } from "@/components/Button"
 import { ModalWindow } from "@/components/ModalWindow"
-
 import { setAuth } from "@/features/auth/authSlice"
-
-import { useAppDispatch } from "@/app/hooks"
 import { useFingerprint } from "@/hooks/useFingerprint"
 
 import styles from "./AuthModal.module.css"

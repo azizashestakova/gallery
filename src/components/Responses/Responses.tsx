@@ -1,6 +1,6 @@
 import { FC } from "react"
-import { useNavigate } from "react-router-dom"
 import cn from "classnames/bind"
+import { useNavigate } from "react-router-dom"
 
 import { Responses404 } from "@consta/uikit/Responses404"
 

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useMemo } from "react"
 import { cn } from "@bem-react/classname"
+
 import { PropsWithHTMLAttributes } from "@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes"
 
 import { presetGpnDefault } from "./presets/presetGpnDefault"

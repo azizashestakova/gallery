@@ -1,10 +1,10 @@
-import { apiService } from "./api"
-
 import type {
   IArtistResponse,
   IArtist,
   IArtistParams,
 } from "@/app/models/IArtist"
+
+import { apiService } from "./api"
 
 export const artistApi = apiService.injectEndpoints({
   endpoints: (build) => ({

@@ -1,18 +1,15 @@
 import { FC, useContext, useEffect, useState } from "react"
 import cn from "classnames/bind"
-import { ReactSVG } from "react-svg"
 import { useSearchParams } from "react-router-dom"
-
-import { useDebounce } from "@consta/uikit/useDebounce"
+import { ReactSVG } from "react-svg"
 
 import { TextField, TextFieldPropValue } from "@consta/uikit/TextField"
+import { useDebounce } from "@consta/uikit/useDebounce"
 
-import { IconCustom } from "@/utils/icon"
-
-import { FilterContext } from "@/context/FilterProvider"
-
-import SearchIcon from "@/assets/search.svg"
 import ClearIcon from "@/assets/clear.svg"
+import SearchIcon from "@/assets/search.svg"
+import { FilterContext } from "@/context/FilterProvider"
+import { IconCustom } from "@/utils/icon"
 
 import styles from "./SearchField.module.css"
 

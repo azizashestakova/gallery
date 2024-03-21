@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react"
-import { useNavigate } from "react-router-dom"
 import cn from "classnames/bind"
+import { useNavigate } from "react-router-dom"
 import { ReactSVG } from "react-svg"
 
 import { Modal } from "@consta/uikit/Modal"
