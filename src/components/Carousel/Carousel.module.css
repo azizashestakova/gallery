@@ -4,16 +4,29 @@
   }
 }
 
+.arrow {
+  &::before {
+    background-color: var(--color-base-opacity) !important;
+  }
+}
+
 .wrapper {
   position: relative;
   height: 100%;
 }
-
+/* TODO:: поправить размер кнопки */
 .cover {
   position: absolute;
   z-index: 1;
   top: 20px;
   left: 20px;
+  background-color: var(--color-base-opacity) !important;
+  padding: 5px 10px !important;
+  border-radius: 4px !important;
+
+  &:hover {
+    background-color: var(--color-base-opacity) !important;
+  }
 
   @media (min-width: 768px) {
     top: 40px;
@@ -30,10 +43,14 @@
     height: 28px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
+
+    svg {
+      fill: var(--color-control-typo-ghost);
+    }
   }
 
   :global(.Button-Label) {
-    color: var(--color-base-normal);
+    color: var(--color-control-typo-ghost);
     border-color: var(--color-base-normal) !important;
   }
 }

@@ -5,6 +5,8 @@
 }
 
 .wrapper {
+  background-color: var(--color-base-essential);
+
   :global(.che--LayoutRow) {
     border: none;
     height: 80px;

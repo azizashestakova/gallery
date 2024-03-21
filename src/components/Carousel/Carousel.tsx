@@ -51,10 +51,16 @@ export const Carousel: FC<CarouselProps> = ({
     setIsOpenModalPaint(true)
   }
 
+  const Arrow = (props: any) => {
+    const { className, onClick } = props
+    return <div className={cx(className, "arrow")} onClick={onClick} />
+  }
+
   const settings = reactSlickAdapter({
-    arrows: true,
     initialSlide: activeIndex,
     className: cx("carousel"),
+    nextArrow: <Arrow />,
+    prevArrow: <Arrow />,
   })
 
   const breakpoints = useBreakpoints({
@@ -75,7 +81,7 @@ export const Carousel: FC<CarouselProps> = ({
                 : "Make the cover"
             }
             className={cx("cover")}
-            view="ghost"
+            view="primary"
             iconLeft={IconCustom(CoverIcon)}
             onClick={() => {
               editMainPainting({ artistId, paintingId: _id })

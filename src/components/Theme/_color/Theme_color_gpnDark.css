@@ -17,6 +17,7 @@
   --color-base-critical: #33000f;
 
   --color-base-transparent: transparent;
+  --color-base-opacity: rgba(18, 18, 18, 0.3);
 
   /* //////////////////////////////
   // Цвета фонов /////////////// */

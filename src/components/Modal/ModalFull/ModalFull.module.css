@@ -8,12 +8,19 @@
 
 .button {
   position: absolute;
-  background-color: transparent;
+  background-color: var(--color-base-opacity);
   border: none;
   z-index: 1;
   top: 20px;
   right: 20px;
   cursor: pointer;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @media (min-width: 768px) {
     top: 40px;
@@ -26,6 +33,7 @@
   }
 
   svg {
-    fill: var(--color-base-normal);
+    fill: var(--color-control-typo-ghost);
+    display: block;
   }
 }
