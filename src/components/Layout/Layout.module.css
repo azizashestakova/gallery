@@ -27,13 +27,21 @@
   :global(.SnackBarItem) {
     background-color: #fcfcfc;
     border: 1px solid #dedede;
-  }
 
-  :global(.Text_view_primary) {
-    color: #575757;
-  }
+    :global(.Text_view_primary) {
+      color: #575757;
+    }
 
-  :global(.icons--Icon-Svg) {
-    fill: #575757;
+    :global(.icons--Icon-Svg) {
+      fill: #575757 !important;
+    }
+
+    :global(.SnackBarItem-CloseButton.Button) {
+      &:hover {
+        :global(.icons--Icon-Svg) {
+          fill: #121212 !important;
+        }
+      }
+    }
   }
 }

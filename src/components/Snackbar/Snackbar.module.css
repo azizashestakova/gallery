@@ -63,10 +63,17 @@
         height: 20px;
       }
     }
-  }
 
-  :global(.icons--Icon-Svg) {
-    fill: var(--color-base-base);
+    svg {
+      fill: var(--color-base-base);
+      transition: fill 0.2s ease;
+    }
+
+    &:hover {
+      svg {
+        fill: var(--color-typo-brand);
+      }
+    }
   }
 }
 

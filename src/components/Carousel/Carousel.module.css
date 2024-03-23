@@ -8,6 +8,16 @@
   &::before {
     background-color: var(--color-base-opacity) !important;
   }
+
+  &::after {
+    transition: background-color 0.2s ease;
+  }
+
+  &:hover {
+    &::after {
+      background-color: var(--color-typo-brand);
+    }
+  }
 }
 
 .wrapper {

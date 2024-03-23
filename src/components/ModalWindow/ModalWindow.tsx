@@ -34,7 +34,7 @@ export const ModalWindow: FC<ModalWindowProps> = ({ children }) => {
     >
       <Button
         label="Close"
-        view="clear"
+        view="ghost"
         onlyIcon
         iconLeft={IconCustom(ClearIcon)}
         className={cx("button")}

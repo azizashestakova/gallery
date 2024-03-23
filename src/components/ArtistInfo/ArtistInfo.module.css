@@ -154,6 +154,24 @@
 
   :global(.SpoilerButton) {
     align-items: flex-end;
+
+    :global(.SpoilerButton-Label) {
+      transition: color 0.2s ease;
+    }
+
+    path {
+      transition: fill 0.2s ease;
+    }
+
+    &:hover {
+      :global(.SpoilerButton-Label) {
+        color: var(--color-typo-brand);
+      }
+
+      path {
+        fill: var(--color-typo-brand);
+      }
+    }
   }
 
   :global(.SpoilerButton-Label) {

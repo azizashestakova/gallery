@@ -59,6 +59,7 @@
   line-height: var(--line-height-text-2xs);
   font-weight: 300;
   font-family: var(--font-primary);
+  transition: color 0.2s ease;
 
   &:hover {
     color: var(--color-typo-brand);
@@ -75,11 +76,12 @@
 
   :global(.Collapse-LabelText) {
     font-family: var(--font-mono);
-    color: var(--color-typo-brand);
+    color: var(--color-base-base);
     font-size: var(--size-text-xs);
     line-height: var(--line-height-text-2xs);
     font-weight: 500;
     text-transform: uppercase;
+    transition: color 0.2s ease;
 
     @media (min-width: 768px) {
       font-size: var(--size-text-m);
@@ -89,12 +91,22 @@
   :global(.Collapse-Label) {
     svg {
       fill: var(--color-base-base);
-      width: 112px;
+      width: 12px;
       height: 12px;
+      transition: fill 0.2s ease;
 
       @media (min-width: 768px) {
         width: 16px;
         height: 16px;
+      }
+    }
+
+    &:hover {
+      :global(.Collapse-LabelText) {
+        color: var(--color-typo-brand);
+      }
+      svg {
+        fill: var(--color-typo-brand);
       }
     }
   }

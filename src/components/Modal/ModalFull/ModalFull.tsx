@@ -62,7 +62,7 @@ export const ModalFull: FC<ModalFullProps> = ({
       <Button
         label="Close"
         className={cx("button")}
-        view="clear"
+        view="ghost"
         iconLeft={IconCustom(ClearIcon)}
         onlyIcon
         onClick={() => {

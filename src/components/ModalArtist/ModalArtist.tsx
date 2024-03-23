@@ -213,7 +213,7 @@ export const ModalArtist: FC<ModalArtistProps> = ({
       <Button
         label="Close"
         className={cx("button-close")}
-        view="clear"
+        view="ghost"
         iconLeft={IconCustom(ClearIcon)}
         onlyIcon
         onClick={() => setIsOpen(false)}
@@ -361,27 +361,23 @@ export const ModalArtist: FC<ModalArtistProps> = ({
             name="genres"
             control={control}
             rules={{ required: true }}
-            render={({ field }) => {
-              console.log("field", field)
-
-              return (
-                <Combobox
-                  {...field}
-                  className={cx("combobox")}
-                  dropdownClassName={cx("combobox-dropdown")}
-                  size="m"
-                  label="Genres"
-                  items={genresData}
-                  getItemLabel={getItemLabel}
-                  getItemKey={getItemKey}
-                  multiple
-                  status={
-                    errors.genres?.message?.toString() ? "warning" : undefined
-                  }
-                  caption={errors.genres?.message?.toString()}
-                />
-              )
-            }}
+            render={({ field }) => (
+              <Combobox
+                {...field}
+                className={cx("combobox")}
+                dropdownClassName={cx("combobox-dropdown")}
+                size="m"
+                label="Genres"
+                items={genresData}
+                getItemLabel={getItemLabel}
+                getItemKey={getItemKey}
+                multiple
+                status={
+                  errors.genres?.message?.toString() ? "warning" : undefined
+                }
+                caption={errors.genres?.message?.toString()}
+              />
+            )}
           />
           <Button
             label="Save"

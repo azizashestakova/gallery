@@ -2,19 +2,30 @@
   margin-left: var(--space-auto);
   margin-top: var(--space-2xl);
 
-  /* TODO:: Исправить добавление стилей */
   :global(.PaginationItem) {
+    font-family: var(--font-primary);
     font-weight: 300;
     transition: font-weight 0.2s ease;
   }
 
-  /* TODO:: Исправить добавление стилей */
   :global(.PaginationItem_active) {
     font-weight: 500;
+    animation: none !important;
+    background-color: var(--color-control-bg-ghost);
   }
 
-  /* TODO:: Исправить добавление стилей */
-  :global(.PaginationItem:hover) {
+  :global(.PaginationItem) {
+    &:hover {
+      animation: fontWeightAnimatioin 0.2s ease forwards !important;
+    }
+  }
+}
+
+@keyframes fontWeightAnimatioin {
+  from {
+    font-weight: 300;
+  }
+  to {
     font-weight: 500;
   }
 }

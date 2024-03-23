@@ -2,6 +2,23 @@
   text-transform: uppercase;
   font-weight: 700;
 
+  &:global(.Button_view_primary) {
+    height: 47px;
+    width: 200px;
+
+    &:hover {
+      box-shadow: 0 4px 10px 0 var(--color-control-bg-focus);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 4px 10px 0 var(--color-control-bg-focus) !important;
+    }
+
+    &:disabled {
+      box-shadow: none;
+    }
+  }
+
   &:global(.Button_view_secondary) {
     &:hover {
       background-color: var(--color-control-bg-secondary) !important;
@@ -14,19 +31,6 @@
 
     svg {
       fill: var(--color-base-normal);
-    }
-  }
-
-  &:global(.Button_view_primary) {
-    height: 47px;
-    width: 200px;
-
-    &:hover {
-      box-shadow: 0 4px 10px 0 var(--color-control-bg-focus);
-    }
-
-    &:focus-visible {
-      box-shadow: 0 4px 10px 0 var(--color-control-bg-focus) !important;
     }
   }
 

@@ -91,7 +91,7 @@ export const SnackBar: FC = () => {
         onItemClose={(item) => deleteMessage(item)}
         getItemIcon={getItemIcon}
         getItemMessage={getItemMessage}
-        getItemAutoClose={() => 5}
+        // getItemAutoClose={() => 5}
       />
     </>
   )
