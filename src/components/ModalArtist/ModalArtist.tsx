@@ -210,14 +210,14 @@ export const ModalArtist: FC<ModalArtistProps> = ({
       onDrop={(event) => drop(event)}
       onDragOver={(event) => allowDrop(event)}
     >
-      <button
+      <Button
+        label="Close"
         className={cx("button-close")}
-        type="button"
+        view="clear"
+        iconLeft={IconCustom(ClearIcon)}
+        onlyIcon
         onClick={() => setIsOpen(false)}
-      >
-        <ReactSVG src={ClearIcon} />
-      </button>
-
+      />
       <form className={cx("form")} onSubmit={onSubmit}>
         {isDraggable && (
           <div
@@ -255,10 +255,9 @@ export const ModalArtist: FC<ModalArtistProps> = ({
             {image ? (
               <>
                 <img className={cx("image")} src={image} alt="avatar" />
-
                 <Button
                   label="Delete image"
-                  view="ghost"
+                  view="clear"
                   onlyIcon
                   iconLeft={IconCustom(DeleteIcon)}
                   className={cx("button-delete")}
@@ -291,7 +290,6 @@ export const ModalArtist: FC<ModalArtistProps> = ({
           <Button
             label="Browse Profile Photo"
             view="ghost"
-            className={cx("button-loading")}
             onClick={handleLoadImage}
           />
         </div>

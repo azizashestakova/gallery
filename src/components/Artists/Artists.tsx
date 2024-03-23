@@ -50,7 +50,6 @@ export const Artists: FC = () => {
         <ActionBar>
           <Button
             label="Add artist"
-            className={cx("button")}
             view="ghost"
             iconLeft={IconCustom(PlusIcon)}
             onClick={() => {

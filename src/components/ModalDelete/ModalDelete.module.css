@@ -18,25 +18,14 @@
 
 .button-close {
   position: absolute;
-  background-color: transparent;
-  border: none;
-  z-index: 1;
   top: 20px;
   right: 20px;
-  cursor: pointer;
-  padding: 0;
-  width: 24px;
-  height: 24px;
   display: none;
 
   @media (min-width: 768px) {
     display: block;
     top: 20px;
     right: 20px;
-  }
-
-  svg {
-    fill: var(--color-base-base);
   }
 }
 
@@ -75,10 +64,6 @@
   @media (min-width: 768px) {
     margin-bottom: 32px;
   }
-}
-
-.button {
-  text-transform: uppercase;
 }
 
 .button-delete {

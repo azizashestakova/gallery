@@ -61,14 +61,6 @@
   transform: translate(-50%, 20px);
   width: 48px;
   height: 48px;
-
-  &:hover {
-    background-color: var(--color-control-bg-secondary) !important;
-  }
-
-  svg {
-    fill: var(--color-base-normal);
-  }
 }
 
 .description {

@@ -14,15 +14,15 @@
   position: relative;
   height: 100%;
 }
-/* TODO:: поправить размер кнопки */
+
 .cover {
   position: absolute;
   z-index: 1;
   top: 20px;
   left: 20px;
-  background-color: var(--color-base-opacity) !important;
-  padding: 5px 10px !important;
-  border-radius: 4px !important;
+  background-color: var(--color-base-opacity);
+  padding: 5px 10px;
+  height: auto;
 
   &:hover {
     background-color: var(--color-base-opacity) !important;
@@ -39,19 +39,27 @@
   }
 
   :global(.Button-Icon) {
-    width: 28px;
-    height: 28px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-
     svg {
+      transition: fill 0.2s ease;
       fill: var(--color-control-typo-ghost);
     }
   }
 
   :global(.Button-Label) {
+    transition: color 0.2s ease;
     color: var(--color-control-typo-ghost);
     border-color: var(--color-base-normal) !important;
+  }
+
+  &:hover,
+  &:focus-visible {
+    svg {
+      fill: var(--color-typo-brand);
+    }
+
+    :global(.Button-Label) {
+      color: var(--color-typo-brand);
+    }
   }
 }
 

@@ -29,11 +29,18 @@
 }
 
 .logo {
-  fill: var(--color-base-base);
-}
+  transition: opacity 0.2s ease;
 
-.button {
   svg {
     fill: var(--color-base-base);
   }
+
+  &:hover,
+  &:focus-visible {
+    opacity: 0.8;
+  }
+}
+
+.button {
+  margin-right: 10px;
 }

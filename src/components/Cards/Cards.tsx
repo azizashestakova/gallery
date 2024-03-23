@@ -37,8 +37,9 @@ export const Cards: FC<CardsProps> = ({ artists }) => (
     {artists.length
       ? artists.map(({ _id, mainPainting, name, yearsOfLife }) => (
           <GridItem className={cx("item")} key={_id} as="li">
-            <Link to={`/artists/${_id}`}>
+            <Link to={`/artists/${_id}`} className={cx("link")}>
               <Card
+                className={cx("card")}
                 imageSet={mainPainting?.image}
                 name={name}
                 yearsOfLife={yearsOfLife}

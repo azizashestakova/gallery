@@ -2,10 +2,10 @@ import { Dispatch, FC, SetStateAction } from "react"
 import cn from "classnames/bind"
 
 import { MobileMenu } from "@consta/header/MobileMenu"
-import { Text } from "@consta/uikit/Text"
 import { ThemeToggler } from "@consta/uikit/ThemeToggler"
 
 import { MenuItem } from "../types"
+import { Button } from "@/components/Button"
 import { items as itemsTheme, mode } from "@/components/Header/constants"
 import { getItemIcon } from "@/utils/getItemIcon"
 
@@ -34,6 +34,7 @@ export const HeaderMobile: FC<HeaderMobileProps> = ({
       header={
         <div className={cx("header-mobile")}>
           <ThemeToggler
+            className={cx("theme-toggler")}
             items={itemsTheme}
             value={theme}
             getItemKey={(item: ThemeName) => item}
@@ -41,19 +42,12 @@ export const HeaderMobile: FC<HeaderMobileProps> = ({
             getItemIcon={getItemIcon}
             onChange={setTheme}
           />
-          {/* TODO:: Заменить Text на что-то более подходящее */}
-          <Text
+          <Button
+            label={mode[theme]}
+            view="ghost"
             className={cx("mode")}
-            view="primary"
-            size="xs"
-            lineHeight="xs"
-            weight="bold"
-            transform="uppercase"
-            as="button"
             onClick={() => setTheme(mode[theme] as ThemeName)}
-          >
-            {mode[theme]}
-          </Text>
+          />
           {/* TODO:: Добавить крестик закрытия */}
         </div>
       }

@@ -1,7 +1,39 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
 .buttons {
-  /* TODO:: Исправить добавление стилей для кнопок */
-  /* TODO:: Добавить ховер */
+  margin-right: 20px;
+
   :global(.Button) {
     text-transform: uppercase;
+
+    &:hover {
+      color: var(--color-typo-brand) !important;
+    }
+
+    &:focus-visible {
+      color: var(--color-typo-brand) !important;
+    }
+  }
+}
+
+.theme {
+  background-color: var(--color-control-bg-ghost);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+
+  svg {
+    fill: var(--color-base-base);
+    transition: fill 0.2s ease;
+  }
+
+  &:hover,
+  &:focus-visible {
+    svg {
+      fill: var(--color-typo-brand);
+    }
   }
 }

@@ -27,7 +27,7 @@ export const ScrrollToTop: FC = () => {
         view="clear"
         onlyIcon
         iconLeft={IconCustom(ArrowTopIcon)}
-        label="Open menu"
+        label="Scroll to top"
         onClick={scrollToTop}
         className={cx("button")}
       />

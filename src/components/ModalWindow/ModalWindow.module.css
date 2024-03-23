@@ -16,15 +16,8 @@
 
 .button {
   position: absolute;
-  background-color: transparent;
-  border: none;
-  z-index: 1;
   top: 20px;
   right: 20px;
-  cursor: pointer;
-  padding: 0;
-  width: 24px;
-  height: 24px;
 
   @media (min-width: 768px) {
     top: 36px;
@@ -34,9 +27,5 @@
   @media (min-width: 1028px) {
     top: 32px;
     right: 32px;
-  }
-
-  svg {
-    fill: var(--color-base-base);
   }
 }

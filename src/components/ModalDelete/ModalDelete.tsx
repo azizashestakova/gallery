@@ -8,6 +8,7 @@ import { Text } from "@consta/uikit/Text"
 import ClearIcon from "@/assets/clear.svg"
 import DeleteIcon from "@/assets/delete.svg"
 import { Button } from "@/components/Button"
+import { IconCustom } from "@/utils/icon"
 
 import styles from "./ModalDelete.module.css"
 
@@ -54,13 +55,14 @@ export const ModalDelete: FC<ModalDeleteProps> = ({
       }}
       className={cx("modal")}
     >
-      <button
+      <Button
+        label="Close"
+        view="clear"
+        onlyIcon
+        iconLeft={IconCustom(ClearIcon)}
         className={cx("button-close")}
-        type="button"
         onClick={() => setIsOpen(false)}
-      >
-        <ReactSVG src={ClearIcon} />
-      </button>
+      />
       <div className={cx("content")}>
         <ReactSVG src={DeleteIcon} className={cx("icon")} />
         <Text
@@ -85,13 +87,12 @@ export const ModalDelete: FC<ModalDeleteProps> = ({
         </Text>
         <Button
           label="Delete"
-          className={cx("button", "button-delete")}
+          className={cx("button-delete")}
           form="round"
           onClick={onClickDelete}
         />
         <Button
           label="Cancel"
-          className={cx("button")}
           view="ghost"
           onClick={() => {
             setIsOpen(false)

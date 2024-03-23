@@ -10,4 +10,8 @@
   display: block;
   aspect-ratio: 8/5.30612;
   width: 100%;
+
+  &:focus-visible {
+    box-shadow: 0 4px 10px 0 var(--color-control-bg-focus) !important;
+  }
 }

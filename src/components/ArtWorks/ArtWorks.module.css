@@ -13,9 +13,4 @@
 
 .button {
   margin-left: auto;
-
-  :global(.Button-Icon) {
-    width: 24px;
-    height: 24px;
-  }
 }

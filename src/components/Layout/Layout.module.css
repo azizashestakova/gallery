@@ -22,6 +22,8 @@
 
 /* TODO:: В SnackBar не применяется светлая тема */
 :global(.Theme_color_gpnDefault) {
+  z-index: 1;
+
   :global(.SnackBarItem) {
     background-color: #fcfcfc;
     border: 1px solid #dedede;

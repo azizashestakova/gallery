@@ -81,7 +81,7 @@ export const Carousel: FC<CarouselProps> = ({
                 : "Make the cover"
             }
             className={cx("cover")}
-            view="primary"
+            view="clear"
             iconLeft={IconCustom(CoverIcon)}
             onClick={() => {
               editMainPainting({ artistId, paintingId: _id })

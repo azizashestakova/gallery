@@ -8,6 +8,7 @@ import { useDebounce } from "@consta/uikit/useDebounce"
 
 import ClearIcon from "@/assets/clear.svg"
 import SearchIcon from "@/assets/search.svg"
+import { Button } from "@/components/Button"
 import { FilterContext } from "@/context/FilterProvider"
 import { IconCustom } from "@/utils/icon"
 
@@ -64,13 +65,14 @@ export const SearchField: FC = () => {
         leftSide={IconCustom(SearchIcon)}
       />
       {value ? (
-        <button
+        <Button
+          label="Close"
+          view="ghost"
+          onlyIcon
+          iconLeft={IconCustom(ClearIcon)}
           className={cx("clear")}
-          type="button"
           onClick={handleClearValue}
-        >
-          <ReactSVG src={ClearIcon} />
-        </button>
+        />
       ) : null}
     </div>
   )

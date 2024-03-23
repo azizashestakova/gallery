@@ -139,19 +139,14 @@ export const AuthModal: FC<AuthModalProps> = ({
             className={cx("text")}
           >
             {description}{" "}
-            <Text
-              view="brand"
-              size={breakpoints.m ? "m" : "xs"}
-              lineHeight="2xs"
-              weight="medium"
-              as="button"
+            <Button
+              label={linkText}
               className={cx("sign-up")}
+              view="ghost"
               onClick={() => {
                 navigate(`${linkRoute}`, { state: { background: location } }) // TODO:: При переключении пропадает подложка
               }}
-            >
-              {linkText}
-            </Text>
+            />
           </Text>
           <form className={cx("form")} onSubmit={onSubmit}>
             <Controller
@@ -195,7 +190,6 @@ export const AuthModal: FC<AuthModalProps> = ({
             <Button
               label={buttonText}
               className={cx("button")}
-              view="primary"
               form="round"
               type="submit"
               disabled={!isValid}

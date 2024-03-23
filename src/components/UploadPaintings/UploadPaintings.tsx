@@ -2,11 +2,11 @@ import { FC, useState } from "react"
 import cn from "classnames/bind"
 import { ReactSVG } from "react-svg"
 
-import { Button } from "@consta/uikit/Button"
 import { Text } from "@consta/uikit/Text"
 
 import PlusIcon from "@/assets/plus.svg"
 import StubIcon from "@/assets/stub.svg"
+import { Button } from "@/components/Button"
 import { ModalPaint } from "@/components/ModalPaint"
 import { IconCustom } from "@/utils/icon"
 
@@ -26,7 +26,7 @@ export const UploadPaintings: FC = () => {
         <Button
           label="Upload"
           view="secondary"
-          iconRight={IconCustom(PlusIcon)}
+          iconLeft={IconCustom(PlusIcon)}
           onlyIcon
           className={cx("button")}
           form="round"

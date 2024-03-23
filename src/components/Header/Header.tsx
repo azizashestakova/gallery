@@ -4,12 +4,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import { ReactSVG } from "react-svg"
 
 import { Layout } from "@consta/header/Layout"
-import { Button } from "@consta/uikit/Button"
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
 import { useAppDispatch, useAppSelector } from "@/app/hooks"
 import LogoIcon from "@/assets/logo.svg"
 import SearchIcon from "@/assets/search.svg"
+import { Button } from "@/components/Button"
 import { HeaderDesktop } from "@/components/Header/HeaderDesktop"
 import { HeaderMobile } from "@/components/Header/HeaderMobile"
 import { SearchField } from "@/components/SearchField"
@@ -58,8 +58,8 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
           left: (
             <>
               {!isComponentVisible ? (
-                <Link to="/?perPage=9&pageNumber=1">
-                  <ReactSVG src={LogoIcon} className={cx("logo")} />
+                <Link to="/?perPage=9&pageNumber=1" className={cx("logo")}>
+                  <ReactSVG src={LogoIcon} />
                 </Link>
               ) : null}
             </>
@@ -73,7 +73,7 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
             />
           ) : (
             <>
-              {!breakpoints.m ? (
+              {!breakpoints.m && location.pathname === "/" ? (
                 <div ref={ref}>
                   {isComponentVisible ? (
                     <SearchField />
@@ -81,7 +81,7 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
                     <Button
                       className={cx("button")}
                       label="Search"
-                      view="clear"
+                      view="ghost"
                       iconLeft={IconCustom(SearchIcon)}
                       onlyIcon
                       onClick={() => setIsComponentVisible(true)}

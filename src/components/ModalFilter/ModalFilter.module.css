@@ -19,15 +19,8 @@
 
 .button-close {
   position: absolute;
-  background-color: transparent;
-  border: none;
-  z-index: 1;
   top: 20px;
   right: 20px;
-  cursor: pointer;
-  padding: 0;
-  width: 24px;
-  height: 24px;
 
   @media (min-width: 768px) {
     top: 36px;
@@ -37,10 +30,6 @@
   @media (min-width: 1028px) {
     top: 32px;
     right: 32px;
-  }
-
-  svg {
-    fill: var(--color-base-base);
   }
 }
 
@@ -70,6 +59,10 @@
   line-height: var(--line-height-text-2xs);
   font-weight: 300;
   font-family: var(--font-primary);
+
+  &:hover {
+    color: var(--color-typo-brand);
+  }
 }
 
 .collapse-item-active {
@@ -135,19 +128,4 @@
   @media (min-width: 768px) {
     margin-top: 215px;
   }
-}
-
-.button {
-  font-family: var(--font-primary);
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  text-align: left;
-  cursor: pointer;
-  color: var(--color-base-base);
-  font-size: var(--size-text-xs);
-  line-height: var(--line-height-text-2xs);
-  font-weight: 700;
-  text-transform: uppercase;
-  border-bottom: 1px solid var(--color-base-base);
 }

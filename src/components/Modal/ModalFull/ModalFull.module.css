@@ -8,16 +8,10 @@
 
 .button {
   position: absolute;
-  background-color: var(--color-base-opacity);
-  border: none;
+  background-color: var(--color-base-opacity) !important;
   z-index: 1;
   top: 20px;
   right: 20px;
-  cursor: pointer;
-  padding: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,6 +24,11 @@
   @media (min-width: 1280px) {
     top: 64px;
     right: 124px;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-base-opacity) !important;
   }
 
   svg {

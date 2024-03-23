@@ -180,13 +180,14 @@ export const ModalPaint: FC<ModalPaintProps> = ({
       }}
       className={cx("modal")}
     >
-      <button
+      <Button
+        label="Close"
+        view="clear"
+        onlyIcon
+        iconLeft={IconCustom(ClearIcon)}
         className={cx("button-close")}
-        type="button"
         onClick={() => setIsOpen(false)}
-      >
-        <ReactSVG src={ClearIcon} />
-      </button>
+      />
       <form className={cx("form")} onSubmit={onSubmit}>
         <div className={cx("fields")}>
           <Controller
@@ -217,6 +218,7 @@ export const ModalPaint: FC<ModalPaintProps> = ({
                 {...field}
                 className={cx("field", "field-year")}
                 type="number"
+                incrementButtons={false}
                 label="Year of creation"
                 labelPosition="top"
                 min={4}
@@ -243,7 +245,7 @@ export const ModalPaint: FC<ModalPaintProps> = ({
 
               <Button
                 label="Delete image"
-                view="ghost"
+                view="clear"
                 onlyIcon
                 iconLeft={IconCustom(DeleteIcon)}
                 className={cx("button-delete")}

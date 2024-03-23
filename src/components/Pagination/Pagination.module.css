@@ -5,7 +5,7 @@
   /* TODO:: Исправить добавление стилей */
   :global(.PaginationItem) {
     font-weight: 300;
-    transition: font-weight 0.3s ease;
+    transition: font-weight 0.2s ease;
   }
 
   /* TODO:: Исправить добавление стилей */

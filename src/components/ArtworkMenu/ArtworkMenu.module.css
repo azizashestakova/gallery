@@ -6,17 +6,13 @@
 
 .button-gear {
   position: absolute;
-  width: 28px !important;
-  height: 28px !important;
-  background-color: var(--color-base-essential) !important;
-  border-radius: 2px !important;
   top: 10px;
   left: 10px;
   z-index: 1;
   opacity: 0;
   transition: opacity 0.2s ease-out;
 
-  span {
+  :global(.Button-Icon) {
     width: 16px;
     height: 16px;
   }
@@ -26,11 +22,8 @@
     height: 100%;
   }
 
-  &:global(.Button_onlyIcon) {
-    &:hover {
-      /* TODO:: вынести в компонент, заменить на переменную цвет */
-      background-color: var(--color-base-essential) !important;
-    }
+  &:focus-visible {
+    opacity: 1;
   }
 }
 
@@ -44,8 +37,11 @@
   :global(.ListItemGrid) {
     background-color: transparent !important;
     font-weight: 500;
+    width: 100%;
+    border: none;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       color: var(--color-control-bg-primary);
     }
   }

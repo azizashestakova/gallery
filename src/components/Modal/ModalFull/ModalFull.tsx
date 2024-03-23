@@ -4,11 +4,13 @@ import { useParams } from "react-router-dom"
 import { ReactSVG } from "react-svg"
 
 import ClearIcon from "@/assets/clear.svg"
+import { Button } from "@/components/Button"
 import { Carousel } from "@/components/Carousel"
 import { Modal } from "@/components/Modal"
 import { ModalDelete } from "@/components/ModalDelete"
 import { ModalPaint } from "@/components/ModalPaint"
 import { artistApi } from "@/services/ArtistService"
+import { IconCustom } from "@/utils/icon"
 
 import type { IPaintings } from "@/app/models/IArtist"
 
@@ -57,13 +59,16 @@ export const ModalFull: FC<ModalFullProps> = ({
       setIsModalOpen={setIsModalOpen}
       className={cx("modal")}
     >
-      <button
+      <Button
+        label="Close"
         className={cx("button")}
-        type="button"
-        onClick={() => setIsModalOpen(false)}
-      >
-        <ReactSVG src={ClearIcon} />
-      </button>
+        view="clear"
+        iconLeft={IconCustom(ClearIcon)}
+        onlyIcon
+        onClick={() => {
+          setIsModalOpen(false)
+        }}
+      />
       <Carousel
         paintings={paintings}
         activeIndex={activeIndex}

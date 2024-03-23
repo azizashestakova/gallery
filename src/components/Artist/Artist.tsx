@@ -1,10 +1,8 @@
 import { FC, useState, useEffect } from "react"
 import cn from "classnames/bind"
 import { useNavigate, useParams } from "react-router-dom"
-import { ReactSVG } from "react-svg"
 
 import { Grid } from "@consta/uikit/Grid"
-import { Text } from "@consta/uikit/Text"
 
 import { useAppSelector } from "@/app/hooks"
 import ArrowIcon from "@/assets/arrow.svg"
@@ -13,11 +11,13 @@ import EditIcon from "@/assets/edit.svg"
 import { ActionBar } from "@/components/ActionBar"
 import { ArtistInfo } from "@/components/ArtistInfo"
 import { ArtWorks } from "@/components/ArtWorks"
+import { Button } from "@/components/Button"
 import { ModalArtist } from "@/components/ModalArtist"
 import { ModalDelete } from "@/components/ModalDelete"
 import { Preloader } from "@/components/Preloader"
 import { selectIsAuthenticated } from "@/features/auth/authSlice"
 import { artistApi } from "@/services/ArtistService"
+import { IconCustom } from "@/utils/icon"
 
 import styles from "./Artist.module.css"
 
@@ -54,45 +54,33 @@ export const Artist: FC = () => {
     </div>
   ) : (
     <Grid className={cx("wrapper")}>
-      {/* TODO:: ? заменить тег */}
       <ActionBar>
         <>
-          <button
+          <Button
+            label="Back"
             className={cx("back")}
-            type="button"
+            view="ghost"
+            iconLeft={IconCustom(ArrowIcon)}
             onClick={() => {
               navigate(-1)
             }}
-          >
-            <ReactSVG className={cx("icon")} src={ArrowIcon} />
-            <Text
-              view="primary"
-              size="xs"
-              lineHeight="2xs"
-              transform="uppercase"
-              weight="bold"
-              as="span"
-              className={cx("text")}
-            >
-              Back
-            </Text>
-          </button>
+          />
           {isAuthenticated && (
             <div className={cx("buttons")}>
-              <button
-                className={cx("button")}
-                type="button"
+              <Button
+                label="Edit"
+                onlyIcon
+                view="clear"
+                iconLeft={IconCustom(EditIcon)}
                 onClick={() => setIsOpenModalArtist(true)}
-              >
-                <ReactSVG src={EditIcon} />
-              </button>
-              <button
-                className={cx("button")}
-                type="button"
+              />
+              <Button
+                label="Delete"
+                onlyIcon
+                view="clear"
+                iconLeft={IconCustom(DeleteIcon)}
                 onClick={() => setIsOpenModalDelete(true)}
-              >
-                <ReactSVG src={DeleteIcon} />
-              </button>
+              />
             </div>
           )}
           <ModalDelete

@@ -54,18 +54,12 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .clear {
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
   position: absolute;
   right: 16px;
   top: 50%;
   transform: translateY(-50%);
 
   svg {
-    display: block;
-    fill: var(--color-base-base);
     width: 16px;
     height: 16px;
   }

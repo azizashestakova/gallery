@@ -1,11 +1,11 @@
 import { FC, useState } from "react"
 import cn from "classnames/bind"
 
-import { Button } from "@consta/uikit/Button"
 import { Grid } from "@consta/uikit/Grid"
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
 import FilterIcon from "@/assets/filter.svg"
+import { Button } from "@/components/Button"
 import { ModalFilter } from "@/components/ModalFilter"
 import { SearchField } from "@/components/SearchField"
 import { IconCustom } from "@/utils/icon"

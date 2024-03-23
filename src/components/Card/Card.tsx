@@ -22,9 +22,16 @@ interface CardProps {
   name: string
   yearsOfLife: string
   id: string
+  className?: string
 }
 
-export const Card: FC<CardProps> = ({ imageSet, name, yearsOfLife, id }) => {
+export const Card: FC<CardProps> = ({
+  imageSet,
+  name,
+  yearsOfLife,
+  id,
+  className,
+}) => {
   const breakpoints = useBreakpoints({
     map: { l: 576 },
     isActive: true,
@@ -33,7 +40,7 @@ export const Card: FC<CardProps> = ({ imageSet, name, yearsOfLife, id }) => {
   const date = convertDateToYear(yearsOfLife)
 
   return (
-    <CardConsta className={cx("card")}>
+    <CardConsta className={cx(className, "card")}>
       {imageSet ? (
         <Image
           src={imageSet.src}

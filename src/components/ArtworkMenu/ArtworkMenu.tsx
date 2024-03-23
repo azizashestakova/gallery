@@ -2,10 +2,10 @@ import { FC, MouseEventHandler, useRef } from "react"
 import cn from "classnames/bind"
 import { useParams } from "react-router-dom"
 
-import { Button } from "@consta/uikit/Button"
 import { ContextMenu } from "@consta/uikit/ContextMenu"
 
 import GearIcon from "@/assets/gear.svg"
+import { Button } from "@/components/Button"
 import { artistApi } from "@/services/ArtistService"
 import { IconCustom } from "@/utils/icon"
 
@@ -53,6 +53,7 @@ export const ArtworkMenu: FC<ActionBarProps> = ({
 
   const items = [
     {
+      as: "button",
       text: "Delete",
       onClick: () => {
         setIsOpenModalDelete(true)
@@ -61,6 +62,7 @@ export const ArtworkMenu: FC<ActionBarProps> = ({
       },
     },
     {
+      as: "button",
       text: "Edit",
       onClick: () => {
         setIsOpenModalPaint(true)
@@ -69,6 +71,7 @@ export const ArtworkMenu: FC<ActionBarProps> = ({
       },
     },
     {
+      as: "button",
       text:
         artist.mainPainting?._id === paintingId
           ? "Remove the cover"
@@ -84,7 +87,7 @@ export const ArtworkMenu: FC<ActionBarProps> = ({
     <div className={cx("wrapper")}>
       <Button
         ref={ref}
-        view="ghost"
+        view="clear"
         onlyIcon
         iconLeft={IconCustom(GearIcon)}
         label="Open menu"

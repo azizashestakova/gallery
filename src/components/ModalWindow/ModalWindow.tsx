@@ -1,11 +1,12 @@
 import { FC, ReactNode } from "react"
 import cn from "classnames/bind"
 import { useNavigate } from "react-router-dom"
-import { ReactSVG } from "react-svg"
 
 import { Modal } from "@consta/uikit/Modal"
 
 import ClearIcon from "@/assets/clear.svg"
+import { Button } from "@/components/Button"
+import { IconCustom } from "@/utils/icon"
 
 import styles from "./ModalWindow.module.css"
 
@@ -31,15 +32,16 @@ export const ModalWindow: FC<ModalWindowProps> = ({ children }) => {
       }}
       className={cx("modal")}
     >
-      <button
+      <Button
+        label="Close"
+        view="clear"
+        onlyIcon
+        iconLeft={IconCustom(ClearIcon)}
         className={cx("button")}
-        type="button"
         onClick={() => {
           navigate(-1)
         }}
-      >
-        <ReactSVG src={ClearIcon} />
-      </button>
+      />
       {children}
     </Modal>
   )

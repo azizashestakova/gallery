@@ -4,6 +4,7 @@
   overflow: hidden;
   display: block;
   text-align: center;
+  transition: box-shadow 0.2s ease;
 
   &:hover {
     .image {

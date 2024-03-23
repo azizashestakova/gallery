@@ -26,9 +26,10 @@ export const HeaderDesktop: FC<HeaderDesktopProps> = ({
   items,
 }) => {
   return (
-    <>
+    <div className={cx("wrapper")}>
       <ButtonMenu className={cx("buttons")} items={items} view="clear" />
       <ThemeToggler
+        className={cx("theme")}
         items={itemsTheme}
         value={theme}
         getItemKey={(item: ThemeName) => item}
@@ -36,6 +37,6 @@ export const HeaderDesktop: FC<HeaderDesktopProps> = ({
         getItemIcon={getItemIcon}
         onChange={setTheme}
       />
-    </>
+    </div>
   )
 }

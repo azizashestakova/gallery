@@ -16,22 +16,12 @@
 
 .button-close {
   position: absolute;
-  background-color: transparent;
-  border: none;
-  z-index: 1;
   top: 20px;
   right: 20px;
-  cursor: pointer;
-  padding: 0;
 
   @media (min-width: 768px) {
     top: 20px;
     right: 20px;
-  }
-
-  svg {
-    fill: var(--color-base-base);
-    display: block;
   }
 }
 
@@ -139,6 +129,12 @@
     left: -3px;
     right: -3px;
   }
+
+  &:focus-within {
+    &::before {
+      border-color: var(--color-control-bg-border-focus);
+    }
+  }
 }
 
 .loading-active {
@@ -149,22 +145,8 @@
 
 .button-delete {
   position: absolute;
-  width: 28px !important;
-  height: 28px !important;
-  background-color: var(--color-base-essential) !important;
-  border-radius: 2px !important;
   right: 10px;
   bottom: 10px;
-
-  &:global(.Button_onlyIcon) {
-    &:hover {
-      background-color: var(--color-base-essential) !important;
-    }
-  }
-
-  :global(.Button-Icon) {
-    height: auto;
-  }
 }
 
 .mountain {
@@ -201,5 +183,7 @@
 }
 
 .input {
-  display: none;
+  opacity: 0;
+  width: 0;
+  position: absolute;
 }

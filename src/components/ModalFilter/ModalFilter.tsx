@@ -1,6 +1,5 @@
 import { FC, useCallback, useContext, useEffect, useState } from "react"
 import cn from "classnames/bind"
-import { ReactSVG } from "react-svg"
 
 import { CollapseGroup } from "@consta/uikit/CollapseGroup"
 import { Modal } from "@consta/uikit/Modal"
@@ -8,6 +7,7 @@ import { Modal } from "@consta/uikit/Modal"
 import ClearIcon from "@/assets/clear.svg"
 import MinusIcon from "@/assets/minus.svg"
 import PlusIcon from "@/assets/plus.svg"
+import { Button } from "@/components/Button"
 import { FilterContext, Filters } from "@/context/FilterProvider"
 import { genresApi } from "@/services/GenresServices"
 import { IconCustom } from "@/utils/icon"
@@ -91,13 +91,14 @@ export const ModalFilter: FC<ModalFilterProps> = ({
       }}
       className={cx("modal")}
     >
-      <button
+      <Button
+        label="Close"
+        view="clear"
+        onlyIcon
+        iconLeft={IconCustom(ClearIcon)}
         className={cx("button-close")}
-        type="button"
         onClick={() => setIsOpenModalFilter(false)}
-      >
-        <ReactSVG src={ClearIcon} />
-      </button>
+      />
       <div className={cx("content")}>
         <CollapseGroup
           items={items}
@@ -109,12 +110,12 @@ export const ModalFilter: FC<ModalFilterProps> = ({
           closeIcon={IconCustom(MinusIcon)}
         />
         <div className={cx("buttons")}>
-          <button className={cx("button")} onClick={handleShowFilterResult}>
-            Show the results
-          </button>
-          <button className={cx("button")} onClick={handleClearFilter}>
-            Clear
-          </button>
+          <Button
+            label="Show the results"
+            view="ghost"
+            onClick={handleShowFilterResult}
+          />
+          <Button label="Clear" view="ghost" onClick={handleClearFilter} />
         </div>
       </div>
     </Modal>

@@ -1,8 +1,111 @@
 .button {
-  height: 47px;
-  width: 200px;
   text-transform: uppercase;
   font-weight: 700;
+
+  &:global(.Button_view_secondary) {
+    &:hover {
+      background-color: var(--color-control-bg-secondary) !important;
+      box-shadow: 0 4px 10px 0 var(--color-control-bg-focus);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 4px 10px 0 var(--color-control-bg-focus) !important;
+    }
+
+    svg {
+      fill: var(--color-base-normal);
+    }
+  }
+
+  &:global(.Button_view_primary) {
+    height: 47px;
+    width: 200px;
+
+    &:hover {
+      box-shadow: 0 4px 10px 0 var(--color-control-bg-focus);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 4px 10px 0 var(--color-control-bg-focus) !important;
+    }
+  }
+
+  &:global(.Button_view_ghost) {
+    background-color: transparent;
+    height: auto;
+    width: auto;
+    padding: 0;
+    border-radius: 0;
+    line-height: 14px;
+
+    svg {
+      display: block;
+      fill: var(--color-base-base);
+      transition: fill 0.2s ease;
+    }
+
+    :global(.Button-Label) {
+      border-bottom: 1px solid var(--color-base-base);
+    }
+
+    &:not(:has(:global(.Button-Icon))) {
+      border-bottom: 1px solid var(--color-base-base);
+    }
+
+    &:hover {
+      background-color: transparent !important;
+      color: var(--color-typo-brand) !important;
+
+      svg {
+        fill: var(--color-typo-brand);
+      }
+    }
+
+    &:focus-visible {
+      color: var(--color-typo-brand);
+
+      svg {
+        fill: var(--color-typo-brand);
+      }
+    }
+  }
+
+  &:global(.Button_view_clear.Button_onlyIcon) {
+    width: 28px;
+    height: 28px;
+    background-color: var(--color-control-bg-ghost);
+
+    svg {
+      display: block;
+      fill: var(--color-base-base);
+      transition: fill 0.2s ease;
+    }
+
+    &:hover {
+      background-color: var(--color-control-bg-ghost);
+
+      svg {
+        fill: var(--color-typo-brand);
+      }
+    }
+
+    &:focus-visible {
+      color: var(--color-typo-brand);
+
+      svg {
+        fill: var(--color-typo-brand);
+      }
+    }
+  }
+
+  :global(.Button-Icon) {
+    width: 24px;
+    height: 24px;
+  }
+
+  :global(.Button-Icon_position_left) {
+    margin-right: 12px;
+  }
 }
 
 :global(.MixFocus:not(.MixFocus_before):focus),
@@ -13,37 +116,6 @@
 :global(.MixFocus_before:focus:hover:before),
 :global(.MixFocus_before[class*="_focus"]:before),
 :global(.MixFocus_before[class*="_focus"]:hover:before) {
-  box-shadow: 0 0 10px 4px var(--mix-focus-color-one);
-}
-
-.button {
-  &:global(.Button_view_ghost) {
-    background-color: transparent;
-    height: auto;
-    width: auto;
-    padding: 0;
-    border-radius: 0;
-    line-height: 14px;
-
-    svg {
-      fill: var(--color-base-base);
-    }
-
-    :global(.Button-Label) {
-      border-bottom: 1px solid var(--color-base-base);
-    }
-
-    &:not(:has(:global(.Button-Label))) {
-      border-bottom: 1px solid var(--color-base-base);
-    }
-
-    &:hover {
-      background-color: transparent !important;
-      color: var(--color-typo-brand) !important;
-    }
-
-    &:focus {
-      box-shadow: none !important;
-    }
-  }
+  box-shadow: none;
+  animation: none;
 }

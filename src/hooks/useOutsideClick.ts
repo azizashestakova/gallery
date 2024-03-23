@@ -1,6 +1,6 @@
 import { RefObject, useEffect, useRef, useState } from "react"
 
-export const useOutsideClick = <T extends HTMLElement>(
+export const useOutsideClick = <T extends HTMLDivElement>(
   initialIsVisible: boolean,
 ) => {
   const [isComponentVisible, setIsComponentVisible] = useState(initialIsVisible)

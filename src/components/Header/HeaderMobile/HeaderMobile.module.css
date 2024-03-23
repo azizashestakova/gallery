@@ -22,9 +22,14 @@
     line-height: var(--line-height-text-2xs);
     text-transform: uppercase;
     padding: var(--space-0);
+    transition: color 0.2s ease;
 
     @media (min-width: 576px) {
       font-size: var(--size-text-5xl);
+    }
+
+    &:hover {
+      color: var(--color-typo-brand);
     }
 
     &:not(:last-child) {
@@ -43,12 +48,32 @@
   @media (min-width: 576px) {
     margin-bottom: 60px;
   }
+
+  :global(.Button_onlyIcon) {
+    width: 40px;
+    height: 40px;
+
+    svg {
+      fill: var(--color-base-base);
+      transition: fill 0.2s ease;
+    }
+  }
+}
+
+.theme-toggler {
+  &:hover,
+  &:focus-visible {
+    svg {
+      fill: var(--color-typo-brand);
+    }
+  }
 }
 
 .mode {
-  background-color: var(--color-base-transparent);
-  border: none;
-  border-bottom: 1px solid var(--color-base-base);
-  padding: var(--space-0);
-  cursor: pointer;
+  &:hover,
+  &:focus-visible {
+    .mode {
+      color: var(--color-typo-brand);
+    }
+  }
 }
