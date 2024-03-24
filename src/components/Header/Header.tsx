@@ -1,6 +1,6 @@
-import { Dispatch, FC, SetStateAction } from "react"
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react"
 import cn from "classnames/bind"
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { ReactSVG } from "react-svg"
 
 import { Layout } from "@consta/header/Layout"
@@ -12,6 +12,8 @@ import SearchIcon from "@/assets/search.svg"
 import { Button } from "@/components/Button"
 import { HeaderDesktop } from "@/components/Header/HeaderDesktop"
 import { HeaderMobile } from "@/components/Header/HeaderMobile"
+import { Login } from "@/components/Login"
+import { Register } from "@/components/Register"
 import { SearchField } from "@/components/SearchField"
 import { selectIsAuthenticated, loggedOut } from "@/features/auth/authSlice"
 import { useOutsideClick } from "@/hooks/useOutsideClick"
@@ -38,8 +40,6 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
     isActive: true,
   })
 
-  const navigate = useNavigate()
-
   const location = useLocation()
 
   const dispatch = useAppDispatch()
@@ -49,6 +49,12 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
   }
 
   const isAuthenticated = useAppSelector(selectIsAuthenticated)
+
+  const [modalActive, setModalActive] = useState("")
+
+  useEffect(() => {
+    document.body.style.overflow = !!modalActive ? "hidden" : "unset"
+  }, [modalActive])
 
   return (
     <header className={cx("header")}>
@@ -69,7 +75,7 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
             <HeaderDesktop
               theme={theme}
               setTheme={setTheme}
-              items={menu(navigate, location, logOut, isAuthenticated)}
+              items={menu(logOut, isAuthenticated, setModalActive)}
             />
           ) : (
             <>
@@ -92,13 +98,19 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
               <HeaderMobile
                 theme={theme}
                 setTheme={setTheme}
-                items={menu(navigate, location, logOut, isAuthenticated)}
+                items={menu(logOut, isAuthenticated, setModalActive)}
               />
             </>
           ),
         }}
         placeholder={undefined}
       />
+      {modalActive === "login" && (
+        <Login modalActive={modalActive} setModalActive={setModalActive} />
+      )}
+      {modalActive === "register" && (
+        <Register modalActive={modalActive} setModalActive={setModalActive} />
+      )}
     </header>
   )
 }

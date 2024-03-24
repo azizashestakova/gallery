@@ -4,6 +4,13 @@
       @content;
     }
   }
+
+  @if $point == "medium-large" {
+    @media (min-width: 1028px) {
+      @content;
+    }
+  }
+
   @if $point == large {
     @media (min-width: 1440px) {
       @content;

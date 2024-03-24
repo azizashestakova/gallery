@@ -1,6 +1,5 @@
 import { FC, ReactNode } from "react"
 import cn from "classnames/bind"
-import { useNavigate } from "react-router-dom"
 
 import { Modal } from "@consta/uikit/Modal"
 
@@ -14,21 +13,23 @@ const cx = cn.bind(styles)
 
 interface ModalWindowProps {
   children: ReactNode
+  modalActive: string
+  setModalActive: (value: string) => void
 }
 
-export const ModalWindow: FC<ModalWindowProps> = ({ children }) => {
-  const navigate = useNavigate()
-
+export const ModalWindow: FC<ModalWindowProps> = ({
+  children,
+  modalActive,
+  setModalActive,
+}) => {
   return (
     <Modal
-      isOpen={true}
+      isOpen={!!modalActive}
       onClickOutside={(e) => {
-        if ((e.target as HTMLElement).classList.contains("Modal-Overlay")) {
-          navigate(-1)
-        }
+        setModalActive("")
       }}
       onEsc={() => {
-        navigate(-1)
+        setModalActive("")
       }}
       className={cx("modal")}
     >
@@ -39,7 +40,7 @@ export const ModalWindow: FC<ModalWindowProps> = ({ children }) => {
         iconLeft={IconCustom(ClearIcon)}
         className={cx("button")}
         onClick={() => {
-          navigate(-1)
+          setModalActive("")
         }}
       />
       {children}

@@ -4,7 +4,15 @@ import RegisterImage from "@/assets/register.jpg"
 import { AuthModal } from "@/components/AuthModal"
 import { authApi } from "@/services/AuthService"
 
-export const Register: FC = () => {
+interface RegisterProps {
+  modalActive: string
+  setModalActive: (value: string) => void
+}
+
+export const Register: FC<RegisterProps> = ({
+  modalActive,
+  setModalActive,
+}) => {
   const [register, { isSuccess }] = authApi.useRegisterMutation()
 
   return (
@@ -16,8 +24,10 @@ export const Register: FC = () => {
       title="Create your profile"
       description="If you already have an account, please"
       linkText="log in"
-      linkRoute="/login"
+      modal="login"
       buttonText="Sign up"
+      modalActive={modalActive}
+      setModalActive={setModalActive}
     />
   )
 }

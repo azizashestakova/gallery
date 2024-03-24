@@ -4,7 +4,12 @@ import LoginImage from "@/assets/login.jpg"
 import { AuthModal } from "@/components/AuthModal"
 import { authApi } from "@/services/AuthService"
 
-export const Login: FC = () => {
+interface LoginProps {
+  modalActive: string
+  setModalActive: (value: string) => void
+}
+
+export const Login: FC<LoginProps> = ({ modalActive, setModalActive }) => {
   const [login, { isSuccess }] = authApi.useLoginMutation()
 
   return (
@@ -16,8 +21,10 @@ export const Login: FC = () => {
       title="Welcome back"
       description="If you don't have an account yet, please"
       linkText="sign up"
-      linkRoute="/register"
+      modal="register"
       buttonText="Log in"
+      modalActive={modalActive}
+      setModalActive={setModalActive}
     />
   )
 }

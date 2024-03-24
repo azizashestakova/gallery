@@ -13,10 +13,9 @@ export const mode = {
 }
 
 export const menu = (
-  navigate: NavigateFunction,
-  location: Location<any>,
   logOut: () => void,
   isAuthenticated: boolean,
+  setModalActive: (value: string) => void,
 ): MenuItem[] => {
   return isAuthenticated
     ? [
@@ -31,13 +30,13 @@ export const menu = (
         {
           label: "Log in",
           onClick: () => {
-            navigate("/login", { state: { background: location } })
+            setModalActive("login")
           },
         },
         {
           label: "Sign up",
           onClick: () => {
-            navigate("/register", { state: { background: location } })
+            setModalActive("register")
           },
         },
       ]

@@ -2,7 +2,7 @@
   margin-top: 110px;
   align-items: flex-start;
 
-  @include breakpoint(large) {
+  @include breakpoint(medium-large) {
     margin-top: 0;
     height: 100%;
   }
@@ -21,7 +21,7 @@
   width: 100%;
   margin: 0 auto;
 
-  @include breakpoint(large) {
+  @include breakpoint(medium-large) {
     margin-top: 132px;
   }
 }
@@ -35,7 +35,7 @@
     margin-bottom: 40px;
   }
 
-  @include breakpoint(large) {
+  @include breakpoint(medium-large) {
     margin-bottom: 20px;
   }
 }
@@ -89,6 +89,7 @@
   :global(.TextField-InputContainer) {
     min-height: 46px;
     padding: 0 16px;
+    background-color: var(--color-control-bg-ghost);
   }
 
   :global(.TextField-Input) {

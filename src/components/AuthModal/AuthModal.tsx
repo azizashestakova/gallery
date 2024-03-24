@@ -2,7 +2,7 @@ import { FC, useEffect } from "react"
 import { yupResolver } from "@hookform/resolvers/yup"
 import cn from "classnames/bind"
 import { useForm, Controller } from "react-hook-form"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import * as yup from "yup"
 
 import { Grid } from "@consta/uikit/Grid"
@@ -48,8 +48,10 @@ interface AuthModalProps {
   title: string
   description: string
   linkText: string
-  linkRoute: string
+  modal: string
   buttonText: string
+  modalActive: string
+  setModalActive: (value: string) => void
 }
 
 export const AuthModal: FC<AuthModalProps> = ({
@@ -60,8 +62,10 @@ export const AuthModal: FC<AuthModalProps> = ({
   title,
   description,
   linkText,
-  linkRoute,
+  modal,
   buttonText,
+  modalActive,
+  setModalActive,
 }) => {
   const {
     control,
@@ -74,7 +78,6 @@ export const AuthModal: FC<AuthModalProps> = ({
   })
 
   const navigate = useNavigate()
-  const location = useLocation()
   const dispatch = useAppDispatch()
 
   const fingerprint = useFingerprint()
@@ -98,10 +101,11 @@ export const AuthModal: FC<AuthModalProps> = ({
     }).unwrap() // TODO:: unwrap?
 
     dispatch(setAuth(tokens))
+    setModalActive("")
   })
 
   return (
-    <ModalWindow>
+    <ModalWindow modalActive={modalActive} setModalActive={setModalActive}>
       <Grid
         className={cx("wrapper")}
         cols={1}
@@ -144,7 +148,7 @@ export const AuthModal: FC<AuthModalProps> = ({
               className={cx("sign-up")}
               view="ghost"
               onClick={() => {
-                navigate(`${linkRoute}`, { state: { background: location } }) // TODO:: При переключении пропадает подложка
+                setModalActive(modal)
               }}
             />
           </Text>
