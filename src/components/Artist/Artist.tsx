@@ -19,7 +19,7 @@ import { selectIsAuthenticated } from "@/features/auth/authSlice"
 import { artistApi } from "@/services/ArtistService"
 import { IconCustom } from "@/utils/icon"
 
-import styles from "./Artist.module.css"
+import styles from "./Artist.module.scss"
 
 const cx = cn.bind(styles)
 

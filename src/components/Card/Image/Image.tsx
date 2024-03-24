@@ -4,7 +4,7 @@ import cn from "classnames/bind"
 import { Preloader } from "@/components/Preloader"
 import { useOnScreen } from "@/hooks/useOnScreen"
 
-import styles from "./Image.module.css"
+import styles from "./Image.module.scss"
 
 const cx = cn.bind(styles)
 

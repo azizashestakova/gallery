@@ -14,7 +14,7 @@ import { IconCustom } from "@/utils/icon"
 
 import type { IPaintings } from "@/app/models/IArtist"
 
-import styles from "./ModalFull.module.css"
+import styles from "./ModalFull.module.scss"
 
 const cx = cn.bind(styles)
 
@@ -62,7 +62,7 @@ export const ModalFull: FC<ModalFullProps> = ({
       <Button
         label="Close"
         className={cx("button")}
-        view="ghost"
+        view="clear"
         iconLeft={IconCustom(ClearIcon)}
         onlyIcon
         onClick={() => {

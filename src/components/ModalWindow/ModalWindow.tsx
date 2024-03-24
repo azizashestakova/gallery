@@ -8,7 +8,7 @@ import ClearIcon from "@/assets/clear.svg"
 import { Button } from "@/components/Button"
 import { IconCustom } from "@/utils/icon"
 
-import styles from "./ModalWindow.module.css"
+import styles from "./ModalWindow.module.scss"
 
 const cx = cn.bind(styles)
 

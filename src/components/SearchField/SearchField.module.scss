@@ -5,11 +5,11 @@
 .search {
   width: 100%;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     width: 304px;
   }
 
-  @media (min-width: 1440px) {
+  @include breakpoint(large) {
     width: 344px;
   }
 

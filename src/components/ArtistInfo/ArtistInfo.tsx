@@ -14,7 +14,7 @@ import { IconCustom } from "@/utils/icon"
 
 import type { ImageSet } from "@/app/models/IArtist"
 
-import styles from "./ArtistInfo.module.css"
+import styles from "./ArtistInfo.module.scss"
 
 const cx = cn.bind(styles)
 
@@ -34,7 +34,7 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({
   imageSet,
 }) => {
   const breakpoints = useBreakpoints({
-    map: { l: 1280, m: 768 },
+    map: { l: 1440, m: 768 },
     isActive: true,
   })
 

@@ -30,7 +30,7 @@ import { IconCustom } from "@/utils/icon"
 
 import type { IGenre } from "@/app/models/IGenres"
 
-import styles from "./ModalArtist.module.css"
+import styles from "./ModalArtist.module.scss"
 
 const schema = yup.object({
   name: yup.string().trim().required("This field is required."),

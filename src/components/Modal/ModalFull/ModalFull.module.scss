@@ -16,12 +16,12 @@
   align-items: center;
   justify-content: center;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     top: 40px;
     right: 40px;
   }
 
-  @media (min-width: 1280px) {
+  @include breakpoint(large) {
     top: 64px;
     right: 124px;
   }

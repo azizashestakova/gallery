@@ -17,7 +17,7 @@ import { IconCustom } from "@/utils/icon"
 
 import type { IPaintings } from "@/app/models/IArtist"
 
-import styles from "./ArtWorks.module.css"
+import styles from "./ArtWorks.module.scss"
 
 const cx = cn.bind(styles)
 
@@ -34,7 +34,7 @@ export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
   const isAuthenticated = useAppSelector(selectIsAuthenticated)
 
   const breakpoints = useBreakpoints({
-    map: { l: 576 },
+    map: { m: 768 },
     isActive: true,
   })
 
@@ -42,8 +42,8 @@ export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
     <Grid as="article" className={cx("wrapper")}>
       <Text
         view="secondary"
-        size={breakpoints.l ? "5xl" : "3xl"}
-        lineHeight={breakpoints.l ? "xs" : "2xs"}
+        size={breakpoints.m ? "5xl" : "3xl"}
+        lineHeight={breakpoints.m ? "xs" : "2xs"}
         as="h2"
         className={cx("title")}
       >

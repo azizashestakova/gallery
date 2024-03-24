@@ -6,7 +6,7 @@ import { Responses404 } from "@consta/uikit/Responses404"
 
 import { Button } from "@/components/Button"
 
-import styles from "./Responses.module.css"
+import styles from "./Responses.module.scss"
 
 const cx = cn.bind(styles)
 

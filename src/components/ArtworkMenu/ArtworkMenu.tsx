@@ -9,7 +9,7 @@ import { Button } from "@/components/Button"
 import { artistApi } from "@/services/ArtistService"
 import { IconCustom } from "@/utils/icon"
 
-import styles from "./ArtworkMenu.module.css"
+import styles from "./ArtworkMenu.module.scss"
 
 const cx = cn.bind(styles)
 

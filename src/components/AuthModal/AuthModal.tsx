@@ -17,7 +17,7 @@ import { ModalWindow } from "@/components/ModalWindow"
 import { setAuth } from "@/features/auth/authSlice"
 import { useFingerprint } from "@/hooks/useFingerprint"
 
-import styles from "./AuthModal.module.css"
+import styles from "./AuthModal.module.scss"
 
 const schema = yup.object({
   email: yup

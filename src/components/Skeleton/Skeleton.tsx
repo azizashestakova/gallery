@@ -4,7 +4,7 @@ import cn from "classnames/bind"
 import { Grid, GridItem } from "@consta/uikit/Grid"
 import { SkeletonBrick } from "@consta/uikit/Skeleton"
 
-import styles from "./Skeleton.module.css"
+import styles from "./Skeleton.module.scss"
 
 const cx = cn.bind(styles)
 

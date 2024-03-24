@@ -9,7 +9,7 @@ import ErrorIcon from "@/assets/error.svg"
 import { deleteNotification } from "@/features/notification/notificationSlice"
 import { IconCustom } from "@/utils/icon"
 
-import styles from "./Snackbar.module.css"
+import styles from "./Snackbar.module.scss"
 
 const cx = cn.bind(styles)
 
@@ -91,7 +91,7 @@ export const SnackBar: FC = () => {
         onItemClose={(item) => deleteMessage(item)}
         getItemIcon={getItemIcon}
         getItemMessage={getItemMessage}
-        // getItemAutoClose={() => 5}
+        getItemAutoClose={() => 5}
       />
     </>
   )

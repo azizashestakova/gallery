@@ -10,7 +10,7 @@ import { limit } from "@/constants"
 
 import type { IArtist } from "@/app/models/IArtist"
 
-import styles from "./Cards.module.css"
+import styles from "./Cards.module.scss"
 
 const cx = cn.bind(styles)
 
@@ -24,11 +24,11 @@ export const Cards: FC<CardsProps> = ({ artists }) => (
     cols={1}
     gap="l"
     breakpoints={{
-      576: {
+      768: {
         cols: 2,
         gap: "xl",
       },
-      1024: {
+      1440: {
         cols: 3,
         gap: "2xl",
       },

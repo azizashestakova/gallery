@@ -13,7 +13,7 @@ import { genresApi } from "@/services/GenresServices"
 import { IconCustom } from "@/utils/icon"
 
 import { ContentItem, geItems } from "./constants"
-import styles from "./ModalFilter.module.css"
+import styles from "./ModalFilter.module.scss"
 
 const cx = cn.bind(styles)
 

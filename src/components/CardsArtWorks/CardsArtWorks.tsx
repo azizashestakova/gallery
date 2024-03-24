@@ -8,7 +8,7 @@ import { UploadPaintings } from "@/components/UploadPaintings"
 
 import type { IPaintings } from "@/app/models/IArtist"
 
-import styles from "./CardsArtWorks.module.css"
+import styles from "./CardsArtWorks.module.scss"
 
 const cx = cn.bind(styles)
 
@@ -34,11 +34,11 @@ export const CardsArtWorks: FC<CardsArtWorksProps> = ({
       cols={1}
       gap="l"
       breakpoints={{
-        576: {
+        768: {
           cols: 2,
           gap: "xl",
         },
-        1024: {
+        1440: {
           cols: 3,
           gap: "2xl",
         },

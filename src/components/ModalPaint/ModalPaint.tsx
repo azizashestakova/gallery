@@ -27,7 +27,7 @@ import { artistApi } from "@/services/ArtistService"
 import { getBase64 } from "@/utils/getBase64"
 import { IconCustom } from "@/utils/icon"
 
-import styles from "./ModalPaint.module.css"
+import styles from "./ModalPaint.module.scss"
 
 const schema = yup.object({
   name: yup.string().trim().required("This field is required."),

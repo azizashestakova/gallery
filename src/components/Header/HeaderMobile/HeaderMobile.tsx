@@ -11,7 +11,7 @@ import { getItemIcon } from "@/utils/getItemIcon"
 
 import type { ThemeName } from "@/types/theme"
 
-import styles from "./HeaderMobile.module.css"
+import styles from "./HeaderMobile.module.scss"
 
 const cx = cn.bind(styles)
 

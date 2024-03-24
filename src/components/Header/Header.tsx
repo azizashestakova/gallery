@@ -20,7 +20,7 @@ import { IconCustom } from "@/utils/icon"
 import type { ThemeName } from "@/types/theme"
 
 import { menu } from "./constants"
-import styles from "./Header.module.css"
+import styles from "./Header.module.scss"
 
 const cx = cn.bind(styles)
 

@@ -1,7 +1,7 @@
 import { FC, memo } from "react"
 import cn from "classnames/bind"
 
-import styles from "./Preloader.module.css"
+import styles from "./Preloader.module.scss"
 
 const cx = cn.bind(styles)
 

@@ -2,14 +2,14 @@
   margin-top: 110px;
   align-items: flex-start;
 
-  @media (min-width: 1028px) {
+  @include breakpoint(large) {
     margin-top: 0;
     height: 100%;
   }
 }
 
 .image {
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     height: 100%;
     object-fit: cover;
     display: block;
@@ -21,7 +21,7 @@
   width: 100%;
   margin: 0 auto;
 
-  @media (min-width: 1028px) {
+  @include breakpoint(large) {
     margin-top: 132px;
   }
 }
@@ -31,11 +31,11 @@
   font-family: var(--font-mono);
   text-align: center;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     margin-bottom: 40px;
   }
 
-  @media (min-width: 1028px) {
+  @include breakpoint(large) {
     margin-bottom: 20px;
   }
 }
@@ -45,7 +45,7 @@
   text-align: center;
   margin-bottom: 32px;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     order: inherit;
     margin-bottom: 60px;
   }
@@ -69,7 +69,7 @@
   margin-right: auto;
   max-width: 260px;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     padding: 0 23px;
     margin-bottom: 40px;
     max-width: 340px;
@@ -124,7 +124,7 @@
 .field-last {
   margin-bottom: 40px;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     margin-bottom: 60px;
   }
 }

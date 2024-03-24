@@ -12,7 +12,7 @@ import { artistApi } from "@/services/ArtistService"
 
 import type { IPaintings } from "@/app/models/IArtist"
 
-import styles from "./CardArtWorks.module.css"
+import styles from "./CardArtWorks.module.scss"
 
 const cx = cn.bind(styles)
 

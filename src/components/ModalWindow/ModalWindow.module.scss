@@ -6,7 +6,7 @@
   border-radius: 0;
   box-shadow: none;
 
-  @media (min-width: 1440px) {
+  @include breakpoint(large) {
     max-height: 90%;
     max-width: 90%;
     height: auto;
@@ -19,12 +19,12 @@
   top: 20px;
   right: 20px;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     top: 36px;
     right: 24px;
   }
 
-  @media (min-width: 1028px) {
+  @include breakpoint(large) {
     top: 32px;
     right: 32px;
   }

@@ -13,7 +13,7 @@ import { convertDateToYear } from "@/utils/convertDateToYear"
 
 import type { ImageSet } from "@/app/models/IArtist"
 
-import styles from "./Card.module.css"
+import styles from "./Card.module.scss"
 
 const cx = cn.bind(styles)
 
@@ -33,7 +33,7 @@ export const Card: FC<CardProps> = ({
   className,
 }) => {
   const breakpoints = useBreakpoints({
-    map: { l: 576 },
+    map: { m: 768 },
     isActive: true,
   })
 
@@ -57,8 +57,8 @@ export const Card: FC<CardProps> = ({
         <div className={cx("wrapper")}>
           <Text
             view="primary"
-            size={breakpoints.l ? "m" : "s"}
-            lineHeight={breakpoints.l ? "l" : "xs"}
+            size={breakpoints.m ? "m" : "s"}
+            lineHeight={breakpoints.m ? "l" : "xs"}
             transform="uppercase"
             as="h2"
             truncate
@@ -69,7 +69,7 @@ export const Card: FC<CardProps> = ({
           <Text
             view="secondary"
             size="xs"
-            lineHeight={breakpoints.l ? "s" : "2xs"}
+            lineHeight={breakpoints.m ? "s" : "2xs"}
             weight="bold"
             as="p"
             truncate

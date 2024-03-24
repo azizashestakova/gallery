@@ -8,7 +8,7 @@
   flex-direction: column;
   padding: 80px 30px;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     max-width: 693px;
     min-height: 723px;
   }
@@ -19,7 +19,7 @@
   top: 20px;
   right: 20px;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     top: 20px;
     right: 20px;
   }
@@ -31,7 +31,7 @@
   align-items: center;
   width: 100%;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     margin-bottom: 20px;
   }
 }
@@ -40,7 +40,7 @@
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     flex-direction: row;
     gap: 48px;
     width: 493px;
@@ -53,7 +53,7 @@
   margin-right: auto;
   max-width: 260px;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     max-width: 340px;
     margin-bottom: 60px;
   }
@@ -93,7 +93,7 @@
 }
 
 .field-year {
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     max-width: 105px;
   }
 }
@@ -113,7 +113,7 @@
   margin-bottom: 40px;
   border-radius: 2px;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     max-width: 100%;
     width: 493px;
     height: 327px;
@@ -158,7 +158,7 @@
     width: 60px;
     height: 60px;
 
-    @media (min-width: 768px) {
+    @include breakpoint(medium) {
       width: 130px;
       height: 130px;
     }
@@ -169,7 +169,7 @@
   display: none;
   padding: 0 28px;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     display: block;
   }
 }

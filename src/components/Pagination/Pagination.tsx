@@ -5,7 +5,7 @@ import { Pagination as PaginationConsta } from "@consta/uikit/Pagination"
 
 import { limit } from "@/constants"
 
-import styles from "./Pagination.module.css"
+import styles from "./Pagination.module.scss"
 
 const cx = cn.bind(styles)
 

@@ -6,7 +6,7 @@ import { Button } from "@/components/Button"
 import { IconCustom } from "@/utils/icon"
 import { useWindowPosition } from "@/utils/useWindowPosition"
 
-import styles from "./ScrrollToTop.module.css"
+import styles from "./ScrrollToTop.module.scss"
 
 const cx = cn.bind(styles)
 

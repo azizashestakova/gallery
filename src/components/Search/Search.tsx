@@ -10,7 +10,7 @@ import { ModalFilter } from "@/components/ModalFilter"
 import { SearchField } from "@/components/SearchField"
 import { IconCustom } from "@/utils/icon"
 
-import styles from "./Search.module.css"
+import styles from "./Search.module.scss"
 
 const cx = cn.bind(styles)
 

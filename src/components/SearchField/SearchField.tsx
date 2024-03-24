@@ -12,7 +12,7 @@ import { Button } from "@/components/Button"
 import { FilterContext } from "@/context/FilterProvider"
 import { IconCustom } from "@/utils/icon"
 
-import styles from "./SearchField.module.css"
+import styles from "./SearchField.module.scss"
 
 const cx = cn.bind(styles)
 

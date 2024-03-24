@@ -3,7 +3,7 @@ import cn from "classnames/bind"
 
 import { Text } from "@consta/uikit/Text"
 
-import styles from "./NoMatchResult.module.css"
+import styles from "./NoMatchResult.module.scss"
 
 const cx = cn.bind(styles)
 

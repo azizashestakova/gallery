@@ -3,12 +3,12 @@
   margin-bottom: 84px;
   max-width: 280px;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     margin-bottom: 130px;
     max-width: 352px;
   }
 
-  @media (min-width: 1280px) {
+  @include breakpoint(large) {
     max-width: 392px;
   }
 }
@@ -24,11 +24,11 @@
   position: relative;
   overflow: hidden;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     padding: 34px 88px;
   }
 
-  @media (min-width: 1280px) {
+  @include breakpoint(large) {
     padding: 54px 112px;
   }
 

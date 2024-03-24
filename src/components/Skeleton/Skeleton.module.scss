@@ -13,14 +13,14 @@
   padding: var(--space-2xs) var(--space-l);
   box-sizing: border-box;
 
-  @media (min-width: 576px) {
+  @include breakpoint(medium) {
     width: 92.04%;
     grid-template-rows: 19px 15px;
     height: 72.4px;
     padding: var(--space-m) var(--space-l);
   }
 
-  @media (min-width: 1024px) {
+  @include breakpoint(large) {
     height: 88.4px;
     padding: var(--space-xl) var(--space-l);
     width: 76.53%;

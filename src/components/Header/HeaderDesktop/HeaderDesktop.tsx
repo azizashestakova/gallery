@@ -10,7 +10,7 @@ import { getItemIcon } from "@/utils/getItemIcon"
 import type { MenuItem } from "../types"
 import type { ThemeName } from "@/types/theme"
 
-import styles from "./HeaderDesktop.module.css"
+import styles from "./HeaderDesktop.module.scss"
 
 const cx = cn.bind(styles)
 

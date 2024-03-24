@@ -7,12 +7,12 @@
   box-shadow: none;
   padding: 80px 30px;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     left: auto;
     bottom: auto;
   }
 
-  @media (min-width: 1440px) {
+  @include breakpoint(large) {
     padding: 80px 100px;
     max-width: 800px;
     gap: 60px;
@@ -26,7 +26,7 @@
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 1440px) {
+  @include breakpoint(large) {
     flex-direction: row;
   }
 }
@@ -36,7 +36,7 @@
   top: 20px;
   right: 20px;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     top: 20px;
     right: 20px;
   }
@@ -103,7 +103,7 @@
   display: none;
   padding: 0 32px;
 
-  @media (min-width: 1440px) {
+  @include breakpoint(large) {
     display: block;
   }
 }
@@ -154,7 +154,7 @@
   align-items: center;
   width: 100%;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     margin-bottom: 20px;
   }
 }
@@ -165,7 +165,7 @@
   margin-right: auto;
   max-width: 260px;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     max-width: 340px;
   }
 
@@ -206,7 +206,7 @@
   max-width: 260px;
   margin-bottom: 40px;
 
-  @media (min-width: 768px) {
+  @include breakpoint(medium) {
     max-width: 340px;
   }
 

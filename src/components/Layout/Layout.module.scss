@@ -9,12 +9,12 @@
   margin: var(--space-m) var(--space-auto) var(--space-0);
   padding-bottom: var(--space-m);
 
-  @media (min-width: 576px) {
+  @include breakpoint(medium) {
     margin-top: var(--space-2xl);
     padding-bottom: var(--space-2xl);
   }
 
-  @media (min-width: 1024px) {
+  @include breakpoint(large) {
     margin-top: var(--space-4xl);
     padding-bottom: var(--space-4xl);
   }

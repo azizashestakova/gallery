@@ -20,7 +20,7 @@ import { IconCustom } from "@/utils/icon"
 
 import type { IPaintings } from "@/app/models/IArtist"
 
-import styles from "./Carousel.module.css"
+import styles from "./Carousel.module.scss"
 
 const cx = cn.bind(styles)
 
@@ -64,7 +64,7 @@ export const Carousel: FC<CarouselProps> = ({
   })
 
   const breakpoints = useBreakpoints({
-    map: { l: 1280, m: 768 },
+    map: { l: 1440, m: 768 },
     isActive: true,
   })
 

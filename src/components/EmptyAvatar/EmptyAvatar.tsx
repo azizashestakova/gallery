@@ -7,7 +7,7 @@ import { Text } from "@consta/uikit/Text"
 
 import StubIcon from "@/assets/stub.svg"
 
-import styles from "./EmptyAvatar.module.css"
+import styles from "./EmptyAvatar.module.scss"
 
 const cx = cn.bind(styles)
 

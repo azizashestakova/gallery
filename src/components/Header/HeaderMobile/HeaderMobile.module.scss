@@ -11,7 +11,7 @@
   box-shadow: none;
   box-sizing: border-box;
 
-  @media (min-width: 576px) {
+  @include breakpoint(medium) {
     padding-top: 200px;
     padding-left: 94px;
   }
@@ -24,7 +24,7 @@
     padding: var(--space-0);
     transition: color 0.2s ease;
 
-    @media (min-width: 576px) {
+    @include breakpoint(medium) {
       font-size: var(--size-text-5xl);
     }
 
@@ -45,7 +45,7 @@
   align-items: center;
   gap: var(--space-s);
 
-  @media (min-width: 576px) {
+  @include breakpoint(medium) {
     margin-bottom: 60px;
   }
 

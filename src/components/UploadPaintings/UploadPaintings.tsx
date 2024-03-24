@@ -10,7 +10,7 @@ import { Button } from "@/components/Button"
 import { ModalPaint } from "@/components/ModalPaint"
 import { IconCustom } from "@/utils/icon"
 
-import styles from "./UploadPaintings.module.css"
+import styles from "./UploadPaintings.module.scss"
 
 const cx = cn.bind(styles)
 

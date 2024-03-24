@@ -4,7 +4,7 @@ import cn from "classnames/bind"
 import { IconComponent } from "@consta/icons/Icon"
 import { Button as ButtonConsta } from "@consta/uikit/Button"
 
-import styles from "./Button.module.css"
+import styles from "./Button.module.scss"
 
 const cx = cn.bind(styles)
 

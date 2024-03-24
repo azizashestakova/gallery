@@ -11,7 +11,7 @@ import { SnackBar } from "@/components/Snackbar"
 import { useTheme } from "@/hooks/useTheme"
 import { getPreset } from "@/utils/getPreset"
 
-import styles from "./Layout.module.css"
+import styles from "./Layout.module.scss"
 
 const cx = cn.bind(styles)
 

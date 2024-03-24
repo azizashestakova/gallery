@@ -10,7 +10,7 @@ import DeleteIcon from "@/assets/delete.svg"
 import { Button } from "@/components/Button"
 import { IconCustom } from "@/utils/icon"
 
-import styles from "./ModalDelete.module.css"
+import styles from "./ModalDelete.module.scss"
 
 const cx = cn.bind(styles)
 
