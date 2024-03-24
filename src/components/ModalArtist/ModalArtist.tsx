@@ -85,7 +85,7 @@ export const ModalArtist: FC<ModalArtistProps> = ({
   } = useForm({
     defaultValues,
     resolver: yupResolver(schema),
-    mode: "onChange",
+    mode: "onBlur",
   })
 
   const { id: artistId = "" } = useParams()

@@ -73,7 +73,7 @@ export const AuthModal: FC<AuthModalProps> = ({
   } = useForm({
     defaultValues,
     resolver: yupResolver(schema),
-    mode: "onChange",
+    mode: "onBlur",
   })
 
   const dispatch = useAppDispatch()

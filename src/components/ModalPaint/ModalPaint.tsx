@@ -69,7 +69,7 @@ export const ModalPaint: FC<ModalPaintProps> = ({
   } = useForm({
     defaultValues,
     resolver: yupResolver(schema),
-    mode: "onChange",
+    mode: "onBlur",
   })
 
   const name = "image"
