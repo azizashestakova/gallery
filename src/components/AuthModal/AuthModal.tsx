@@ -2,7 +2,6 @@ import { FC, useEffect } from "react"
 import { yupResolver } from "@hookform/resolvers/yup"
 import cn from "classnames/bind"
 import { useForm, Controller } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
 import * as yup from "yup"
 
 import { Grid } from "@consta/uikit/Grid"
@@ -77,7 +76,6 @@ export const AuthModal: FC<AuthModalProps> = ({
     mode: "onChange",
   })
 
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   const fingerprint = useFingerprint()
@@ -89,9 +87,9 @@ export const AuthModal: FC<AuthModalProps> = ({
 
   useEffect(() => {
     if (isSuccess) {
-      navigate(-1)
+      setModalActive("")
     }
-  }, [isSuccess, navigate])
+  }, [isSuccess])
 
   const onSubmit = handleSubmit(async ({ email, password }) => {
     const tokens = await auth({
@@ -101,7 +99,6 @@ export const AuthModal: FC<AuthModalProps> = ({
     }).unwrap() // TODO:: unwrap?
 
     dispatch(setAuth(tokens))
-    setModalActive("")
   })
 
   return (
