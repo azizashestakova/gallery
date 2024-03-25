@@ -51,7 +51,7 @@ export const ModalFilter: FC<ModalFilterProps> = ({
         className={cx("collapse-item", {
           "collapse-item-active": selectedGenre === _id || selectedSort === _id,
         })}
-        onClick={(e) => handleToggleSelected(_id)}
+        onClick={() => handleToggleSelected(_id)}
       >
         {name}
       </button>

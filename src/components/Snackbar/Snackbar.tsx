@@ -61,13 +61,13 @@ export const SnackBar: FC = () => {
     Reducer<Item[], { type: "add" | "remove"; item: Item }>
   >(reducer, [])
 
-  const generateHandleAdd = (status: any) => {
+  const generateHandleAdd = () => {
     const key = items.length + 1
     const item: Item = {
       key,
       title: "Error!",
       text: message ? message : "",
-      status,
+      status: "alert",
     }
     dispatchItems({ type: "add", item })
   }
@@ -79,7 +79,7 @@ export const SnackBar: FC = () => {
 
   useEffect(() => {
     if (message) {
-      generateHandleAdd("alert")
+      generateHandleAdd()
     }
   }, [message])
 

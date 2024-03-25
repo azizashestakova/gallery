@@ -76,7 +76,7 @@ export const Carousel: FC<CarouselProps> = ({
         <div className={cx("wrapper")} key={_id}>
           <Button
             label={
-              artist.mainPainting?._id === _id
+              artist?.mainPainting._id === _id
                 ? "Remove the cover"
                 : "Make the cover"
             }

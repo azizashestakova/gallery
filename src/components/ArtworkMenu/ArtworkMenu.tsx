@@ -73,7 +73,7 @@ export const ArtworkMenu: FC<ActionBarProps> = ({
     {
       as: "button",
       text:
-        artist.mainPainting?._id === paintingId
+        artist?.mainPainting._id === paintingId
           ? "Remove the cover"
           : "Make the cover",
       onClick: () => {

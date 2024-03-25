@@ -13,6 +13,7 @@ import { EmptyAvatar } from "@/components/EmptyAvatar"
 import { IconCustom } from "@/utils/icon"
 
 import type { ImageSet } from "@/app/models/IArtist"
+import type { IGenre } from "@/app/models/IGenres"
 
 import styles from "./ArtistInfo.module.scss"
 
@@ -22,7 +23,7 @@ interface ArtistInfoProps {
   yearsOfLife: string
   name: string
   description: string
-  genres: any
+  genres: IGenre[]
   imageSet: ImageSet
 }
 
@@ -38,7 +39,7 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({
     isActive: true,
   })
 
-  const getItemLabel = (item: any) => item.name
+  const getItemLabel = (item: IGenre) => item.name
 
   return (
     <Grid as="article" className={cx("wrapper")}>

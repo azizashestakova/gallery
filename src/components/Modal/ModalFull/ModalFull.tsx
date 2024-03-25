@@ -1,7 +1,6 @@
 import { FC, useState, useEffect } from "react"
 import cn from "classnames/bind"
 import { useParams } from "react-router-dom"
-import { ReactSVG } from "react-svg"
 
 import ClearIcon from "@/assets/clear.svg"
 import { Button } from "@/components/Button"

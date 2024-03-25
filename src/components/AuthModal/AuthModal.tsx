@@ -1,5 +1,13 @@
 import { FC, useEffect } from "react"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { MutationTrigger } from "@reduxjs/toolkit/dist/query/react/buildHooks"
+import {
+  MutationDefinition,
+  BaseQueryFn,
+  FetchArgs,
+  FetchBaseQueryError,
+  FetchBaseQueryMeta,
+} from "@reduxjs/toolkit/query"
 import cn from "classnames/bind"
 import { useForm, Controller } from "react-hook-form"
 import * as yup from "yup"
@@ -11,10 +19,13 @@ import { TextField } from "@consta/uikit/TextField"
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
 import { useAppDispatch } from "@/app/hooks"
+import { AuthDto, AuthResponse } from "@/app/models/IAuth"
 import { Button } from "@/components/Button"
 import { ModalWindow } from "@/components/ModalWindow"
 import { setAuth } from "@/features/auth/authSlice"
 import { useFingerprint } from "@/hooks/useFingerprint"
+
+// import type { ImageSet } from "@/app/models/IArtist"
 
 import styles from "./AuthModal.module.scss"
 
@@ -40,9 +51,24 @@ const defaultValues = {
 const cx = cn.bind(styles)
 
 interface AuthModalProps {
-  auth: any
+  // TODO:: оставить или нет?
+  auth: MutationTrigger<
+    MutationDefinition<
+      AuthDto,
+      BaseQueryFn<
+        string | FetchArgs,
+        unknown,
+        FetchBaseQueryError,
+        object,
+        FetchBaseQueryMeta
+      >,
+      "Artists" | "Artist",
+      AuthResponse,
+      "api"
+    >
+  >
   isSuccess: boolean
-  image: any
+  image: string
   alt: string
   title: string
   description: string

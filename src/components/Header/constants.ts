@@ -1,5 +1,3 @@
-import { Location, NavigateFunction } from "react-router-dom"
-
 import { themeDefault, themeDark } from "@/constants"
 
 import type { MenuItem } from "@/components/Header/types"

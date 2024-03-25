@@ -43,7 +43,6 @@ export const Cards: FC<CardsProps> = ({ artists }) => (
                 imageSet={mainPainting?.image}
                 name={name}
                 yearsOfLife={yearsOfLife}
-                id={_id}
               />
             </Link>
           </GridItem>

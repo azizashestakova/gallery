@@ -21,7 +21,6 @@ interface CardProps {
   imageSet: ImageSet
   name: string
   yearsOfLife: string
-  id: string
   className?: string
 }
 
@@ -29,7 +28,6 @@ export const Card: FC<CardProps> = ({
   imageSet,
   name,
   yearsOfLife,
-  id,
   className,
 }) => {
   const breakpoints = useBreakpoints({

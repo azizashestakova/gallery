@@ -25,7 +25,7 @@ export const ModalWindow: FC<ModalWindowProps> = ({
   return (
     <Modal
       isOpen={!!modalActive}
-      onClickOutside={(e) => {
+      onClickOutside={() => {
         setModalActive("")
       }}
       onEsc={() => {

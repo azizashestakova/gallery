@@ -89,12 +89,7 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
           type="button"
           onClick={() => onClickButton(index)}
         >
-          <Card
-            imageSet={image}
-            name={name}
-            yearsOfLife={yearOfCreation}
-            id={_id}
-          />
+          <Card imageSet={image} name={name} yearsOfLife={yearOfCreation} />
         </button>
       </div>
       <ModalDelete

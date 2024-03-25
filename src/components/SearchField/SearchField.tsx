@@ -1,7 +1,6 @@
 import { FC, useContext, useEffect, useState } from "react"
 import cn from "classnames/bind"
 import { useSearchParams } from "react-router-dom"
-import { ReactSVG } from "react-svg"
 
 import { TextField, TextFieldPropValue } from "@consta/uikit/TextField"
 import { useDebounce } from "@consta/uikit/useDebounce"

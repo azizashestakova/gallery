@@ -118,8 +118,8 @@ export const ModalArtist: FC<ModalArtistProps> = ({
     currentImage ? `${API_BASE_URL}${currentImage}` : "",
   )
 
-  const getItemLabel = (item: any) => item.name
-  const getItemKey = (item: any) => item._id
+  const getItemLabel = (item: IGenre) => item.name
+  const getItemKey = (item: IGenre) => item._id
 
   const uploadImage = async (file: File | undefined) => {
     if (
@@ -142,7 +142,7 @@ export const ModalArtist: FC<ModalArtistProps> = ({
   function drop(e: DragEvent<HTMLDivElement>) {
     e.preventDefault()
 
-    var data = e.dataTransfer.files?.[0]
+    const data = e.dataTransfer.files?.[0]
     uploadImage(data)
 
     setIsDraggable(false)

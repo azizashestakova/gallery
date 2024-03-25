@@ -151,7 +151,7 @@ export const ModalPaint: FC<ModalPaintProps> = ({
   function drop(e: DragEvent<HTMLDivElement>) {
     e.preventDefault()
 
-    var data = e.dataTransfer.files?.[0]
+    const data = e.dataTransfer.files?.[0]
     uploadImage(data)
   }
 
