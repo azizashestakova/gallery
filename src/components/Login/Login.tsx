@@ -1,7 +1,7 @@
 import { FC } from "react"
 
 import LoginImage from "@/assets/login.jpg"
-import { AuthModal } from "@/components/AuthModal"
+import { ModalAuth } from "@/components/ModalAuth"
 import { authApi } from "@/services/AuthService"
 
 interface LoginProps {
@@ -13,7 +13,7 @@ export const Login: FC<LoginProps> = ({ modalActive, setModalActive }) => {
   const [login, { isSuccess }] = authApi.useLoginMutation()
 
   return (
-    <AuthModal
+    <ModalAuth
       auth={login}
       isSuccess={isSuccess}
       image={LoginImage}

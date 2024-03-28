@@ -3,16 +3,13 @@ import cn from "classnames/bind"
 
 import { Chips } from "@consta/uikit/Chips"
 import { Grid } from "@consta/uikit/Grid"
-import { Spoiler } from "@consta/uikit/Spoiler"
 import { Text } from "@consta/uikit/Text"
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
-import ArrowDownIcon from "@/assets/arrow-down.svg"
-import { Image } from "@/components/Card/Image"
-import { EmptyAvatar } from "@/components/EmptyAvatar"
-import { IconCustom } from "@/utils/icon"
+import { Accordion } from "@/components/Accordion"
+import { Avatar } from "@/components/Avatar"
 
-import type { ImageSet } from "@/app/models/IArtist"
+import type { IArtistResponse } from "@/app/models/IArtist"
 import type { IGenre } from "@/app/models/IGenres"
 
 import styles from "./ArtistInfo.module.scss"
@@ -20,19 +17,11 @@ import styles from "./ArtistInfo.module.scss"
 const cx = cn.bind(styles)
 
 interface ArtistInfoProps {
-  yearsOfLife: string
-  name: string
-  description: string
-  genres: IGenre[]
-  imageSet: ImageSet
+  artist: IArtistResponse
 }
 
 export const ArtistInfo: FC<ArtistInfoProps> = ({
-  yearsOfLife,
-  name,
-  description,
-  genres,
-  imageSet,
+  artist: { yearsOfLife, name, description, genres, avatar },
 }) => {
   const breakpoints = useBreakpoints({
     map: { l: 1440, m: 768 },
@@ -43,20 +32,7 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({
 
   return (
     <Grid as="article" className={cx("wrapper")}>
-      <div className={cx("wrapper-image")}>
-        {imageSet ? (
-          <Image
-            src={imageSet.src}
-            src2x={imageSet.src2x}
-            webp={imageSet.webp}
-            webp2x={imageSet.webp2x}
-            alt={name}
-            className={cx("image")}
-          />
-        ) : (
-          <EmptyAvatar />
-        )}
-      </div>
+      <Avatar avatar={avatar} name={name} />
       <Grid as="section" className={cx("info")}>
         <div className={cx("text-wrapper")}>
           <Text
@@ -79,17 +55,7 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({
             {name}
           </Text>
         </div>
-        <div className={cx("spoiler-wrapper")}>
-          <Spoiler
-            className={cx("spoiler")}
-            lineClamp={breakpoints.l ? 5 : breakpoints.m ? 3 : 5}
-            lessLabel="Read less"
-            moreLabel="Read more"
-            moreIcon={IconCustom(ArrowDownIcon)}
-          >
-            {description}
-          </Spoiler>
-        </div>
+        <Accordion description={description} />
         <Chips
           className={cx("chips")}
           items={genres}

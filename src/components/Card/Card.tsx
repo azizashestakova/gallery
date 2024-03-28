@@ -7,8 +7,8 @@ import { Text } from "@consta/uikit/Text"
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
 import ArrowIcon from "@/assets/arrow.svg"
-import StubIcon from "@/assets/stub.svg"
-import { Image } from "@/components/Card/Image"
+import { Image } from "@/components/Image"
+import { Stub } from "@/components/Stub"
 import { convertDateToYear } from "@/utils/convertDateToYear"
 
 import type { ImageSet } from "@/app/models/IArtist"
@@ -49,8 +49,9 @@ export const Card: FC<CardProps> = ({
           className={cx("image")}
         />
       ) : (
-        <ReactSVG className={cx("stub")} src={StubIcon} />
+        <Stub className={cx("stub")} />
       )}
+
       <div className={cx("content")}>
         <div className={cx("wrapper")}>
           <Text
@@ -64,6 +65,7 @@ export const Card: FC<CardProps> = ({
           >
             {name}
           </Text>
+
           <Text
             view="secondary"
             size="xs"
@@ -76,9 +78,8 @@ export const Card: FC<CardProps> = ({
             {date}
           </Text>
         </div>
-        <div className={cx("icon-wrapper")}>
-          <ReactSVG className={cx("icon")} src={ArrowIcon} />
-        </div>
+
+        <ReactSVG className={cx("icon")} src={ArrowIcon} />
       </div>
     </CardConsta>
   )

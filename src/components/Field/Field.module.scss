@@ -1,0 +1,42 @@
+.field {
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 260px;
+
+  @include breakpoint(medium) {
+    max-width: 340px;
+  }
+
+  :global(.FieldLabel) {
+    color: var(--color-typo-brand);
+    font-size: var(--size-text-xs);
+    line-height: var(--line-height-text-2xs);
+    font-weight: 700;
+  }
+
+  :global(.FieldLabel-Star) {
+    display: none;
+  }
+
+  :global(.TextField-InputContainer) {
+    min-height: 46px;
+    padding: 0 16px;
+    background-color: var(--color-control-bg-ghost);
+  }
+
+  :global(.TextField-Input) {
+    height: calc(46px - var(--control-border-width) * 2);
+    font-weight: 300;
+  }
+
+  :global(.TextField-ClearButton) {
+    height: calc(46px - var(--control-border-width) * 2);
+  }
+
+  :global(.TextField-Body .TextField-Caption) {
+    position: absolute;
+    bottom: -8px;
+    transform: translateY(100%);
+  }
+}

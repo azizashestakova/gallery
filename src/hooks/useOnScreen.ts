@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react"
+import { MutableRefObject, useEffect, useState } from "react"
 
 export const useOnScreen = (
-  ref: React.MutableRefObject<HTMLElement | null>,
+  ref: MutableRefObject<HTMLElement | null>,
   threshold = 0,
 ) => {
   const [isIntersecting, setIntersecting] = useState(false)
@@ -19,7 +19,9 @@ export const useOnScreen = (
     }
 
     return () => {
-      if (ref.current) observer.unobserve(ref.current)
+      if (ref.current) {
+        observer.unobserve(ref.current)
+      }
     }
   }, [])
 

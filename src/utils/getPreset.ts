@@ -9,5 +9,6 @@ export const getPreset = (themeName: ThemeName): ThemePreset => {
     gpnDefault: presetGpnDefault,
     gpnDark: presetGpnDark,
   }
+
   return obj[themeName] || presetGpnDefault
 }

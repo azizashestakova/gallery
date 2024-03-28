@@ -2,17 +2,19 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 import { RootState } from "@/app/store"
 
-type AuthState = {
+interface IAuthSliceState {
   accessToken: string | null
   isAuthenticated: boolean
 }
 
+const initialState: IAuthSliceState = {
+  accessToken: localStorage.getItem("jwt-access") || null,
+  isAuthenticated: localStorage.getItem("jwt-access") ? true : false,
+}
+
 const slice = createSlice({
   name: "auth",
-  initialState: {
-    accessToken: localStorage.getItem("jwt-access") || null,
-    isAuthenticated: localStorage.getItem("jwt-access") ? true : false,
-  } as AuthState,
+  initialState,
   reducers: {
     setAuth: (
       state,

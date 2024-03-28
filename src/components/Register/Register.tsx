@@ -1,7 +1,7 @@
 import { FC } from "react"
 
 import RegisterImage from "@/assets/register.jpg"
-import { AuthModal } from "@/components/AuthModal"
+import { ModalAuth } from "@/components/ModalAuth"
 import { authApi } from "@/services/AuthService"
 
 interface RegisterProps {
@@ -16,7 +16,7 @@ export const Register: FC<RegisterProps> = ({
   const [register, { isSuccess }] = authApi.useRegisterMutation()
 
   return (
-    <AuthModal
+    <ModalAuth
       auth={register}
       isSuccess={isSuccess}
       image={RegisterImage}

@@ -6,14 +6,11 @@ import { Text } from "@consta/uikit/Text"
 import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
 import { useAppSelector } from "@/app/hooks"
-import PlusIcon from "@/assets/plus.svg"
 import { ActionBar } from "@/components/ActionBar"
-import { Button } from "@/components/Button"
 import { CardsArtWorks } from "@/components/CardsArtWorks"
-import { ModalFull } from "@/components/Modal/ModalFull"
-import { ModalPaint } from "@/components/ModalPaint"
+import { ModalCarousel } from "@/components/ModalCarousel"
+import { PaintingAddButton } from "@/components/PaintingAddButton"
 import { selectIsAuthenticated } from "@/features/auth/authSlice"
-import { IconCustom } from "@/utils/icon"
 
 import type { IPaintings } from "@/app/models/IArtist"
 
@@ -29,7 +26,6 @@ export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const [paintingId, setPaintingId] = useState("")
-  const [isOpenModalPaint, setIsOpenModalPaint] = useState(false)
 
   const isAuthenticated = useAppSelector(selectIsAuthenticated)
 
@@ -37,6 +33,8 @@ export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
     map: { m: 768 },
     isActive: true,
   })
+
+  const isAddButtonVisible = isAuthenticated && paintings.length
 
   return (
     <Grid as="article" className={cx("wrapper")}>
@@ -49,24 +47,12 @@ export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
       >
         Artworks
       </Text>
-      {isAuthenticated && paintings.length ? (
+      {isAddButtonVisible ? (
         <ActionBar>
-          <Button
-            label="Add picture"
-            className={cx("button")}
-            view="ghost"
-            iconLeft={IconCustom(PlusIcon)}
-            onClick={() => {
-              setIsOpenModalPaint(true)
-            }}
-          />
-          <ModalPaint
-            isOpen={isOpenModalPaint}
-            setIsOpen={setIsOpenModalPaint}
-          />
+          <PaintingAddButton />
         </ActionBar>
       ) : null}
-      <ModalFull
+      <ModalCarousel
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         paintings={paintings}

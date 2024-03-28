@@ -9,5 +9,6 @@ export const getItemIcon = (item: ThemeName) => {
   if (item === themeDefault) {
     return IconCustom(MoonIcon)
   }
+
   return IconCustom(SunIcon)
 }

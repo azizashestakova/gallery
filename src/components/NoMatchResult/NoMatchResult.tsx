@@ -8,7 +8,7 @@ import styles from "./NoMatchResult.module.scss"
 const cx = cn.bind(styles)
 
 interface NoMatchResultProps {
-  text?: string
+  text: string
 }
 
 export const NoMatchResult: FC<NoMatchResultProps> = ({ text }) => (
@@ -23,7 +23,7 @@ export const NoMatchResult: FC<NoMatchResultProps> = ({ text }) => (
     >
       No matches for{" "}
       <Text view="primary" size="m" lineHeight="2xs" weight="medium" as="span">
-        {text?.trim() ? text : "search"}
+        {text.trim() ? text : "search"}
       </Text>
     </Text>
     <Text

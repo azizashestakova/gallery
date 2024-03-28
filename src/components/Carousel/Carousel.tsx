@@ -13,7 +13,7 @@ import CoverIcon from "@/assets/cover.svg"
 import DeleteIcon from "@/assets/delete.svg"
 import EditIcon from "@/assets/edit.svg"
 import { Button } from "@/components/Button"
-import { Image } from "@/components/Card/Image"
+import { Image } from "@/components/Image"
 import { selectIsAuthenticated } from "@/features/auth/authSlice"
 import { artistApi } from "@/services/ArtistService"
 import { IconCustom } from "@/utils/icon"
@@ -28,27 +28,31 @@ interface CarouselProps {
   paintings: IPaintings[]
   activeIndex: number
   setIsOpenModalDelete: (value: boolean) => void
-  setIsOpenModalPaint: (value: boolean) => void
+  setIsOpenModalPaintings: (value: boolean) => void
 }
 
 export const Carousel: FC<CarouselProps> = ({
   paintings,
   activeIndex,
   setIsOpenModalDelete,
-  setIsOpenModalPaint,
+  setIsOpenModalPaintings,
 }) => {
-  const [editMainPainting] = artistApi.useEditArtistMainPaintingMutation()
-
   const { id: artistId = "" } = useParams()
 
+  const [editMainPainting] = artistApi.useEditArtistMainPaintingMutation()
   const { data: artist } = artistApi.useFetchArtistQuery({ id: artistId })
+
+  const breakpoints = useBreakpoints({
+    map: { l: 1440, m: 768 },
+    isActive: true,
+  })
 
   const openModalDelete = () => {
     setIsOpenModalDelete(true)
   }
 
   const openModalEdit = () => {
-    setIsOpenModalPaint(true)
+    setIsOpenModalPaintings(true)
   }
 
   const Arrow = (props: any) => {
@@ -63,23 +67,19 @@ export const Carousel: FC<CarouselProps> = ({
     prevArrow: <Arrow />,
   })
 
-  const breakpoints = useBreakpoints({
-    map: { l: 1440, m: 768 },
-    isActive: true,
-  })
-
   const isAuthenticated = useAppSelector(selectIsAuthenticated)
+
+  const textCover = (id: string) =>
+    artist?.mainPainting?._id === id ? "Remove the cover" : "Make the cover"
+
+  const slideNumber = (index: number) => `${index + 1}/${paintings.length}`
 
   return (
     <Slider {...settings}>
       {paintings.map(({ yearOfCreation, name, image, _id }, index) => (
         <div className={cx("wrapper")} key={_id}>
           <Button
-            label={
-              artist?.mainPainting._id === _id
-                ? "Remove the cover"
-                : "Make the cover"
-            }
+            label={textCover(_id)}
             className={cx("cover")}
             view="clear"
             iconLeft={IconCustom(CoverIcon)}
@@ -87,6 +87,7 @@ export const Carousel: FC<CarouselProps> = ({
               editMainPainting({ artistId, paintingId: _id })
             }}
           />
+
           <div className={cx("content")}>
             {isAuthenticated && (
               <div className={cx("buttons")}>
@@ -98,6 +99,7 @@ export const Carousel: FC<CarouselProps> = ({
                   onClick={openModalEdit}
                   className={cx("button")}
                 />
+
                 <Button
                   view="clear"
                   onlyIcon
@@ -108,6 +110,7 @@ export const Carousel: FC<CarouselProps> = ({
                 />
               </div>
             )}
+
             <Grid className={cx("wrapper-text")}>
               <Text
                 view="secondary"
@@ -119,6 +122,7 @@ export const Carousel: FC<CarouselProps> = ({
               >
                 {yearOfCreation}
               </Text>
+
               <Text
                 view="primary"
                 size={breakpoints.m ? "m" : "xs"}
@@ -131,6 +135,7 @@ export const Carousel: FC<CarouselProps> = ({
               </Text>
             </Grid>
           </div>
+
           {image && (
             <Image
               src={image.src}
@@ -140,6 +145,7 @@ export const Carousel: FC<CarouselProps> = ({
               alt={name}
             />
           )}
+
           <Text
             view="normal"
             size={breakpoints.m ? "3xl" : "m"}
@@ -148,7 +154,7 @@ export const Carousel: FC<CarouselProps> = ({
             weight="semibold"
             className={cx("count")}
           >
-            {index + 1}/{paintings.length}
+            {slideNumber(index)}
           </Text>
         </div>
       ))}

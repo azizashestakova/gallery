@@ -8,16 +8,13 @@ import { useBreakpoints } from "@consta/uikit/useBreakpoints"
 
 import { useAppDispatch, useAppSelector } from "@/app/hooks"
 import LogoIcon from "@/assets/logo.svg"
-import SearchIcon from "@/assets/search.svg"
-import { Button } from "@/components/Button"
 import { HeaderDesktop } from "@/components/Header/HeaderDesktop"
 import { HeaderMobile } from "@/components/Header/HeaderMobile"
 import { Login } from "@/components/Login"
 import { Register } from "@/components/Register"
-import { SearchField } from "@/components/SearchField"
+import { SearchMobile } from "@/components/SearchMobile"
 import { selectIsAuthenticated, loggedOut } from "@/features/auth/authSlice"
 import { useOutsideClick } from "@/hooks/useOutsideClick"
-import { IconCustom } from "@/utils/icon"
 
 import type { ThemeName } from "@/types/theme"
 
@@ -61,16 +58,14 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
       <Layout
         className={cx("wrapper", { "wrapper-search": isComponentVisible })}
         rowCenter={{
-          left: (
-            <>
-              {!isComponentVisible ? (
-                <Link to="/?perPage=9&pageNumber=1" className={cx("logo")}>
-                  <ReactSVG src={LogoIcon} />
-                </Link>
-              ) : null}
-            </>
-          ),
+          left: !isComponentVisible ? (
+            <Link to="/?perPage=9&pageNumber=1" className={cx("logo")}>
+              <ReactSVG src={LogoIcon} />
+            </Link>
+          ) : null,
+
           center: undefined,
+
           right: breakpoints.m ? (
             <HeaderDesktop
               theme={theme}
@@ -79,22 +74,14 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
             />
           ) : (
             <>
-              {!breakpoints.m && location.pathname === "/" ? (
-                <div ref={ref}>
-                  {isComponentVisible ? (
-                    <SearchField />
-                  ) : (
-                    <Button
-                      className={cx("button")}
-                      label="Search"
-                      view="ghost"
-                      iconLeft={IconCustom(SearchIcon)}
-                      onlyIcon
-                      onClick={() => setIsComponentVisible(true)}
-                    />
-                  )}
-                </div>
-              ) : null}
+              {isAuthenticated && location.pathname === "/" && (
+                <SearchMobile
+                  ref={ref}
+                  isComponentVisible={isComponentVisible}
+                  setIsComponentVisible={setIsComponentVisible}
+                />
+              )}
+
               <HeaderMobile
                 theme={theme}
                 setTheme={setTheme}
@@ -105,9 +92,11 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
         }}
         placeholder={undefined}
       />
+
       {modalActive === "login" && (
         <Login modalActive={modalActive} setModalActive={setModalActive} />
       )}
+
       {modalActive === "register" && (
         <Register modalActive={modalActive} setModalActive={setModalActive} />
       )}

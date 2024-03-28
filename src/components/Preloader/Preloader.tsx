@@ -5,8 +5,12 @@ import styles from "./Preloader.module.scss"
 
 const cx = cn.bind(styles)
 
-export const Preloader: FC = memo(() => (
-  <div className={cx("preloader")}>
+interface PreloaderProps {
+  className: string
+}
+
+export const Preloader: FC<PreloaderProps> = memo(({ className }) => (
+  <div className={cx(className, "preloader")}>
     <svg
       className={cx("spinner")}
       viewBox="0 0 66 66"

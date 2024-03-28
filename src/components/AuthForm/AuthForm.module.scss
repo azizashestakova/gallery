@@ -1,0 +1,39 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  margin-bottom: 32px;
+
+  @include breakpoint(medium) {
+    padding: 0 23px;
+    margin-bottom: 40px;
+  }
+
+  :global(.TextField-ClearButton) {
+    svg {
+      fill: var(--color-base-base);
+      transition: fill 0.2s ease;
+    }
+
+    &:hover,
+    &:focus-visible {
+      svg {
+        fill: var(--color-typo-brand);
+      }
+    }
+  }
+}
+
+.field-last {
+  margin-bottom: 40px;
+
+  @include breakpoint(medium) {
+    margin-bottom: 60px;
+  }
+}
+
+.button {
+  margin: 0 auto 60px;
+}

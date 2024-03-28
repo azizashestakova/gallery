@@ -21,8 +21,10 @@ export const ScrrollToTop: FC = () => {
 
   const scrollPosition = useWindowPosition()
 
+  const isVisibleButton = scrollPosition >= 200
+
   return (
-    scrollPosition >= 200 && (
+    isVisibleButton && (
       <Button
         view="clear"
         onlyIcon

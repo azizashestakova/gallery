@@ -3,8 +3,6 @@
   max-width: calc(100% - 68px);
   height: 100%;
   width: 252px;
-  border-radius: 0;
-  box-shadow: none;
   right: 0;
 
   @include breakpoint(medium) {

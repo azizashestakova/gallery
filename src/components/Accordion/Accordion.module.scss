@@ -1,0 +1,84 @@
+.spoiler-wrapper {
+  padding: 20px 20px 32px 20px;
+  overflow-x: auto;
+  overflow-y: clip;
+
+  @include breakpoint(medium) {
+    padding-top: 40px;
+  }
+
+  @include breakpoint(large) {
+    padding-left: 80px;
+    padding-top: 20px;
+    padding-right: 0;
+  }
+
+  :global(.Spoiler) {
+    @include breakpoint(large) {
+      max-width: 424px;
+    }
+  }
+}
+
+.spoiler {
+  :global(.Spoiler-Content) {
+    color: var(--color-base-base);
+    font-weight: 300;
+  }
+
+  :global(.Spoiler-Content_mode_lineClamp) {
+    &::before {
+      background-image: linear-gradient(
+        to bottom,
+        var(--color-base-transparent) 0,
+        var(--color-base-essential) 100%
+      );
+      bottom: 0;
+      content: "";
+      height: 100%;
+      left: 0;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  &:global(.Spoiler-Content_hidden) {
+    display: none;
+  }
+
+  :global(.Spoiler-ButtonWrapper) {
+    margin-top: var(--space-l);
+  }
+
+  :global(.SpoilerButton) {
+    align-items: flex-end;
+
+    :global(.SpoilerButton-Label) {
+      transition: color 0.2s ease;
+    }
+
+    path {
+      transition: fill 0.2s ease;
+    }
+
+    &:hover {
+      :global(.SpoilerButton-Label) {
+        color: var(--color-typo-brand);
+      }
+
+      path {
+        fill: var(--color-typo-brand);
+      }
+    }
+  }
+
+  :global(.SpoilerButton-Label) {
+    color: var(--color-base-base);
+    font-size: var(--size-text-xs);
+    line-height: var(--line-height-text-2xs);
+    border-bottom: 1px solid var(--color-base-base);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+}

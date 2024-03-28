@@ -1,16 +1,18 @@
-import { FC, useCallback, useContext, useEffect, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import cn from "classnames/bind"
 
 import { CollapseGroup } from "@consta/uikit/CollapseGroup"
-import { Modal } from "@consta/uikit/Modal"
 
 import ClearIcon from "@/assets/clear.svg"
 import MinusIcon from "@/assets/minus.svg"
 import PlusIcon from "@/assets/plus.svg"
 import { Button } from "@/components/Button"
-import { FilterContext, Filters } from "@/context/FilterProvider"
+import { Modal } from "@/components/Modal"
+import { FilterContext } from "@/context/FilterProvider"
 import { genresApi } from "@/services/GenresServices"
 import { IconCustom } from "@/utils/icon"
+
+import type { Filters } from "@/types/filters"
 
 import { ContentItem, geItems } from "./constants"
 import styles from "./ModalFilter.module.scss"
@@ -19,15 +21,12 @@ const cx = cn.bind(styles)
 
 interface ModalFilterProps {
   isOpen: boolean
-  setIsOpenModalFilter: (value: boolean) => void
+  setIsOpen: (value: boolean) => void
 }
 
 // TODO:: Проверить логику и типизацию
 
-export const ModalFilter: FC<ModalFilterProps> = ({
-  isOpen,
-  setIsOpenModalFilter,
-}) => {
+export const ModalFilter: FC<ModalFilterProps> = ({ isOpen, setIsOpen }) => {
   const { data: genresData = [] } = genresApi.useFetchGenresQuery(null)
 
   const { filters, changeFilters, clearFilters } = useContext(FilterContext)
@@ -74,22 +73,12 @@ export const ModalFilter: FC<ModalFilterProps> = ({
 
   const items = geItems(genresData)
 
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "unset"
-  }, [isOpen])
-
   return (
     <Modal
-      isOpen={isOpen}
-      onClickOutside={(e) => {
-        if ((e.target as HTMLElement).classList.contains("Modal-Overlay")) {
-          setIsOpenModalFilter(false)
-        }
-      }}
-      onEsc={() => {
-        setIsOpenModalFilter(false)
-      }}
+      isModalOpen={isOpen}
+      setIsModalOpen={setIsOpen}
       className={cx("modal")}
+      hasOverlay
     >
       <Button
         label="Close"
@@ -97,8 +86,9 @@ export const ModalFilter: FC<ModalFilterProps> = ({
         onlyIcon
         iconLeft={IconCustom(ClearIcon)}
         className={cx("button-close")}
-        onClick={() => setIsOpenModalFilter(false)}
+        onClick={() => setIsOpen(false)}
       />
+
       <div className={cx("content")}>
         <CollapseGroup
           items={items}
@@ -109,12 +99,14 @@ export const ModalFilter: FC<ModalFilterProps> = ({
           icon={IconCustom(PlusIcon)}
           closeIcon={IconCustom(MinusIcon)}
         />
+
         <div className={cx("buttons")}>
           <Button
             label="Show the results"
             view="ghost"
             onClick={handleShowFilterResult}
           />
+
           <Button label="Clear" view="ghost" onClick={handleClearFilter} />
         </div>
       </div>

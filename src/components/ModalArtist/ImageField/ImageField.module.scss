@@ -1,0 +1,80 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.loading-field {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 20px;
+  border-radius: 2px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    border: 5px dashed var(--color-control-bg-border-default-hover);
+    top: -3px;
+    bottom: -3px;
+    left: -3px;
+    right: -3px;
+    transition: border-color 0.2s ease;
+  }
+
+  &:hover {
+    &::before {
+      border-color: var(--color-control-bg-border-focus);
+    }
+  }
+}
+
+.loading-field-active {
+  &::before {
+    display: none;
+  }
+}
+
+.image {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.button-delete {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.person {
+  margin-bottom: 16px;
+  pointer-events: none;
+
+  svg {
+    fill: #9c9c9c;
+    display: block;
+  }
+}
+
+.loading-field-text {
+  display: none;
+  padding: 0 32px;
+
+  @include breakpoint(large) {
+    display: block;
+  }
+}
+
+.input {
+  display: none;
+}

@@ -24,7 +24,8 @@ export const Search: FC = () => {
 
   return (
     <Grid className={cx("search")} as="search">
-      {breakpoints.m ? <SearchField /> : null}
+      {breakpoints.m && <SearchField />}
+
       <Button
         className={cx("button")}
         label="Filter"
@@ -33,9 +34,10 @@ export const Search: FC = () => {
         onlyIcon
         onClick={() => setIsOpenModalFilter(true)}
       />
+
       <ModalFilter
         isOpen={isOpenModalFilter}
-        setIsOpenModalFilter={setIsOpenModalFilter}
+        setIsOpen={setIsOpenModalFilter}
       />
     </Grid>
   )

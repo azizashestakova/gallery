@@ -7,7 +7,7 @@ import { Text } from "@consta/uikit/Text"
 import PlusIcon from "@/assets/plus.svg"
 import StubIcon from "@/assets/stub.svg"
 import { Button } from "@/components/Button"
-import { ModalPaint } from "@/components/ModalPaint"
+import { ModalPainting } from "@/components/ModalPainting"
 import { IconCustom } from "@/utils/icon"
 
 import styles from "./UploadPaintings.module.scss"
@@ -15,7 +15,7 @@ import styles from "./UploadPaintings.module.scss"
 const cx = cn.bind(styles)
 
 export const UploadPaintings: FC = () => {
-  const [isOpenModalPaint, setIsOpenModalPaint] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
@@ -23,6 +23,7 @@ export const UploadPaintings: FC = () => {
         <div className={cx(styles.wrap)}>
           <ReactSVG className={cx("stub")} src={StubIcon} />
         </div>
+
         <Button
           label="Upload"
           view="secondary"
@@ -31,11 +32,13 @@ export const UploadPaintings: FC = () => {
           className={cx("button")}
           form="round"
           onClick={() => {
-            setIsOpenModalPaint(true)
+            setIsOpen(true)
           }}
         />
-        <ModalPaint isOpen={isOpenModalPaint} setIsOpen={setIsOpenModalPaint} />
+
+        <ModalPainting isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
+
       <Text
         view="primary"
         size="m"

@@ -18,14 +18,18 @@
 }
 
 .stub {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 100%;
+  gap: 12px;
+  position: absolute;
+  justify-content: center;
+  margin-top: -20px;
 
   svg {
-    width: 65%;
-    opacity: 0.2;
+    width: 68px;
+    height: 59px;
+  }
+
+  p {
+    font-size: 12px;
   }
 }
 
@@ -74,22 +78,16 @@
   font-family: var(--font-mono);
 }
 
-.icon-wrapper {
+.icon {
   background-color: var(--color-base-project);
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 24px;
 
   @include breakpoint(large) {
     display: none;
   }
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   svg {
     fill: var(--color-base-normal);

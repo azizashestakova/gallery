@@ -1,0 +1,19 @@
+.wrapper-image {
+  aspect-ratio: 80/113;
+  width: 100%;
+  height: 452px;
+  margin-left: 0;
+
+  @include breakpoint(medium) {
+    min-height: 500px;
+    height: 100%;
+    aspect-ratio: 192/125;
+  }
+
+  @include breakpoint(large) {
+    aspect-ratio: 1/1;
+    margin-left: auto;
+    max-width: 74.62%;
+    max-height: calc(100dvh - 172px);
+  }
+}

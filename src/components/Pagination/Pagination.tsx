@@ -13,23 +13,27 @@ interface PaginationProps {
   totalPosts: number
   paginationChange: (value: number) => void
   page: number
+  isPaginationVisible?: boolean
 }
 
 export const Pagination: FC<PaginationProps> = ({
   totalPosts,
   paginationChange,
   page,
+  isPaginationVisible,
 }) => {
   const countPages = Math.ceil(totalPosts / limit)
 
   return (
-    <PaginationConsta
-      className={cx("pagination")}
-      items={countPages}
-      value={page}
-      arrows={[true, true]}
-      onChange={paginationChange}
-      size="s"
-    />
+    isPaginationVisible && (
+      <PaginationConsta
+        className={cx("pagination")}
+        items={countPages}
+        value={page}
+        arrows={[true, true]}
+        onChange={paginationChange}
+        size="s"
+      />
+    )
   )
 }

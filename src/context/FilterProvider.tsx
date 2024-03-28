@@ -13,10 +13,7 @@ import { defaultFilters } from "@/constants"
 import { selectIsAuthenticated } from "@/features/auth/authSlice"
 import { removeEmpty } from "@/utils/removeEmpty"
 
-import type { IArtistParams } from "@/app/models/IArtist"
-
-export type Filters = { genres?: string } & Omit<IArtistParams, "genres"> &
-  Record<string, string | string[]> // TODO:: проверить
+import type { Filters } from "@/types/filters"
 
 interface IFilterContext {
   filters: Filters
@@ -59,7 +56,7 @@ export const FilterProvider: FC<IFilterProvider> = ({ children }) => {
   const clearSearch = useCallback(() => {
     params.delete("name")
     setParams(params)
-  }, [setParams])
+  }, [params, setParams])
 
   const contextValue = useMemo(
     () => ({

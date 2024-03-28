@@ -6,7 +6,7 @@ import { useAppSelector } from "@/app/hooks"
 import { ArtworkMenu } from "@/components/ArtworkMenu"
 import { Card } from "@/components/Card"
 import { ModalDelete } from "@/components/ModalDelete"
-import { ModalPaint } from "@/components/ModalPaint"
+import { ModalPainting } from "@/components/ModalPainting"
 import { selectIsAuthenticated } from "@/features/auth/authSlice"
 import { artistApi } from "@/services/ArtistService"
 
@@ -31,14 +31,24 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
   setActiveIndex,
   setPaintingId,
 }) => {
-  const isAuthenticated = useAppSelector(selectIsAuthenticated)
-
   const { image, name, yearOfCreation, _id } = painting
+
+  const [deletePainting, isSuccess] = artistApi.useDeletePaintingMutation()
+
+  const isAuthenticated = useAppSelector(selectIsAuthenticated)
 
   const { id: artistId = "" } = useParams()
 
   const [isOpenModalDelete, setIsOpenModalDelete] = useState(false)
-  const [isOpenModalPaint, setIsOpenModalPaint] = useState(false)
+  const [isOpenModalPaintings, setIsOpenModalPaintings] = useState(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isShowGear, setIsShowGear] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (isSuccess) {
+      setIsOpenModalDelete(false)
+    }
+  }, [isSuccess])
 
   const onClickButton = (index: number) => {
     setIsModalOpen(true)
@@ -46,20 +56,9 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
     setPaintingId(_id)
   }
 
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [isShowGear, setIsShowGear] = useState<boolean>(false)
-
-  const [deletePainting, isSuccess] = artistApi.useDeletePaintingMutation()
-
   const onClickDelete = (artistId: string, paintingId: string) => {
     deletePainting({ artistId, paintingId })
   }
-
-  useEffect(() => {
-    if (isSuccess) {
-      setIsOpenModalDelete(false)
-    }
-  }, [isSuccess])
 
   return (
     <>
@@ -81,9 +80,10 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
           isShowGear={isShowGear}
           setIsShowGear={setIsShowGear}
           setIsOpenModalDelete={setIsOpenModalDelete}
-          setIsOpenModalPaint={setIsOpenModalPaint}
+          setIsOpenModalPaintings={setIsOpenModalPaintings}
           paintingId={painting._id}
         />
+
         <button
           className={cx("button")}
           type="button"
@@ -92,15 +92,17 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
           <Card imageSet={image} name={name} yearsOfLife={yearOfCreation} />
         </button>
       </div>
+
       <ModalDelete
         isOpen={isOpenModalDelete}
         setIsOpen={setIsOpenModalDelete}
         variant="painting"
         onClickDelete={() => onClickDelete(artistId, _id)}
       />
-      <ModalPaint
-        isOpen={isOpenModalPaint}
-        setIsOpen={setIsOpenModalPaint}
+
+      <ModalPainting
+        isOpen={isOpenModalPaintings}
+        setIsOpen={setIsOpenModalPaintings}
         defaultValues={{
           id: _id,
           name,

@@ -1,0 +1,95 @@
+.modal {
+  max-height: 100%;
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
+  border-radius: 0;
+  box-shadow: none;
+
+  @include breakpoint(large) {
+    max-height: 90%;
+    max-width: 90%;
+    height: auto;
+    width: auto;
+  }
+}
+
+.button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  @include breakpoint(medium) {
+    top: 36px;
+    right: 24px;
+  }
+
+  @include breakpoint(large) {
+    top: 32px;
+    right: 32px;
+  }
+}
+
+.wrapper {
+  margin-top: 110px;
+  align-items: flex-start;
+
+  @include breakpoint(medium-large) {
+    margin-top: 0;
+    height: 100%;
+  }
+}
+
+.image {
+  @include breakpoint(medium) {
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.content {
+  padding: 0 30px;
+  width: 100%;
+  margin: 0 auto;
+
+  @include breakpoint(medium-large) {
+    margin-top: 132px;
+  }
+}
+
+.title {
+  margin-bottom: 60px;
+  font-family: var(--font-mono);
+  text-align: center;
+
+  @include breakpoint(medium) {
+    margin-bottom: 40px;
+  }
+
+  @include breakpoint(medium-large) {
+    margin-bottom: 20px;
+  }
+}
+
+.text {
+  order: 1;
+  text-align: center;
+  margin-bottom: 32px;
+
+  @include breakpoint(medium) {
+    order: inherit;
+    margin-bottom: 60px;
+  }
+}
+
+.sign-up {
+  text-transform: lowercase;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.1em !important;
+
+  @include breakpoint(medium) {
+    font-size: 16px;
+  }
+}

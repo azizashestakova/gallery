@@ -9,16 +9,11 @@ import ErrorIcon from "@/assets/error.svg"
 import { deleteNotification } from "@/features/notification/notificationSlice"
 import { IconCustom } from "@/utils/icon"
 
+import type { Item } from "./types"
+
 import styles from "./Snackbar.module.scss"
 
 const cx = cn.bind(styles)
-
-type Item = {
-  key: number
-  title: string
-  text: string
-  status: string
-}
 
 const reducer = (
   state: Item[],
@@ -81,18 +76,17 @@ export const SnackBar: FC = () => {
     if (message) {
       generateHandleAdd()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message])
 
   return (
-    <>
-      <SnackBarConsta
-        className={cx("snackBar")}
-        items={items}
-        onItemClose={(item) => deleteMessage(item)}
-        getItemIcon={getItemIcon}
-        getItemMessage={getItemMessage}
-        getItemAutoClose={() => 5}
-      />
-    </>
+    <SnackBarConsta
+      className={cx("snackBar")}
+      items={items}
+      onItemClose={(item) => deleteMessage(item)}
+      getItemIcon={getItemIcon}
+      getItemMessage={getItemMessage}
+      getItemAutoClose={() => 5}
+    />
   )
 }

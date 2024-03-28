@@ -18,7 +18,10 @@ const cx = cn.bind(styles)
 export const SearchField: FC = () => {
   const { filters, changeFilters, clearSearch } = useContext(FilterContext)
 
-  const [value, setValue] = useState<string | null>(null)
+  const [params] = useSearchParams({})
+  const name = params.get("name")
+
+  const [value, setValue] = useState<string | null>(name || null)
   const [searchValue, setSearchValue] = useState<string | null>(null)
 
   const debounceSetSearchValue = useDebounce(setSearchValue, 500)
@@ -28,20 +31,18 @@ export const SearchField: FC = () => {
     [debounceSetSearchValue, value],
   )
 
-  const [params] = useSearchParams({})
-
   useEffect(() => {
     if (searchValue) {
       changeFilters({ ...filters, name: searchValue })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue])
 
   useEffect(() => {
-    const name = params.get("name")
-
     if (!name) {
       setValue("")
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params])
 
   const handleChange = (value: TextFieldPropValue) => {
@@ -63,6 +64,7 @@ export const SearchField: FC = () => {
         placeholder="Search"
         leftSide={IconCustom(SearchIcon)}
       />
+
       {value ? (
         <Button
           label="Close"

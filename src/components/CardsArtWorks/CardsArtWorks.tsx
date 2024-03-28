@@ -24,10 +24,12 @@ export const CardsArtWorks: FC<CardsArtWorksProps> = ({
   setIsModalOpen,
   setActiveIndex,
   setPaintingId,
-}) =>
-  !paintings.length ? (
-    <UploadPaintings />
-  ) : (
+}) => {
+  if (!paintings.length) {
+    return <UploadPaintings />
+  }
+
+  return (
     <Grid
       as="ul"
       className={cx("wrapper")}
@@ -57,3 +59,4 @@ export const CardsArtWorks: FC<CardsArtWorksProps> = ({
       ))}
     </Grid>
   )
+}
