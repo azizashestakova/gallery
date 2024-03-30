@@ -14,18 +14,20 @@ const cx = cn.bind(styles)
 
 interface CardsArtWorksProps {
   paintings: IPaintings[]
-  setIsModalOpen: (value: boolean) => void
+  setIsOpenModalCarousel: (value: boolean) => void
   setActiveIndex: (value: number) => void
   setPaintingId: (value: string) => void
 }
 
 export const CardsArtWorks: FC<CardsArtWorksProps> = ({
   paintings,
-  setIsModalOpen,
+  setIsOpenModalCarousel,
   setActiveIndex,
   setPaintingId,
 }) => {
-  if (!paintings.length) {
+  const hasPaintings = paintings.length > 0
+
+  if (!hasPaintings) {
     return <UploadPaintings />
   }
 
@@ -40,7 +42,7 @@ export const CardsArtWorks: FC<CardsArtWorksProps> = ({
           cols: 2,
           gap: "xl",
         },
-        1440: {
+        1280: {
           cols: 3,
           gap: "2xl",
         },
@@ -51,7 +53,7 @@ export const CardsArtWorks: FC<CardsArtWorksProps> = ({
           <CardArtWorks
             painting={painting}
             index={index}
-            setIsModalOpen={setIsModalOpen}
+            setIsOpenModalCarousel={setIsOpenModalCarousel}
             setActiveIndex={setActiveIndex}
             setPaintingId={setPaintingId}
           />

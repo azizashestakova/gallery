@@ -14,20 +14,20 @@ import styles from "./ModalPainting.module.scss"
 const cx = cn.bind(styles)
 
 interface ModalPaintingProps {
-  isOpen: boolean
-  setIsOpen: (value: boolean) => void
+  isOpenModalPainting: boolean
+  setIsOpenModalPainting: (value: boolean) => void
   defaultValues?: IDefaultValues
 }
 
 export const ModalPainting: FC<ModalPaintingProps> = ({
-  isOpen,
-  setIsOpen,
+  isOpenModalPainting,
+  setIsOpenModalPainting,
   defaultValues,
 }) => {
   return (
     <Modal
-      isModalOpen={isOpen}
-      setIsModalOpen={setIsOpen}
+      isOpenModal={isOpenModalPainting}
+      setIsOpenModal={setIsOpenModalPainting}
       className={cx("modal")}
       hasOverlay
     >
@@ -37,9 +37,12 @@ export const ModalPainting: FC<ModalPaintingProps> = ({
         onlyIcon
         iconLeft={IconCustom(ClearIcon)}
         className={cx("button-close")}
-        onClick={() => setIsOpen(false)}
+        onClick={() => setIsOpenModalPainting(false)}
       />
-      <PaintingForm defaultValues={defaultValues} setIsOpen={setIsOpen} />
+      <PaintingForm
+        defaultValues={defaultValues}
+        setIsOpen={setIsOpenModalPainting}
+      />
     </Modal>
   )
 }

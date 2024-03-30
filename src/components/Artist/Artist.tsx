@@ -45,6 +45,7 @@ export const Artist: FC = () => {
             navigate(-1)
           }}
         />
+
         {isAuthenticated && (
           <div className={cx("buttons")}>
             <ArtistEditButton artist={artist} />
@@ -52,7 +53,9 @@ export const Artist: FC = () => {
           </div>
         )}
       </ActionBar>
+
       {artist && <ArtistInfo artist={artist} />}
+
       <ArtWorks paintings={artist?.paintings || []} />
     </Grid>
   )

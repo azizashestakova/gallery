@@ -26,6 +26,7 @@ export const NoMatchResult: FC<NoMatchResultProps> = ({ text }) => (
         {text.trim() ? text : "search"}
       </Text>
     </Text>
+
     <Text
       view="primary"
       size="xs"

@@ -15,7 +15,7 @@ export const menu = (
   setIsOpenModalDelete: (value: boolean) => void,
   setIsOpen: (value: boolean) => void,
   setIsShowGear: (value: boolean) => void,
-  setIsOpenModalPaintings: (value: boolean) => void,
+  setIsOpenModalPainting: (value: boolean) => void,
   paintingId: string,
   //TODO:: отредактировать ts
   editMainPainting: {
@@ -55,7 +55,7 @@ export const menu = (
     as: "button",
     text: "Edit",
     onClick: () => {
-      setIsOpenModalPaintings(true)
+      setIsOpenModalPainting(true)
       setIsOpen(false)
       setIsShowGear(false)
     },

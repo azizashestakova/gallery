@@ -40,6 +40,7 @@ export const Field: FC<FieldProps> = ({
           required
           status={error ? "warning" : undefined}
           caption={error}
+          rows={type === "textarea" ? 6 : undefined}
         />
       )}
     />

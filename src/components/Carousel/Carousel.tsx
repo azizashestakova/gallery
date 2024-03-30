@@ -28,14 +28,14 @@ interface CarouselProps {
   paintings: IPaintings[]
   activeIndex: number
   setIsOpenModalDelete: (value: boolean) => void
-  setIsOpenModalPaintings: (value: boolean) => void
+  setIsOpenModalPainting: (value: boolean) => void
 }
 
 export const Carousel: FC<CarouselProps> = ({
   paintings,
   activeIndex,
   setIsOpenModalDelete,
-  setIsOpenModalPaintings,
+  setIsOpenModalPainting,
 }) => {
   const { id: artistId = "" } = useParams()
 
@@ -43,7 +43,7 @@ export const Carousel: FC<CarouselProps> = ({
   const { data: artist } = artistApi.useFetchArtistQuery({ id: artistId })
 
   const breakpoints = useBreakpoints({
-    map: { l: 1440, m: 768 },
+    map: { l: 1280, m: 768 },
     isActive: true,
   })
 
@@ -52,7 +52,7 @@ export const Carousel: FC<CarouselProps> = ({
   }
 
   const openModalEdit = () => {
-    setIsOpenModalPaintings(true)
+    setIsOpenModalPainting(true)
   }
 
   const Arrow = (props: any) => {
@@ -72,7 +72,13 @@ export const Carousel: FC<CarouselProps> = ({
   const textCover = (id: string) =>
     artist?.mainPainting?._id === id ? "Remove the cover" : "Make the cover"
 
-  const slideNumber = (index: number) => `${index + 1}/${paintings.length}`
+  const slideNumber = (index: number) => {
+    const currentPaintingIndex = index + 1
+
+    const numberOfPaintings = paintings.length
+
+    return `${currentPaintingIndex}/${numberOfPaintings}`
+  }
 
   return (
     <Slider {...settings}>
@@ -136,15 +142,7 @@ export const Carousel: FC<CarouselProps> = ({
             </Grid>
           </div>
 
-          {image && (
-            <Image
-              src={image.src}
-              src2x={image.src2x}
-              webp={image.webp}
-              webp2x={image.webp2x}
-              alt={name}
-            />
-          )}
+          {image && <Image alt={name} imageSet={image} />}
 
           <Text
             view="normal"

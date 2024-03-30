@@ -24,7 +24,7 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({
   artist: { yearsOfLife, name, description, genres, avatar },
 }) => {
   const breakpoints = useBreakpoints({
-    map: { l: 1440, m: 768 },
+    map: { l: 1280, m: 768 },
     isActive: true,
   })
 
@@ -33,6 +33,7 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({
   return (
     <Grid as="article" className={cx("wrapper")}>
       <Avatar avatar={avatar} name={name} />
+
       <Grid as="section" className={cx("info")}>
         <div className={cx("text-wrapper")}>
           <Text
@@ -44,6 +45,7 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({
           >
             {yearsOfLife}
           </Text>
+
           <Text
             view="secondary"
             size={breakpoints.l ? "5xl" : breakpoints.m ? "4xl" : "3xl"}
@@ -55,7 +57,9 @@ export const ArtistInfo: FC<ArtistInfoProps> = ({
             {name}
           </Text>
         </div>
+
         <Accordion description={description} />
+
         <Chips
           className={cx("chips")}
           items={genres}

@@ -12,6 +12,12 @@
   }
 
   @if $point == large {
+    @media (min-width: 1280px) {
+      @content;
+    }
+  }
+
+  @if $point == "extra-large" {
     @media (min-width: 1440px) {
       @content;
     }

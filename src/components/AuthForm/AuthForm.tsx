@@ -9,9 +9,7 @@ import {
   FetchBaseQueryMeta,
 } from "@reduxjs/toolkit/query"
 import cn from "classnames/bind"
-import { useForm, Controller } from "react-hook-form"
-
-import { TextField } from "@consta/uikit/TextField"
+import { useForm } from "react-hook-form"
 
 import { useAppDispatch } from "@/app/hooks"
 import { AuthDto, AuthResponse } from "@/app/models/IAuth"

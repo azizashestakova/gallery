@@ -13,6 +13,7 @@ import { HeaderMobile } from "@/components/Header/HeaderMobile"
 import { Login } from "@/components/Login"
 import { Register } from "@/components/Register"
 import { SearchMobile } from "@/components/SearchMobile"
+import { limit } from "@/constants"
 import { selectIsAuthenticated, loggedOut } from "@/features/auth/authSlice"
 import { useOutsideClick } from "@/hooks/useOutsideClick"
 
@@ -59,7 +60,7 @@ export const Header: FC<HeaderProps> = ({ theme, setTheme }) => {
         className={cx("wrapper", { "wrapper-search": isComponentVisible })}
         rowCenter={{
           left: !isComponentVisible ? (
-            <Link to="/?perPage=9&pageNumber=1" className={cx("logo")}>
+            <Link to={`/?perPage=${limit}&pageNumber=1`} className={cx("logo")}>
               <ReactSVG src={LogoIcon} />
             </Link>
           ) : null,

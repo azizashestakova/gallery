@@ -23,10 +23,6 @@ export const ArtistDeleteButton: FC = () => {
     }
   }, [isSuccessDeleteArtist, navigate])
 
-  const onClickDelete = () => {
-    deleteArtist(id)
-  }
-
   return (
     <>
       <Button
@@ -36,11 +32,12 @@ export const ArtistDeleteButton: FC = () => {
         iconLeft={IconCustom(DeleteIcon)}
         onClick={() => setIsOpenModalDelete(true)}
       />
+
       <ModalDelete
-        isOpen={isOpenModalDelete}
-        setIsOpen={setIsOpenModalDelete}
+        isOpenModalDelete={isOpenModalDelete}
+        setIsOpenModalDelete={setIsOpenModalDelete}
         variant="artist"
-        onClickDelete={onClickDelete}
+        onClickDelete={() => deleteArtist(id)}
       />
     </>
   )

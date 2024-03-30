@@ -16,9 +16,7 @@ interface SearchMobileProps {
   setIsComponentVisible: (value: boolean) => void
 }
 
-export type Ref = HTMLDivElement
-
-export const SearchMobile = forwardRef<Ref, SearchMobileProps>(
+export const SearchMobile = forwardRef<HTMLDivElement, SearchMobileProps>(
   ({ isComponentVisible, setIsComponentVisible }, ref) => {
     return (
       <div ref={ref}>

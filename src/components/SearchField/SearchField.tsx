@@ -45,11 +45,11 @@ export const SearchField: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params])
 
-  const handleChange = (value: TextFieldPropValue) => {
+  const changeValue = (value: TextFieldPropValue) => {
     setValue(value)
   }
 
-  const handleClearValue = () => {
+  const clearValue = () => {
     setValue("")
     clearSearch()
   }
@@ -58,7 +58,7 @@ export const SearchField: FC = () => {
     <div className={cx("wrapper")}>
       <TextField
         className={cx("search")}
-        onChange={handleChange}
+        onChange={changeValue}
         value={value}
         type="search"
         placeholder="Search"
@@ -72,7 +72,7 @@ export const SearchField: FC = () => {
           onlyIcon
           iconLeft={IconCustom(ClearIcon)}
           className={cx("clear")}
-          onClick={handleClearValue}
+          onClick={clearValue}
         />
       ) : null}
     </div>

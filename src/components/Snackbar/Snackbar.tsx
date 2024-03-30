@@ -19,12 +19,11 @@ const reducer = (
   state: Item[],
   action: { type: "add" | "remove"; item: Item },
 ): Item[] => {
-  switch (action.type) {
-    case "add":
-      return [...state, action.item]
-    case "remove":
-      return state.filter((itemInState) => itemInState.key !== action.item.key)
+  if (action.type === "add") {
+    return [...state, action.item]
   }
+
+  return state.filter((itemInState) => itemInState.key !== action.item.key)
 }
 
 const getItemIcon = () => IconCustom(ErrorIcon)

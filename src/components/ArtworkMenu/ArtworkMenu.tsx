@@ -16,23 +16,23 @@ import { menu } from "./constants"
 
 const cx = cn.bind(styles)
 
-interface ActionBarProps {
+interface ArtworkMenuProps {
   isOpen: boolean
   setIsOpen: (value: boolean) => void
   isShowGear: boolean
   setIsShowGear: (value: boolean) => void
   setIsOpenModalDelete: (value: boolean) => void
-  setIsOpenModalPaintings: (value: boolean) => void
+  setIsOpenModalPainting: (value: boolean) => void
   paintingId: string
 }
 
-export const ArtworkMenu: FC<ActionBarProps> = ({
+export const ArtworkMenu: FC<ArtworkMenuProps> = ({
   isOpen,
   setIsOpen,
   isShowGear,
   setIsShowGear,
   setIsOpenModalDelete,
-  setIsOpenModalPaintings,
+  setIsOpenModalPainting,
   paintingId,
 }) => {
   const { id: artistId = "" } = useParams()
@@ -42,7 +42,7 @@ export const ArtworkMenu: FC<ActionBarProps> = ({
 
   const ref = useRef(null)
 
-  const handleToggleMenu = () => {
+  const toggleMenu = () => {
     setIsOpen(!isOpen)
   }
 
@@ -56,11 +56,12 @@ export const ArtworkMenu: FC<ActionBarProps> = ({
         onlyIcon
         iconLeft={IconCustom(GearIcon)}
         label="Open menu"
-        onClick={handleToggleMenu}
+        onClick={toggleMenu}
         className={cx("button-gear", {
           "button-gear-show": isShowGear,
         })}
       />
+
       <ContextMenu
         className={cx("menu")}
         isOpen={isOpen}
@@ -68,7 +69,7 @@ export const ArtworkMenu: FC<ActionBarProps> = ({
           setIsOpenModalDelete,
           setIsOpen,
           setIsShowGear,
-          setIsOpenModalPaintings,
+          setIsOpenModalPainting,
           paintingId,
           editMainPainting,
           artistId,

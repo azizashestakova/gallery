@@ -16,22 +16,22 @@ import styles from "./ModalDelete.module.scss"
 const cx = cn.bind(styles)
 
 interface ModalDeleteProps {
-  isOpen: boolean
-  setIsOpen: (value: boolean) => void
+  isOpenModalDelete: boolean
+  setIsOpenModalDelete: (value: boolean) => void
   variant: "artist" | "painting"
   onClickDelete: () => void
 }
 
 export const ModalDelete: FC<ModalDeleteProps> = ({
-  isOpen,
-  setIsOpen,
+  isOpenModalDelete,
+  setIsOpenModalDelete,
   variant,
   onClickDelete,
 }) => {
   return (
     <Modal
-      isModalOpen={isOpen}
-      setIsModalOpen={setIsOpen}
+      isOpenModal={isOpenModalDelete}
+      setIsOpenModal={setIsOpenModalDelete}
       className={cx("modal")}
       hasOverlay
     >
@@ -41,7 +41,7 @@ export const ModalDelete: FC<ModalDeleteProps> = ({
         onlyIcon
         iconLeft={IconCustom(ClearIcon)}
         className={cx("button-close")}
-        onClick={() => setIsOpen(false)}
+        onClick={() => setIsOpenModalDelete(false)}
       />
 
       <div className={cx("content")}>
@@ -80,7 +80,7 @@ export const ModalDelete: FC<ModalDeleteProps> = ({
           label="Cancel"
           view="ghost"
           onClick={() => {
-            setIsOpen(false)
+            setIsOpenModalDelete(false)
           }}
         />
       </div>

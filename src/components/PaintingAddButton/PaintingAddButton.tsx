@@ -11,7 +11,7 @@ import styles from "./PaintingAddButton.module.scss"
 const cx = cn.bind(styles)
 
 export const PaintingAddButton: FC = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpenModalPainting, setIsOpenModalPainting] = useState(false)
 
   return (
     <>
@@ -21,11 +21,14 @@ export const PaintingAddButton: FC = () => {
         view="ghost"
         iconLeft={IconCustom(PlusIcon)}
         onClick={() => {
-          setIsOpen(true)
+          setIsOpenModalPainting(true)
         }}
       />
 
-      <ModalPainting isOpen={isOpen} setIsOpen={setIsOpen} />
+      <ModalPainting
+        isOpenModalPainting={isOpenModalPainting}
+        setIsOpenModalPainting={setIsOpenModalPainting}
+      />
     </>
   )
 }

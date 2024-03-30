@@ -9,7 +9,6 @@ import { ArtistAddButton } from "@/components/ArtistAddButton"
 import { Cards } from "@/components/Cards"
 import { NoMatchResult } from "@/components/NoMatchResult"
 import { Pagination } from "@/components/Pagination"
-import { Preloader } from "@/components/Preloader"
 import { Search } from "@/components/Search"
 import { limit } from "@/constants"
 import { FilterContext } from "@/context/FilterProvider"
@@ -27,13 +26,13 @@ export const Artists: FC = () => {
 
   const params = { ...filters, genres: filters.genres?.split(",") }
 
-  const { data: { data: artists = [], meta } = {}, isSuccess } =
+  const { data: { data: artists = [], meta } = {} } =
     artistApi.useFetchAllArtistsQuery({
       isAuthenticated,
       params,
     })
 
-  const paginationChange = (number: number) => {
+  const changePagination = (number: number) => {
     changeFilters({
       ...filters,
       pageNumber: `${number}`,
@@ -47,20 +46,16 @@ export const Artists: FC = () => {
 
   const isArtistsNotFound = !artists?.length && (filters.name || filters.genres)
 
-  const isPaginationVisible = isAuthenticated && meta && meta.count > limit
-
-  if (!isSuccess) {
-    return <Preloader className={cx("preloader")} />
-  }
+  const hasPaginations = isAuthenticated && meta && meta.count > limit
 
   return (
     <Grid as="article" className={cx("wrapper")}>
-      {isAuthenticated ? (
+      {isAuthenticated && (
         <ActionBar>
           <ArtistAddButton />
           <Search />
         </ActionBar>
-      ) : null}
+      )}
 
       {isArtistsNotFound ? (
         <NoMatchResult text={textNoMatchResult} />
@@ -70,9 +65,9 @@ export const Artists: FC = () => {
 
       <Pagination
         totalPosts={meta?.count || 0}
-        paginationChange={paginationChange}
+        onChangePagination={changePagination}
         page={Number(filters.pageNumber)}
-        isPaginationVisible={isPaginationVisible}
+        hasPaginations={hasPaginations}
       />
     </Grid>
   )

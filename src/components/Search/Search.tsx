@@ -36,8 +36,8 @@ export const Search: FC = () => {
       />
 
       <ModalFilter
-        isOpen={isOpenModalFilter}
-        setIsOpen={setIsOpenModalFilter}
+        isOpenModalFilter={isOpenModalFilter}
+        setIsOpenModalFilter={setIsOpenModalFilter}
       />
     </Grid>
   )

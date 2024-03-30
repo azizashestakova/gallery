@@ -44,7 +44,7 @@ export const FilterProvider: FC<IFilterProvider> = ({ children }) => {
     ) {
       setParams(defaultFilters)
     }
-  })
+  }, [isAuthenticated, params, setParams])
 
   const changeFilters = useCallback(
     (newFilters: Filters) => setParams(removeEmpty(newFilters)), // TODO:: проверить removeEmpty

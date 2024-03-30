@@ -23,7 +23,7 @@ interface ArtWorksProps {
 }
 
 export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isOpenModalCarousel, setIsOpenModalCarousel] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const [paintingId, setPaintingId] = useState("")
 
@@ -34,7 +34,7 @@ export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
     isActive: true,
   })
 
-  const isAddButtonVisible = isAuthenticated && paintings.length
+  const hasAddButton = isAuthenticated && paintings.length
 
   return (
     <Grid as="article" className={cx("wrapper")}>
@@ -47,21 +47,24 @@ export const ArtWorks: FC<ArtWorksProps> = ({ paintings }) => {
       >
         Artworks
       </Text>
-      {isAddButtonVisible ? (
+
+      {hasAddButton ? (
         <ActionBar>
           <PaintingAddButton />
         </ActionBar>
       ) : null}
+
       <ModalCarousel
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
+        isOpenModalCarousel={isOpenModalCarousel}
+        setIsOpenModalCarousel={setIsOpenModalCarousel}
         paintings={paintings}
         activeIndex={activeIndex}
         paintingId={paintingId}
       />
+
       <CardsArtWorks
         paintings={paintings}
-        setIsModalOpen={setIsModalOpen}
+        setIsOpenModalCarousel={setIsOpenModalCarousel}
         setActiveIndex={setActiveIndex}
         setPaintingId={setPaintingId}
       />

@@ -21,9 +21,7 @@ interface ButtonProps {
   size?: "xs" | "s" | "m" | "l"
 }
 
-type Ref = HTMLButtonElement
-
-export const Button = forwardRef<Ref, ButtonProps>(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       label,

@@ -25,9 +25,10 @@ export const ArtistEditButton: FC<ArtistEditButtonProps> = ({
         iconLeft={IconCustom(EditIcon)}
         onClick={() => setIsOpenModalArtist(true)}
       />
+
       <ModalArtist
-        isOpen={isOpenModalArtist}
-        setIsOpen={setIsOpenModalArtist}
+        isOpenModalArtist={isOpenModalArtist}
+        setIsOpenModalArtist={setIsOpenModalArtist}
         defaultValues={{
           name: name,
           yearsOfLife: yearsOfLife,

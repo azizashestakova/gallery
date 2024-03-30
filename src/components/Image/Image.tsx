@@ -1,34 +1,28 @@
-import { FC, memo, useRef, useState } from "react"
+import { FC, memo, useState } from "react"
 import cn from "classnames/bind"
 
 import { Preloader } from "@/components/Preloader"
-import { useOnScreen } from "@/hooks/useOnScreen"
+
+import type { ImageSet } from "@/app/models/IArtist"
 
 import styles from "./Image.module.scss"
 
 const cx = cn.bind(styles)
 
 interface ImageProps {
-  src: string
+  imageSet: ImageSet
   alt: string
-  webp?: string
-  src2x?: string
-  webp2x?: string
   className?: string
 }
 
 export const Image: FC<ImageProps> = memo(
-  ({ webp, src, src2x, webp2x, alt, className }) => {
+  ({ imageSet: { webp, src, src2x, webp2x }, alt, className }) => {
     const [isLoaded, setIsLoaded] = useState(false)
-
-    const ref = useRef<HTMLDivElement | null>(null)
-
-    const isVisible = useOnScreen(ref)
 
     const API_BASE_URL = import.meta.env.VITE__API_BASE_URL
 
     return (
-      <div className={cx("wrapper")} ref={ref}>
+      <div className={cx("wrapper")}>
         <picture>
           {webp2x && (
             <source
@@ -37,6 +31,7 @@ export const Image: FC<ImageProps> = memo(
               type="image/webp"
             />
           )}
+
           {src2x && (
             <source
               media="(min-width: 768px)"
@@ -44,14 +39,16 @@ export const Image: FC<ImageProps> = memo(
               type="image/jpeg"
             />
           )}
+
           {webp && (
             <source srcSet={`${API_BASE_URL}${webp}`} type="image/webp" />
           )}
+
           <img
             className={cx(
               "image",
               {
-                "image-loaded": isLoaded && isVisible,
+                "image-loaded": isLoaded,
               },
               className,
             )}
@@ -62,7 +59,7 @@ export const Image: FC<ImageProps> = memo(
           />
         </picture>
 
-        {(!isLoaded || !isVisible) && <Preloader className={cx("preloader")} />}
+        {!isLoaded && <Preloader className={cx("preloader")} />}
       </div>
     )
   },

@@ -20,13 +20,16 @@ import styles from "./ModalFilter.module.scss"
 const cx = cn.bind(styles)
 
 interface ModalFilterProps {
-  isOpen: boolean
-  setIsOpen: (value: boolean) => void
+  isOpenModalFilter: boolean
+  setIsOpenModalFilter: (value: boolean) => void
 }
 
 // TODO:: Проверить логику и типизацию
 
-export const ModalFilter: FC<ModalFilterProps> = ({ isOpen, setIsOpen }) => {
+export const ModalFilter: FC<ModalFilterProps> = ({
+  isOpenModalFilter,
+  setIsOpenModalFilter,
+}) => {
   const { data: genresData = [] } = genresApi.useFetchGenresQuery(null)
 
   const { filters, changeFilters, clearFilters } = useContext(FilterContext)
@@ -56,7 +59,7 @@ export const ModalFilter: FC<ModalFilterProps> = ({ isOpen, setIsOpen }) => {
       </button>
     ))
 
-  const handleShowFilterResult = () => {
+  const showFilterResult = () => {
     changeFilters({
       ...filters,
       genres: selectedGenre,
@@ -65,7 +68,7 @@ export const ModalFilter: FC<ModalFilterProps> = ({ isOpen, setIsOpen }) => {
     } as Filters)
   }
 
-  const handleClearFilter = useCallback(() => {
+  const clearFilter = useCallback(() => {
     clearFilters()
     setSelectedGenre("")
     setSelectedSort("")
@@ -75,8 +78,8 @@ export const ModalFilter: FC<ModalFilterProps> = ({ isOpen, setIsOpen }) => {
 
   return (
     <Modal
-      isModalOpen={isOpen}
-      setIsModalOpen={setIsOpen}
+      isOpenModal={isOpenModalFilter}
+      setIsOpenModal={setIsOpenModalFilter}
       className={cx("modal")}
       hasOverlay
     >
@@ -86,7 +89,7 @@ export const ModalFilter: FC<ModalFilterProps> = ({ isOpen, setIsOpen }) => {
         onlyIcon
         iconLeft={IconCustom(ClearIcon)}
         className={cx("button-close")}
-        onClick={() => setIsOpen(false)}
+        onClick={() => setIsOpenModalFilter(false)}
       />
 
       <div className={cx("content")}>
@@ -104,10 +107,10 @@ export const ModalFilter: FC<ModalFilterProps> = ({ isOpen, setIsOpen }) => {
           <Button
             label="Show the results"
             view="ghost"
-            onClick={handleShowFilterResult}
+            onClick={showFilterResult}
           />
 
-          <Button label="Clear" view="ghost" onClick={handleClearFilter} />
+          <Button label="Clear" view="ghost" onClick={clearFilter} />
         </div>
       </div>
     </Modal>

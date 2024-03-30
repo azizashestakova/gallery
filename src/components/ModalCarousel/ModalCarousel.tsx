@@ -18,21 +18,21 @@ import styles from "./ModalCarousel.module.scss"
 const cx = cn.bind(styles)
 
 interface ModalCarouselProps {
-  isModalOpen: boolean
-  setIsModalOpen: (value: boolean) => void
+  isOpenModalCarousel: boolean
+  setIsOpenModalCarousel: (value: boolean) => void
   paintings: IPaintings[]
   activeIndex: number
   paintingId: string
 }
 
 export const ModalCarousel: FC<ModalCarouselProps> = ({
-  isModalOpen,
-  setIsModalOpen,
+  isOpenModalCarousel,
+  setIsOpenModalCarousel,
   paintings,
   activeIndex,
   paintingId,
 }) => {
-  const [isOpenModalPaintings, setIsOpenModalPaintings] = useState(false)
+  const [isOpenModalPainting, setIsOpenModalPainting] = useState(false)
   const [isOpenModalDelete, setIsOpenModalDelete] = useState(false)
 
   const { id: artistId = "" } = useParams()
@@ -42,9 +42,9 @@ export const ModalCarousel: FC<ModalCarouselProps> = ({
   useEffect(() => {
     if (isSuccess) {
       setIsOpenModalDelete(false)
-      setIsModalOpen(false)
+      setIsOpenModalCarousel(false)
     }
-  }, [isSuccess, setIsModalOpen])
+  }, [isSuccess, setIsOpenModalCarousel])
 
   const onClickDelete = (artistId: string, paintingId: string) => {
     deletePainting({ artistId, paintingId })
@@ -54,8 +54,8 @@ export const ModalCarousel: FC<ModalCarouselProps> = ({
 
   return (
     <Modal
-      isModalOpen={isModalOpen}
-      setIsModalOpen={setIsModalOpen}
+      isOpenModal={isOpenModalCarousel}
+      setIsOpenModal={setIsOpenModalCarousel}
       className={cx("modal")}
     >
       <Button
@@ -65,7 +65,7 @@ export const ModalCarousel: FC<ModalCarouselProps> = ({
         iconLeft={IconCustom(ClearIcon)}
         onlyIcon
         onClick={() => {
-          setIsModalOpen(false)
+          setIsOpenModalCarousel(false)
         }}
       />
 
@@ -73,22 +73,22 @@ export const ModalCarousel: FC<ModalCarouselProps> = ({
         paintings={paintings}
         activeIndex={activeIndex}
         setIsOpenModalDelete={setIsOpenModalDelete}
-        setIsOpenModalPaintings={setIsOpenModalPaintings}
+        setIsOpenModalPainting={setIsOpenModalPainting}
       />
 
       {isOpenModalDelete && (
         <ModalDelete
-          isOpen={isOpenModalDelete}
-          setIsOpen={setIsOpenModalDelete}
+          isOpenModalDelete={isOpenModalDelete}
+          setIsOpenModalDelete={setIsOpenModalDelete}
           variant="painting"
           onClickDelete={() => onClickDelete(artistId, paintingId)}
         />
       )}
 
-      {painting && isOpenModalPaintings && (
+      {painting && isOpenModalPainting && (
         <ModalPainting
-          isOpen={isOpenModalPaintings}
-          setIsOpen={setIsOpenModalPaintings}
+          isOpenModalPainting={isOpenModalPainting}
+          setIsOpenModalPainting={setIsOpenModalPainting}
           defaultValues={{
             id: paintingId,
             name: painting.name,

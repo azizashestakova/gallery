@@ -17,7 +17,7 @@ interface AccordionProps {
 
 export const Accordion: FC<AccordionProps> = ({ description }) => {
   const breakpoints = useBreakpoints({
-    map: { l: 1440, m: 768 },
+    map: { l: 1280, m: 768 },
     isActive: true,
   })
 

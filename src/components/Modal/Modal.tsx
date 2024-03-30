@@ -8,34 +8,34 @@ import styles from "./Modal.module.scss"
 const cx = cn.bind(styles)
 
 interface ModalConstaProps {
-  isModalOpen: boolean
-  setIsModalOpen: (value: boolean) => void
+  isOpenModal: boolean
+  setIsOpenModal: (value: boolean) => void
   children: ReactNode
   className?: string
   hasOverlay?: boolean
 }
 
 export const Modal: FC<ModalConstaProps> = ({
-  isModalOpen,
-  setIsModalOpen,
+  isOpenModal,
+  setIsOpenModal,
   children,
   className,
   hasOverlay = false,
 }) => {
   useEffect(() => {
-    document.body.style.overflow = isModalOpen ? "hidden" : "unset"
-  }, [isModalOpen])
+    document.body.style.overflow = isOpenModal ? "hidden" : "unset"
+  }, [isOpenModal])
 
   return (
     <ModalConsta
-      isOpen={isModalOpen}
+      isOpen={isOpenModal}
       hasOverlay={hasOverlay}
       onClickOutside={(e) => {
         if ((e.target as HTMLElement).classList.contains("Modal-Overlay")) {
-          setIsModalOpen(false)
+          setIsOpenModal(false)
         }
       }}
-      onEsc={() => setIsModalOpen(false)}
+      onEsc={() => setIsOpenModal(false)}
       className={cx("modal", className)}
     >
       {children}

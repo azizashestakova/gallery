@@ -40,14 +40,7 @@ export const Card: FC<CardProps> = ({
   return (
     <CardConsta className={cx(className, "card")}>
       {imageSet ? (
-        <Image
-          src={imageSet.src}
-          src2x={imageSet.src2x}
-          webp={imageSet.webp}
-          webp2x={imageSet.webp2x}
-          alt={name}
-          className={cx("image")}
-        />
+        <Image alt={name} imageSet={imageSet} className={cx("image")} />
       ) : (
         <Stub className={cx("stub")} />
       )}

@@ -20,18 +20,12 @@
   }
 
   :global(.TextField-InputContainer) {
-    min-height: 46px;
     padding: 0 16px;
     background-color: var(--color-control-bg-ghost);
   }
 
   :global(.TextField-Input) {
-    height: calc(46px - var(--control-border-width) * 2);
     font-weight: 300;
-  }
-
-  :global(.TextField-ClearButton) {
-    height: calc(46px - var(--control-border-width) * 2);
   }
 
   :global(.TextField-Body .TextField-Caption) {

@@ -19,7 +19,7 @@ const cx = cn.bind(styles)
 interface CardArtWorksProps {
   painting: IPaintings
   index: number
-  setIsModalOpen: (value: boolean) => void
+  setIsOpenModalCarousel: (value: boolean) => void
   setActiveIndex: (value: number) => void
   setPaintingId: (value: string) => void
 }
@@ -27,7 +27,7 @@ interface CardArtWorksProps {
 export const CardArtWorks: FC<CardArtWorksProps> = ({
   painting,
   index,
-  setIsModalOpen,
+  setIsOpenModalCarousel,
   setActiveIndex,
   setPaintingId,
 }) => {
@@ -40,8 +40,8 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
   const { id: artistId = "" } = useParams()
 
   const [isOpenModalDelete, setIsOpenModalDelete] = useState(false)
-  const [isOpenModalPaintings, setIsOpenModalPaintings] = useState(false)
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOpenModalPainting, setIsOpenModalPainting] = useState(false)
+  const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false)
   const [isShowGear, setIsShowGear] = useState<boolean>(false)
 
   useEffect(() => {
@@ -50,14 +50,10 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
     }
   }, [isSuccess])
 
-  const onClickButton = (index: number) => {
-    setIsModalOpen(true)
+  const openModalCarousel = (index: number) => {
+    setIsOpenModalCarousel(true)
     setActiveIndex(index)
     setPaintingId(_id)
-  }
-
-  const onClickDelete = (artistId: string, paintingId: string) => {
-    deletePainting({ artistId, paintingId })
   }
 
   return (
@@ -66,7 +62,7 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
         className={cx("wrapper")}
         onMouseLeave={() => {
           setIsShowGear(false)
-          setIsOpen(false)
+          setIsOpenMenu(false)
         }}
         onMouseEnter={() => {
           if (isAuthenticated) {
@@ -75,34 +71,34 @@ export const CardArtWorks: FC<CardArtWorksProps> = ({
         }}
       >
         <ArtworkMenu
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
+          isOpen={isOpenMenu}
+          setIsOpen={setIsOpenMenu}
           isShowGear={isShowGear}
           setIsShowGear={setIsShowGear}
           setIsOpenModalDelete={setIsOpenModalDelete}
-          setIsOpenModalPaintings={setIsOpenModalPaintings}
+          setIsOpenModalPainting={setIsOpenModalPainting}
           paintingId={painting._id}
         />
 
         <button
           className={cx("button")}
           type="button"
-          onClick={() => onClickButton(index)}
+          onClick={() => openModalCarousel(index)}
         >
           <Card imageSet={image} name={name} yearsOfLife={yearOfCreation} />
         </button>
       </div>
 
       <ModalDelete
-        isOpen={isOpenModalDelete}
-        setIsOpen={setIsOpenModalDelete}
+        isOpenModalDelete={isOpenModalDelete}
+        setIsOpenModalDelete={setIsOpenModalDelete}
         variant="painting"
-        onClickDelete={() => onClickDelete(artistId, _id)}
+        onClickDelete={() => deletePainting({ artistId, paintingId: _id })}
       />
 
       <ModalPainting
-        isOpen={isOpenModalPaintings}
-        setIsOpen={setIsOpenModalPaintings}
+        isOpenModalPainting={isOpenModalPainting}
+        setIsOpenModalPainting={setIsOpenModalPainting}
         defaultValues={{
           id: _id,
           name,

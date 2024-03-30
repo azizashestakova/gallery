@@ -18,9 +18,10 @@ export const ArtistAddButton: FC = () => {
           setIsOpenModalArtist(true)
         }}
       />
+
       <ModalArtist
-        isOpen={isOpenModalArtist}
-        setIsOpen={setIsOpenModalArtist}
+        isOpenModalArtist={isOpenModalArtist}
+        setIsOpenModalArtist={setIsOpenModalArtist}
       />
     </>
   )

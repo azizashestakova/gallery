@@ -18,17 +18,7 @@ interface AvatarProps {
 export const Avatar: FC<AvatarProps> = ({ avatar, name }) => {
   return (
     <div className={cx("wrapper-image")}>
-      {avatar ? (
-        <Image
-          src={avatar.src}
-          src2x={avatar.src2x}
-          webp={avatar.webp}
-          webp2x={avatar.webp2x}
-          alt={name}
-        />
-      ) : (
-        <Stub />
-      )}
+      {avatar ? <Image alt={name} imageSet={avatar} /> : <Stub />}
     </div>
   )
 }

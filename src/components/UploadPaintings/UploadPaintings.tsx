@@ -15,7 +15,7 @@ import styles from "./UploadPaintings.module.scss"
 const cx = cn.bind(styles)
 
 export const UploadPaintings: FC = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpenModalPainting, setIsOpenModalPainting] = useState(false)
 
   return (
     <>
@@ -32,11 +32,14 @@ export const UploadPaintings: FC = () => {
           className={cx("button")}
           form="round"
           onClick={() => {
-            setIsOpen(true)
+            setIsOpenModalPainting(true)
           }}
         />
 
-        <ModalPainting isOpen={isOpen} setIsOpen={setIsOpen} />
+        <ModalPainting
+          isOpenModalPainting={isOpenModalPainting}
+          setIsOpenModalPainting={setIsOpenModalPainting}
+        />
       </div>
 
       <Text

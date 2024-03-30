@@ -19,6 +19,7 @@ export const Stub: FC<StubProps> = ({ className }) => {
   return (
     <Grid className={cx(className, "wrapper")}>
       <ReactSVG className={cx("stub")} src={StubIcon} />
+
       <Text
         view="normal"
         size="xl"

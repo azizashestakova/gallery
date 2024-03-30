@@ -44,7 +44,6 @@ export const artistApi = apiService.injectEndpoints({
         url: "artists",
         body: data,
       }),
-      invalidatesTags: ["Artists"],
     }),
 
     editArtist: build.mutation<null, { artistId: string; data: FormData }>({
