@@ -8,6 +8,8 @@
 
   :global(.Button) {
     text-transform: uppercase;
+    font-family: var(--font-mono);
+    font-weight: 700;
 
     &:hover {
       color: var(--color-typo-brand) !important;

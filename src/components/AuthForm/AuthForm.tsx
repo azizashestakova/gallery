@@ -15,7 +15,7 @@ import { useAppDispatch } from "@/app/hooks"
 import { AuthDto, AuthResponse } from "@/app/models/IAuth"
 import { Button } from "@/components/Button"
 import { Field } from "@/components/Field"
-import { setAuth } from "@/features/auth/authSlice"
+import { setCredentials } from "@/features/auth/authSlice"
 import { useFingerprint } from "@/hooks/useFingerprint"
 import { schema } from "@/schemas/AuthSchema"
 
@@ -70,7 +70,7 @@ export const AuthForm: FC<AuthFormProps> = ({ auth, buttonText }) => {
       fingerprint,
     }).unwrap() // TODO:: unwrap?
 
-    dispatch(setAuth(tokens))
+    dispatch(setCredentials(tokens))
   })
 
   return (

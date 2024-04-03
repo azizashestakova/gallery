@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import Cookies from "js-cookie"
 
 import { RootState } from "@/app/store"
 
@@ -16,17 +17,24 @@ const slice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setAuth: (
+    setCredentials: (
       state,
-      { payload: { accessToken } }: PayloadAction<{ accessToken: string }>,
+      {
+        payload: { accessToken, refreshToken },
+      }: PayloadAction<{ accessToken: string; refreshToken: string }>, //
     ) => {
       localStorage.setItem("jwt-access", accessToken)
+
+      Cookies.set("jwt-refresh", refreshToken)
 
       state.accessToken = accessToken
       state.isAuthenticated = true
     },
+
     loggedOut: (state) => {
       localStorage.removeItem("jwt-access")
+
+      Cookies.remove("jwt-refresh")
 
       state.accessToken = null
       state.isAuthenticated = false
@@ -34,7 +42,7 @@ const slice = createSlice({
   },
 })
 
-export const { setAuth, loggedOut } = slice.actions
+export const { setCredentials, loggedOut } = slice.actions
 
 export const selectIsAuthenticated = (state: RootState) =>
   state.auth.isAuthenticated

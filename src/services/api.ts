@@ -5,11 +5,18 @@ import {
   createApi,
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react"
+import { Mutex } from "async-mutex"
+import Cookies from "js-cookie"
 
 import { RootState } from "@/app/store"
-import { loggedOut, setAuth } from "@/features/auth/authSlice"
+import { loggedOut, setCredentials } from "@/features/auth/authSlice"
+import { getFingerprint } from "@/utils/getFingerprint"
+
+import type { AuthResponse } from "@/app/models/IAuth"
 
 const API_BASE_URL = import.meta.env.VITE__API_BASE_URL
+
+const mutex = new Mutex()
 
 const baseQuery = fetchBaseQuery({
   baseUrl: API_BASE_URL,
@@ -24,43 +31,56 @@ const baseQuery = fetchBaseQuery({
   },
 })
 
-// const baseQueryWithReauth: BaseQueryFn<
-//   string | FetchArgs,
-//   unknown,
-//   FetchBaseQueryError
-// > = async (args, api, extraOptions) => {
-//   let result = await baseQuery(args, api, extraOptions)
-//   // console.log("api", api)
+const baseQueryWithReauth: BaseQueryFn<
+  string | FetchArgs,
+  unknown,
+  FetchBaseQueryError
+> = async (args, api, extraOptions) => {
+  await mutex.waitForUnlock()
 
-//   if (result.error && result.error.status === 401) {
-//     // const refreshResult = await baseQuery("/auth/refresh", api, extraOptions)
-//     const refreshResult = await baseQuery(
-//       {
-//         url: "/auth/refresh",
-//         method: "POST",
-//         body: {
-//           refreshToken: localStorage.getItem("refreshToken"),
-//         },
-//       },
-//       api,
-//       extraOptions,
-//     )
+  let result = await baseQuery(args, api, extraOptions)
 
-//     // console.log("refreshResult", refreshResult)
+  const refreshToken = Cookies.get("jwt-refresh")
 
-//     if (refreshResult.data) {
-//       // api.dispatch(setAuth(refreshResult.data))
+  if (result.error && result.error.status === 401) {
+    if (!mutex.isLocked()) {
+      const release = await mutex.acquire()
 
-//       result = await baseQuery(args, api, extraOptions)
-//     } else {
-//       api.dispatch(loggedOut())
-//     }
-//   }
-//   return result
-// }
+      try {
+        const fingerprint = await getFingerprint()
+
+        const refreshResult = await baseQuery(
+          {
+            url: "/auth/refresh",
+            method: "POST",
+            body: { refreshToken, fingerprint },
+          },
+          api,
+          extraOptions,
+        )
+
+        if (refreshResult.data) {
+          api.dispatch(setCredentials(refreshResult.data as AuthResponse))
+
+          result = await baseQuery(args, api, extraOptions)
+        } else {
+          api.dispatch(loggedOut())
+        }
+      } finally {
+        release()
+      }
+    } else {
+      await mutex.waitForUnlock()
+
+      result = await baseQuery(args, api, extraOptions)
+    }
+  }
+
+  return result
+}
 
 export const apiService = createApi({
-  baseQuery: baseQuery,
+  baseQuery: baseQueryWithReauth,
   tagTypes: ["Artists", "Artist"],
   endpoints: () => ({}),
 })
