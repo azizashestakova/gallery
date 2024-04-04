@@ -30,7 +30,7 @@
   }
 
   :global(.TagBase.SelectValueTag) {
-    background-color: rgba(18, 18, 18, 0.05);
+    background-color: var(--color-base-phantom);
     border-radius: 30px;
     padding: 3px 16px;
     height: auto;
@@ -59,7 +59,7 @@
 
   :global(.Select-DropdownIndicatorIcon) {
     svg {
-      fill: #9c9c9c;
+      fill: var(--color-base-gray);
     }
   }
 
@@ -83,10 +83,6 @@
   border-color: var(--color-base-phantom);
   background-color: var(--color-control-bg-ghost);
   z-index: 1;
-
-  :global(.ListItem_active) {
-    background-color: transparent;
-  }
 
   :global(.ListItemGrid-Slot) {
     font-weight: 300;

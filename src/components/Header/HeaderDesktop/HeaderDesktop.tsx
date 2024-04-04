@@ -4,7 +4,7 @@ import cn from "classnames/bind"
 import { ButtonMenu } from "@consta/header/ButtonMenu"
 import { ThemeToggler } from "@consta/uikit/ThemeToggler"
 
-import { items as itemsTheme } from "@/components/Header/constants"
+import { themes } from "@/components/Header/constants"
 import { getItemIcon } from "@/utils/getItemIcon"
 
 import type { MenuItem } from "../types"
@@ -28,9 +28,10 @@ export const HeaderDesktop: FC<HeaderDesktopProps> = ({
   return (
     <div className={cx("wrapper")}>
       <ButtonMenu className={cx("buttons")} items={items} view="clear" />
+
       <ThemeToggler
         className={cx("theme")}
-        items={itemsTheme}
+        items={themes}
         value={theme}
         getItemKey={(item: ThemeName) => item}
         getItemLabel={(item: ThemeName) => item}

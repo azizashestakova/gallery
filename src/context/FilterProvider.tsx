@@ -36,7 +36,6 @@ export const FilterProvider: FC<IFilterProvider> = ({ children }) => {
   const filters = useMemo(() => Object.fromEntries(params), [params])
 
   useEffect(() => {
-    // TODO:: проверить при логине
     if (
       isAuthenticated &&
       !params.toString() &&
@@ -47,7 +46,7 @@ export const FilterProvider: FC<IFilterProvider> = ({ children }) => {
   }, [isAuthenticated, params, setParams])
 
   const changeFilters = useCallback(
-    (newFilters: Filters) => setParams(removeEmpty(newFilters)), // TODO:: проверить removeEmpty
+    (newFilters: Filters) => setParams(removeEmpty(newFilters)),
     [setParams],
   )
 

@@ -6,25 +6,25 @@ export const useOutsideClick = <T extends HTMLDivElement>(
   const [isComponentVisible, setIsComponentVisible] = useState(initialIsVisible)
   const ref = useRef(null) as RefObject<T>
 
-  const handleHideDropdown = (event: KeyboardEvent) => {
+  const hideDropdown = (event: KeyboardEvent) => {
     if (event.key === "Escape") {
       setIsComponentVisible(false)
     }
   }
 
-  const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+  const clickOutside = (event: MouseEvent | TouchEvent) => {
     if (ref.current && !ref.current.contains(event.target as Node)) {
       setIsComponentVisible(false)
     }
   }
 
   useEffect(() => {
-    document.addEventListener("keydown", handleHideDropdown, true)
-    document.addEventListener("click", handleClickOutside, true)
+    document.addEventListener("keydown", hideDropdown, true)
+    document.addEventListener("click", clickOutside, true)
 
     return () => {
-      document.removeEventListener("keydown", handleHideDropdown, true)
-      document.removeEventListener("click", handleClickOutside, true)
+      document.removeEventListener("keydown", hideDropdown, true)
+      document.removeEventListener("click", clickOutside, true)
     }
   })
 

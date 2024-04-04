@@ -12,7 +12,7 @@ import { IconCustom } from "@/utils/icon"
 import type { MenuItem } from "./types"
 
 import styles from "./ArtworkMenu.module.scss"
-import { menu } from "./constants"
+import { menu } from "./helpers"
 
 const cx = cn.bind(styles)
 

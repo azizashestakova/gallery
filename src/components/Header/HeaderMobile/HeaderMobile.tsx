@@ -6,7 +6,7 @@ import { ThemeToggler } from "@consta/uikit/ThemeToggler"
 
 import { MenuItem } from "../types"
 import { Button } from "@/components/Button"
-import { items as itemsTheme, mode } from "@/components/Header/constants"
+import { themes, mode } from "@/components/Header/constants"
 import { getItemIcon } from "@/utils/getItemIcon"
 
 import type { ThemeName } from "@/types/theme"
@@ -35,20 +35,20 @@ export const HeaderMobile: FC<HeaderMobileProps> = ({
         <div className={cx("header-mobile")}>
           <ThemeToggler
             className={cx("theme-toggler")}
-            items={itemsTheme}
+            items={themes}
             value={theme}
             getItemKey={(item: ThemeName) => item}
             getItemLabel={(item: ThemeName) => item}
             getItemIcon={getItemIcon}
             onChange={setTheme}
           />
+
           <Button
             label={mode[theme]}
             view="ghost"
             className={cx("mode")}
             onClick={() => setTheme(mode[theme] as ThemeName)}
           />
-          {/* TODO:: Добавить крестик закрытия */}
         </div>
       }
     />

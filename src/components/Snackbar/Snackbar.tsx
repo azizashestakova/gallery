@@ -55,7 +55,7 @@ export const SnackBar: FC = () => {
     Reducer<Item[], { type: "add" | "remove"; item: Item }>
   >(reducer, [])
 
-  const generateHandleAdd = () => {
+  const generateError = () => {
     const key = items.length + 1
     const item: Item = {
       key,
@@ -73,7 +73,7 @@ export const SnackBar: FC = () => {
 
   useEffect(() => {
     if (message) {
-      generateHandleAdd()
+      generateError()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message])

@@ -2,7 +2,7 @@ import { DragEvent, FC, useContext, useEffect, useState } from "react"
 import { yupResolver } from "@hookform/resolvers/yup"
 import cn from "classnames/bind"
 import { useController, useForm } from "react-hook-form"
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 
 import { useAppSelector } from "@/app/hooks"
 import { Button } from "@/components/Button"
@@ -52,6 +52,8 @@ export const ArtistForm: FC<ArtistFormProps> = ({
 
   const { id: artistId = "" } = useParams()
 
+  const location = useLocation()
+
   const navigate = useNavigate()
 
   const name = "avatar"
@@ -79,9 +81,12 @@ export const ArtistForm: FC<ArtistFormProps> = ({
   useEffect(() => {
     if (isSuccess) {
       setIsOpenModalArtist(false)
-      navigate(`/?perPage=${limit}&pageNumber=${pageNumber}`)
+
+      if (location.pathname === "/") {
+        navigate(`/?perPage=${limit}&pageNumber=${pageNumber}`)
+      }
     }
-  }, [isSuccess, navigate, pageNumber, setIsOpenModalArtist])
+  }, [isSuccess, location.pathname, navigate, pageNumber, setIsOpenModalArtist])
 
   const [isDraggable, setIsDraggable] = useState(false)
 
@@ -120,7 +125,7 @@ export const ArtistForm: FC<ArtistFormProps> = ({
     setIsDraggable(false)
   }
 
-  const onSubmit = handleSubmit(
+  const submitForm = handleSubmit(
     async ({ name, yearsOfLife, description, genres, avatar }) => {
       const currentImg = avatar as File
 
@@ -147,7 +152,7 @@ export const ArtistForm: FC<ArtistFormProps> = ({
   return (
     <form
       className={cx("form")}
-      onSubmit={onSubmit}
+      onSubmit={submitForm}
       onDrop={(event) => drop(event)}
       onDragOver={(event) => allowDrop(event)}
     >

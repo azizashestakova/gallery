@@ -41,27 +41,28 @@ export const ImageField: FC<ImageFieldProps> = ({
 }) => {
   const inputRef = useRef<HTMLInputElement | null>(null)
 
-  const handleLoadImage = () => inputRef.current?.click()
+  const loadImage = () => inputRef.current?.click()
 
-  const handleChangeImage = useCallback(
+  const changeImage = useCallback(
     async (event: ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0]
       await uploadImage(file)
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   )
 
-  const handleDeleteImage = () => {
+  const deleteImage = () => {
     setImage("")
 
-    field.onChange("") // TODO:: оставить или убрать?
+    field.onChange("")
   }
 
   return (
     <div className={cx("loading")}>
       <div
         className={cx("loading-field", { "loading-field-active": image })}
-        onClick={handleLoadImage}
+        onClick={loadImage}
       >
         {image ? (
           <>
@@ -72,7 +73,7 @@ export const ImageField: FC<ImageFieldProps> = ({
               onlyIcon
               iconLeft={IconCustom(DeleteIcon)}
               className={cx("button-delete")}
-              onClick={handleDeleteImage}
+              onClick={deleteImage}
             />
           </>
         ) : (
@@ -93,16 +94,12 @@ export const ImageField: FC<ImageFieldProps> = ({
               type="file"
               accept="image/jpeg,image/png"
               ref={inputRef}
-              onChange={handleChangeImage}
+              onChange={changeImage}
             />
           </>
         )}
       </div>
-      <Button
-        label="Browse Profile Photo"
-        view="ghost"
-        onClick={handleLoadImage}
-      />
+      <Button label="Browse Profile Photo" view="ghost" onClick={loadImage} />
     </div>
   )
 }

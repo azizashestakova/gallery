@@ -61,7 +61,7 @@
   pointer-events: none;
 
   svg {
-    fill: #9c9c9c;
+    fill: var(--color-base-gray);
     display: block;
   }
 }

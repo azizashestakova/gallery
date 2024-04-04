@@ -19,8 +19,8 @@ import { useOutsideClick } from "@/hooks/useOutsideClick"
 
 import type { ThemeName } from "@/types/theme"
 
-import { menu } from "./constants"
 import styles from "./Header.module.scss"
+import { menu } from "./helpers"
 
 const cx = cn.bind(styles)
 

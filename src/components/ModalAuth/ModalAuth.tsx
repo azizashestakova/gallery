@@ -5,7 +5,6 @@ import {
   BaseQueryFn,
   FetchArgs,
   FetchBaseQueryError,
-  FetchBaseQueryMeta,
 } from "@reduxjs/toolkit/query"
 import cn from "classnames/bind"
 
@@ -26,17 +25,11 @@ import styles from "./ModalAuth.module.scss"
 const cx = cn.bind(styles)
 
 interface ModalAuthProps {
-  // TODO:: оставить или нет?
+  // TODO:: отредактировать
   auth: MutationTrigger<
     MutationDefinition<
       AuthDto,
-      BaseQueryFn<
-        string | FetchArgs,
-        unknown,
-        FetchBaseQueryError,
-        object,
-        FetchBaseQueryMeta
-      >,
+      BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError>,
       "Artists" | "Artist",
       AuthResponse,
       "api"

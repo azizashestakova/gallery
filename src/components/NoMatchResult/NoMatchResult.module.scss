@@ -12,6 +12,5 @@
 }
 
 .description {
-  /* TODO:: вынести в переменные */
-  color: #9c9c9c;
+  color: var(--color-base-gray);
 }

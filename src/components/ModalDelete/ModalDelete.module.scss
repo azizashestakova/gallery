@@ -56,8 +56,7 @@
 
 .text {
   margin-bottom: 20px;
-  /* TODO:: вынести в переменные */
-  color: #9c9c9c;
+  color: var(--color-base-gray);
 
   @include breakpoint(medium) {
     margin-bottom: 32px;

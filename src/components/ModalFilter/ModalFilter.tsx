@@ -12,9 +12,10 @@ import { FilterContext } from "@/context/FilterProvider"
 import { genresApi } from "@/services/GenresServices"
 import { IconCustom } from "@/utils/icon"
 
+import type { ContentItem } from "./types"
 import type { Filters } from "@/types/filters"
 
-import { ContentItem, geItems } from "./constants"
+import { geItems } from "./helpers"
 import styles from "./ModalFilter.module.scss"
 
 const cx = cn.bind(styles)
@@ -23,8 +24,6 @@ interface ModalFilterProps {
   isOpenModalFilter: boolean
   setIsOpenModalFilter: (value: boolean) => void
 }
-
-// TODO:: Проверить логику и типизацию
 
 export const ModalFilter: FC<ModalFilterProps> = ({
   isOpenModalFilter,
@@ -37,7 +36,7 @@ export const ModalFilter: FC<ModalFilterProps> = ({
   const [selectedGenre, setSelectedGenre] = useState(filters.genres || "")
   const [selectedSort, setSelectedSort] = useState(filters.orderBy || "")
 
-  const handleToggleSelected = (id: string) => {
+  const toggleSelect = (id: string) => {
     if (id === "asc" || id === "desc") {
       setSelectedSort(selectedSort !== id ? id : "")
     } else {
@@ -53,7 +52,7 @@ export const ModalFilter: FC<ModalFilterProps> = ({
         className={cx("collapse-item", {
           "collapse-item-active": selectedGenre === _id || selectedSort === _id,
         })}
-        onClick={() => handleToggleSelected(_id)}
+        onClick={() => toggleSelect(_id)}
       >
         {name}
       </button>

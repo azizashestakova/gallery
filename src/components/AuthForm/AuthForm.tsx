@@ -6,7 +6,6 @@ import {
   BaseQueryFn,
   FetchArgs,
   FetchBaseQueryError,
-  FetchBaseQueryMeta,
 } from "@reduxjs/toolkit/query"
 import cn from "classnames/bind"
 import { useForm } from "react-hook-form"
@@ -29,17 +28,11 @@ const defaultValues = {
 const cx = cn.bind(styles)
 
 interface AuthFormProps {
-  // TODO:: оставить или нет?
+  // TODO:: отредактировать
   auth: MutationTrigger<
     MutationDefinition<
       AuthDto,
-      BaseQueryFn<
-        string | FetchArgs,
-        unknown,
-        FetchBaseQueryError,
-        object,
-        FetchBaseQueryMeta
-      >,
+      BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError>,
       "Artists" | "Artist",
       AuthResponse,
       "api"
@@ -63,18 +56,18 @@ export const AuthForm: FC<AuthFormProps> = ({ auth, buttonText }) => {
 
   const fingerprint = useFingerprint()
 
-  const onSubmit = handleSubmit(async ({ email, password }) => {
+  const submitForm = handleSubmit(async ({ email, password }) => {
     const tokens = await auth({
       username: email,
       password,
       fingerprint,
-    }).unwrap() // TODO:: unwrap?
+    }).unwrap()
 
     dispatch(setCredentials(tokens))
   })
 
   return (
-    <form className={cx("form")} onSubmit={onSubmit}>
+    <form className={cx("form")} onSubmit={submitForm}>
       <Field
         name="email"
         control={control}

@@ -7,9 +7,8 @@ import {
   FetchBaseQueryMeta,
 } from "@reduxjs/toolkit/query"
 
+import type { MenuItem } from "./types"
 import type { IArtistResponse } from "@/app/models/IArtist"
-
-import { MenuItem } from "./types"
 
 export const menu = (
   setIsOpenModalDelete: (value: boolean) => void,
@@ -17,7 +16,7 @@ export const menu = (
   setIsShowGear: (value: boolean) => void,
   setIsOpenModalPainting: (value: boolean) => void,
   paintingId: string,
-  //TODO:: отредактировать ts
+  //TODO:: отредактировать
   editMainPainting: {
     (arg: {
       artistId: string

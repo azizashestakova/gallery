@@ -21,7 +21,7 @@ const slice = createSlice({
       state,
       {
         payload: { accessToken, refreshToken },
-      }: PayloadAction<{ accessToken: string; refreshToken: string }>, //
+      }: PayloadAction<{ accessToken: string; refreshToken: string }>,
     ) => {
       localStorage.setItem("jwt-access", accessToken)
 

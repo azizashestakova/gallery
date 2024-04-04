@@ -60,7 +60,7 @@ export const PaintingForm: FC<PaintingFormProps> = ({
 
   const { id: artistId = "" } = useParams()
 
-  const onSubmit = handleSubmit(async ({ name, yearOfCreation, image }) => {
+  const submitForm = handleSubmit(async ({ name, yearOfCreation, image }) => {
     const currentImg = image as File
 
     const data = new FormData()
@@ -79,7 +79,7 @@ export const PaintingForm: FC<PaintingFormProps> = ({
   })
 
   return (
-    <form className={cx("form")} onSubmit={onSubmit}>
+    <form className={cx("form")} onSubmit={submitForm}>
       <div className={cx("fields")}>
         <Field
           name="name"

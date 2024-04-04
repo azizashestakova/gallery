@@ -62,7 +62,7 @@ export const ImageField: FC<ImageFieldProps> = ({ control, currentImage }) => {
     }
   }
 
-  const handleChangeImage = useCallback(
+  const changeImage = useCallback(
     async (event: ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0]
       await uploadImage(file)
@@ -84,20 +84,20 @@ export const ImageField: FC<ImageFieldProps> = ({ control, currentImage }) => {
     uploadImage(data)
   }
 
-  const handleLoadImage = () => inputRef.current?.click()
+  const loadImage = () => inputRef.current?.click()
 
-  const handleDeleteImage = useCallback(() => {
+  const deleteImage = () => {
     setImage("")
 
-    field.onChange("") // TODO:: оставить или убрать?
-  }, [field])
+    field.onChange("")
+  }
 
   return (
     <div
       onDrop={(event) => drop(event)}
       onDragOver={(event) => allowDrop(event)}
       className={cx("loading", { "loading-active": image })}
-      onClick={handleLoadImage}
+      onClick={loadImage}
     >
       {image ? (
         <>
@@ -109,7 +109,7 @@ export const ImageField: FC<ImageFieldProps> = ({ control, currentImage }) => {
             onlyIcon
             iconLeft={IconCustom(DeleteIcon)}
             className={cx("button-delete")}
-            onClick={handleDeleteImage}
+            onClick={deleteImage}
           />
         </>
       ) : (
@@ -154,7 +154,7 @@ export const ImageField: FC<ImageFieldProps> = ({ control, currentImage }) => {
             type="file"
             accept="image/jpeg,image/png"
             ref={inputRef}
-            onChange={handleChangeImage}
+            onChange={changeImage}
           />
         </>
       )}
