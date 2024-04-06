@@ -34,6 +34,8 @@ export const SearchField: FC = () => {
   useEffect(() => {
     if (searchValue) {
       changeFilters({ ...filters, name: searchValue })
+    } else {
+      clearValue()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue])

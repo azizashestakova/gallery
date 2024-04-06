@@ -52,7 +52,7 @@ export const artistApi = apiService.injectEndpoints({
         url: `/artists/${artistId}`,
         body: data,
       }),
-      invalidatesTags: ["Artist", "Artists"],
+      invalidatesTags: ["Artist"],
     }),
 
     editArtistMainPainting: build.mutation<
@@ -64,7 +64,6 @@ export const artistApi = apiService.injectEndpoints({
         url: `/artists/${artistId}/main-painting`,
         body: { mainPainting: paintingId },
       }),
-      invalidatesTags: ["Artist", "Artists"],
     }),
 
     deletePainting: build.mutation<
@@ -84,7 +83,7 @@ export const artistApi = apiService.injectEndpoints({
         url: `/artists/${artistId}/paintings`,
         body: data,
       }),
-      invalidatesTags: ["Artist", "Artists"],
+      invalidatesTags: ["Artist"],
     }),
 
     editPainting: build.mutation<

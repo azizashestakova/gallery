@@ -1,16 +1,7 @@
-import {
-  FC,
-  ReactNode,
-  createContext,
-  useCallback,
-  useEffect,
-  useMemo,
-} from "react"
+import { FC, ReactNode, createContext, useCallback, useMemo } from "react"
 import { useSearchParams } from "react-router-dom"
 
-import { useAppSelector } from "@/app/hooks"
 import { defaultFilters } from "@/constants"
-import { selectIsAuthenticated } from "@/features/auth/authSlice"
 import { removeEmpty } from "@/utils/removeEmpty"
 
 import type { Filters } from "@/types/filters"
@@ -29,21 +20,9 @@ interface IFilterProvider {
 }
 
 export const FilterProvider: FC<IFilterProvider> = ({ children }) => {
-  const isAuthenticated = useAppSelector(selectIsAuthenticated)
-
   const [params, setParams] = useSearchParams({})
 
   const filters = useMemo(() => Object.fromEntries(params), [params])
-
-  useEffect(() => {
-    if (
-      isAuthenticated &&
-      !params.toString() &&
-      window.location.pathname === "/"
-    ) {
-      setParams(defaultFilters)
-    }
-  }, [isAuthenticated, params, setParams])
 
   const changeFilters = useCallback(
     (newFilters: Filters) => setParams(removeEmpty(newFilters)),

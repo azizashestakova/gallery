@@ -90,6 +90,6 @@ export const Theme = React.forwardRef<HTMLDivElement, ThemeProps>(
   },
 )
 
-export function useTheme() {
+export const useTheme = () => {
   return useContext(ThemeContext)
 }

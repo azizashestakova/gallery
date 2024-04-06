@@ -15,9 +15,17 @@
     background-color: var(--color-control-bg-ghost);
   }
 
-  :global(.PaginationItem) {
-    &:hover {
+  :global(.PaginationItem):not(:global(.PaginationItem_active)) {
+    &:hover,
+    &:focus-visible {
       animation: fontWeightAnimatioin 0.2s ease forwards !important;
+    }
+  }
+
+  :global(.Button_withIcon) {
+    &:hover,
+    &:focus-visible {
+      opacity: 0.7;
     }
   }
 }
