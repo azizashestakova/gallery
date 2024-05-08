@@ -9,12 +9,11 @@ import { Mutex } from "async-mutex"
 import Cookies from "js-cookie"
 
 import { RootState } from "@/app/store"
+import { API_BASE_URL } from "@/constants"
 import { loggedOut, setCredentials } from "@/features/auth/authSlice"
 import { getFingerprint } from "@/utils/getFingerprint"
 
 import type { AuthResponse } from "@/app/models/IAuth"
-
-const API_BASE_URL = import.meta.env.VITE__API_BASE_URL
 
 const mutex = new Mutex()
 

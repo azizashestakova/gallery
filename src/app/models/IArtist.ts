@@ -45,10 +45,12 @@ export interface IPaintings {
   _id: string
 }
 
+type Order = "asc" | "desc"
+
 export interface IArtistParams {
   sortBy?: string
   name?: string
-  orderBy?: "asc" | "desc"
+  orderBy?: Order
   perPage?: string
   genres?: string[]
   pageNumber?: string

@@ -17,6 +17,7 @@ import DeleteIcon from "@/assets/delete.svg"
 import MountainsIcon from "@/assets/mountains.svg"
 import { Button } from "@/components/Button"
 import { getBase64 } from "@/utils/getBase64"
+import { getImageUrl } from "@/utils/getImageUrl"
 import { IconCustom } from "@/utils/icon"
 
 import styles from "./ImageField.module.scss"
@@ -41,34 +42,34 @@ export const ImageField: FC<ImageFieldProps> = ({ control, currentImage }) => {
     isActive: true,
   })
 
-  const API_BASE_URL = import.meta.env.VITE__API_BASE_URL
-
   const [image, setImage] = useState(
-    currentImage ? `${API_BASE_URL}${currentImage}` : "",
+    currentImage ? getImageUrl(currentImage) : "",
   )
 
   const name = "image"
   const { field } = useController({ name, control })
 
-  const uploadImage = async (file: File | undefined) => {
-    if (
-      file &&
-      file.size <= 3e6 &&
-      (file.type === "image/jpeg" || file.type === "image/png")
-    ) {
-      const base64 = await getBase64(file)
-      setImage(base64)
-      field.onChange(file)
-    }
-  }
+  const uploadImage = useCallback(
+    async (file?: File) => {
+      if (
+        file &&
+        file.size <= 3e6 &&
+        (file.type === "image/jpeg" || file.type === "image/png")
+      ) {
+        const base64 = await getBase64(file)
+        setImage(base64)
+        field.onChange(file)
+      }
+    },
+    [field],
+  )
 
   const changeImage = useCallback(
     async (event: ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0]
       await uploadImage(file)
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    [uploadImage],
   )
 
   const inputRef = useRef<HTMLInputElement | null>(null)

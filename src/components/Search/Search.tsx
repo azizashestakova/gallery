@@ -23,7 +23,7 @@ export const Search: FC = () => {
   const [isOpenModalFilter, setIsOpenModalFilter] = useState(false)
 
   return (
-    <Grid className={cx("search")} as="search">
+    <Grid className={cx("search")}>
       {breakpoints.m && <SearchField />}
 
       <Button

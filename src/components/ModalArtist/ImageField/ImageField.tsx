@@ -10,6 +10,8 @@ import PersonIcon from "@/assets/person.svg"
 import { Button } from "@/components/Button"
 import { IconCustom } from "@/utils/icon"
 
+import type { IField } from "./types"
+
 import styles from "./ImageField.module.scss"
 
 const cx = cn.bind(styles)
@@ -17,20 +19,8 @@ const cx = cn.bind(styles)
 interface ImageFieldProps {
   image: string
   setImage: (value: string) => void
-  uploadImage: (file: File | undefined) => Promise<void>
-  field: ControllerRenderProps<
-    {
-      avatar?: any
-      name: string
-      yearsOfLife: string
-      description: string
-      genres: {
-        name: string
-        _id: string
-      }[]
-    },
-    "avatar"
-  >
+  uploadImage: (file?: File) => Promise<void>
+  field: ControllerRenderProps<IField, "avatar">
 }
 
 export const ImageField: FC<ImageFieldProps> = ({
@@ -48,8 +38,7 @@ export const ImageField: FC<ImageFieldProps> = ({
       const file = event.target.files?.[0]
       await uploadImage(file)
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    [uploadImage],
   )
 
   const deleteImage = () => {

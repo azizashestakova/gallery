@@ -4,6 +4,8 @@ import cn from "classnames/bind"
 import { IconComponent } from "@consta/icons/Icon"
 import { Button as ButtonConsta } from "@consta/uikit/Button"
 
+import type { Form, Size, Type, View } from "./types"
+
 import styles from "./Button.module.scss"
 
 const cx = cn.bind(styles)
@@ -11,14 +13,14 @@ const cx = cn.bind(styles)
 interface ButtonProps {
   label: string
   className?: string
-  view?: "primary" | "secondary" | "ghost" | "clear"
+  view?: View
   disabled?: boolean
-  form?: "default" | "brick" | "round"
+  form?: Form
   iconLeft?: IconComponent
   onClick?: () => void
   onlyIcon?: boolean
-  type?: "button" | "reset" | "submit"
-  size?: "xs" | "s" | "m" | "l"
+  type?: Type
+  size?: Size
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(

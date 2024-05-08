@@ -4,6 +4,8 @@ import { Controller } from "react-hook-form"
 
 import { TextField } from "@consta/uikit/TextField"
 
+import type { Type } from "./types"
+
 import styles from "./Field.module.scss"
 
 const cx = cn.bind(styles)
@@ -11,7 +13,7 @@ const cx = cn.bind(styles)
 interface FieldProps {
   name: string
   control: any
-  type: "text" | "textarea" | "email" | "password" | "number"
+  type: Type
   label: string
   error?: string
   className?: string

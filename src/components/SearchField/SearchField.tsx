@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useState } from "react"
+import { FC, useCallback, useContext, useEffect, useState } from "react"
 import cn from "classnames/bind"
 import { useSearchParams } from "react-router-dom"
 
@@ -34,26 +34,23 @@ export const SearchField: FC = () => {
   useEffect(() => {
     if (searchValue) {
       changeFilters({ ...filters, name: searchValue })
-    } else {
-      clearValue()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue])
 
+  const clearValue = useCallback(() => {
+    setValue("")
+    clearSearch()
+  }, [clearSearch])
+
   useEffect(() => {
-    if (!name) {
-      setValue("")
+    if (!value) {
+      clearValue()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params])
+  }, [clearValue, value])
 
   const changeValue = (value: TextFieldPropValue) => {
     setValue(value)
-  }
-
-  const clearValue = () => {
-    setValue("")
-    clearSearch()
   }
 
   return (

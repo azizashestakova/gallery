@@ -16,6 +16,7 @@ import { selectIsAuthenticated } from "@/features/auth/authSlice"
 import { schema } from "@/schemas/ArtistSchema"
 import { artistApi } from "@/services/ArtistService"
 import { getBase64 } from "@/utils/getBase64"
+import { getImageUrl } from "@/utils/getImageUrl"
 
 import type { IDefaultValues } from "@/components/ModalArtist/types"
 
@@ -90,15 +91,13 @@ export const ArtistForm: FC<ArtistFormProps> = ({
 
   const [isDraggable, setIsDraggable] = useState(false)
 
-  const API_BASE_URL = import.meta.env.VITE__API_BASE_URL
-
   const currentImage = defaultValues.avatar
 
   const [image, setImage] = useState(
-    currentImage ? `${API_BASE_URL}${currentImage}` : "",
+    currentImage ? getImageUrl(currentImage) : "",
   )
 
-  const uploadImage = async (file: File | undefined) => {
+  const uploadImage = async (file?: File) => {
     if (
       file &&
       file.size <= 3e6 &&

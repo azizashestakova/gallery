@@ -10,6 +10,8 @@ import { Button } from "@/components/Button"
 import { Modal } from "@/components/Modal"
 import { IconCustom } from "@/utils/icon"
 
+import type { Variant } from "./types"
+
 import { text } from "./constants"
 import styles from "./ModalDelete.module.scss"
 
@@ -18,7 +20,7 @@ const cx = cn.bind(styles)
 interface ModalDeleteProps {
   isOpenModalDelete: boolean
   setIsOpenModalDelete: (value: boolean) => void
-  variant: "artist" | "painting"
+  variant: Variant
   onClickDelete: () => void
 }
 

@@ -2,6 +2,7 @@ import { FC, memo, useState } from "react"
 import cn from "classnames/bind"
 
 import { Preloader } from "@/components/Preloader"
+import { getImageUrl } from "@/utils/getImageUrl"
 
 import type { ImageSet } from "@/app/models/IArtist"
 
@@ -19,15 +20,13 @@ export const Image: FC<ImageProps> = memo(
   ({ imageSet: { webp, src, src2x, webp2x }, alt, className }) => {
     const [isLoaded, setIsLoaded] = useState(false)
 
-    const API_BASE_URL = import.meta.env.VITE__API_BASE_URL
-
     return (
       <div className={cx("wrapper")}>
         <picture>
           {webp2x && (
             <source
               media="(min-width: 768px)"
-              srcSet={`${API_BASE_URL}${webp2x}`}
+              srcSet={getImageUrl(webp2x)}
               type="image/webp"
             />
           )}
@@ -35,14 +34,12 @@ export const Image: FC<ImageProps> = memo(
           {src2x && (
             <source
               media="(min-width: 768px)"
-              srcSet={`${API_BASE_URL}${src2x}`}
+              srcSet={getImageUrl(src2x)}
               type="image/jpeg"
             />
           )}
 
-          {webp && (
-            <source srcSet={`${API_BASE_URL}${webp}`} type="image/webp" />
-          )}
+          {webp && <source srcSet={getImageUrl(webp)} type="image/webp" />}
 
           <img
             className={cx(
@@ -52,7 +49,7 @@ export const Image: FC<ImageProps> = memo(
               },
               className,
             )}
-            src={`${API_BASE_URL}${src}`}
+            srcSet={getImageUrl(src)}
             alt={alt}
             loading="lazy"
             onLoad={() => setIsLoaded(true)}

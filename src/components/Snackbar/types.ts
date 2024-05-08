@@ -4,3 +4,10 @@ export interface Item {
   text: string
   status: string
 }
+
+type Type = "add" | "remove"
+
+export interface IAction {
+  type: Type
+  item: Item
+}

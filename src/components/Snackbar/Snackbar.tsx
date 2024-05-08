@@ -1,4 +1,4 @@
-import { FC, Reducer, useReducer, useEffect } from "react"
+import { FC, Reducer, useReducer, useEffect, useCallback } from "react"
 import cn from "classnames/bind"
 
 import { SnackBar as SnackBarConsta } from "@consta/uikit/SnackBar"
@@ -9,16 +9,13 @@ import ErrorIcon from "@/assets/error.svg"
 import { deleteNotification } from "@/features/notification/notificationSlice"
 import { IconCustom } from "@/utils/icon"
 
-import type { Item } from "./types"
+import type { IAction, Item } from "./types"
 
 import styles from "./Snackbar.module.scss"
 
 const cx = cn.bind(styles)
 
-const reducer = (
-  state: Item[],
-  action: { type: "add" | "remove"; item: Item },
-): Item[] => {
+const reducer = (state: Item[], action: IAction): Item[] => {
   if (action.type === "add") {
     return [...state, action.item]
   }
@@ -51,11 +48,12 @@ export const SnackBar: FC = () => {
 
   const message = useAppSelector((state) => state.notification.message)
 
-  const [items, dispatchItems] = useReducer<
-    Reducer<Item[], { type: "add" | "remove"; item: Item }>
-  >(reducer, [])
+  const [items, dispatchItems] = useReducer<Reducer<Item[], IAction>>(
+    reducer,
+    [],
+  )
 
-  const generateError = () => {
+  const generateError = useCallback(() => {
     const key = items.length + 1
     const item: Item = {
       key,
@@ -64,7 +62,8 @@ export const SnackBar: FC = () => {
       status: "alert",
     }
     dispatchItems({ type: "add", item })
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [message])
 
   const deleteMessage = (item: Item) => {
     dispatchItems({ type: "remove", item })
@@ -75,8 +74,7 @@ export const SnackBar: FC = () => {
     if (message) {
       generateError()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [message])
+  }, [generateError, message])
 
   return (
     <SnackBarConsta
